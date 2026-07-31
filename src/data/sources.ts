@@ -18,15 +18,45 @@ export const STEAM_NEWS: GuideSource = {
   level: "Official",
 };
 
-export const XBOX: GuideSource = {
-  label: "Mistfall Hunter on Xbox",
-  url: "https://www.xbox.com/en-US/games/store/mistfall-hunter/9p8x6tvw9zw8",
+export const LAUNCH_FAQ: GuideSource = {
+  label: "Official Launch FAQ",
+  url: "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1839041357029113",
   level: "Official",
 };
 
-export const PLAYSTATION: GuideSource = {
-  label: "Mistfall Hunter on PlayStation Store",
-  url: "https://store.playstation.com/concept/10012369",
+export const DEVNOTE_7: GuideSource = {
+  label: "DevNote #7: launch performance and balance",
+  url: "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1839041357029050",
+  level: "Official",
+};
+
+export const LAUNCH_ANNOUNCEMENT: GuideSource = {
+  label: "Official Launch Announcement",
+  url: "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1838407329259454",
+  level: "Official",
+};
+
+export const LAUNCH_UPDATE: GuideSource = {
+  label: "Launch Rewards & July 30 Update",
+  url: "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1839676055885911",
+  level: "Official",
+};
+
+export const KNOWN_ISSUES_OFFICIAL: GuideSource = {
+  label: "Official launch known issues",
+  url: "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1839676055883943",
+  level: "Official",
+};
+
+export const COMMUNITY_AMA: GuideSource = {
+  label: "Gyldenhunters' Council community AMA responses",
+  url: "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1837955055355971",
+  level: "Official",
+};
+
+export const XBOX: GuideSource = {
+  label: "Mistfall Hunter on Xbox",
+  url: "https://www.xbox.com/en-US/games/store/mistfall-hunter/9p8x6tvw9zw8",
   level: "Official",
 };
 

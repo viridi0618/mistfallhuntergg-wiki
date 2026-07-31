@@ -1,5 +1,5 @@
 import type { GuidePageData } from "@/lib/types";
-import { GAMESRADAR, PCGAMER, PLAYSTATION, STEAM, STEAM_NEWS, XBOX } from "./sources";
+import { GAMESRADAR, PCGAMER, STEAM, STEAM_NEWS, XBOX } from "./sources";
 
 const checked = "2026-07-31";
 const common = {
@@ -121,7 +121,7 @@ const platforms: GuidePageData = {
     { question: "Is Mistfall Hunter on Switch?", answer: "No confirmed Switch version is available in the official sources reviewed here." },
   ],
   related: ["crossplay", "system-requirements", "price", "controller-guide"],
-  sources: [STEAM, XBOX, PLAYSTATION, STEAM_NEWS],
+  sources: [STEAM, XBOX, STEAM_NEWS],
 };
 
 const review: GuidePageData = {
