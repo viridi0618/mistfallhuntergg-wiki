@@ -19,8 +19,9 @@ export async function generateMetadata({
   const page = getPage(slug.join("/"));
   if (!page) return {};
   const canonical = `/${page.path}/`;
+  const socialImage = page.heroImage ?? page.image ?? siteConfig.defaultSocialImage;
   return {
-    title: page.title,
+    title: { absolute: page.title },
     description: page.description,
     alternates: { canonical },
     openGraph: {
@@ -29,7 +30,7 @@ export async function generateMetadata({
       url: canonical,
       type: "article",
       siteName: siteConfig.name,
-      images: [{ url: siteConfig.defaultSocialImage, alt: `${page.h1} — Mistfall Hunter Guide` }],
+      images: [{ url: socialImage, alt: page.heroImageAlt ?? page.imageAlt ?? page.h1 }],
       publishedTime: page.published,
       modifiedTime: page.updated,
     },
@@ -37,7 +38,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: page.title,
       description: page.description,
-      images: [siteConfig.defaultSocialImage],
+      images: [socialImage],
     },
   };
 }
