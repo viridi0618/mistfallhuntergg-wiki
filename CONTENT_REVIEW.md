@@ -5,6 +5,9 @@ Last review: 2026-07-31
 ## Pages using public player or review context
 
 - `/review/` — Steam launch-week review aggregate and recurring public feedback themes. Recheck the percentage and review count before publishing a later update.
+- `/fatal-error-fix/` — references a June Steam discussion only as an example of one beta shader-compilation error. The page explicitly says this is not proof of every launch fatal-error cause.
+- `/class-tier-list/` — rankings are editorial and informed by current public gameplay context rather than official performance data.
+- `/best-class/` and `/best-solo-class/` — recommendations are editorial role matching, not official rankings.
 
 ## Pages containing information not fully confirmed by official sources
 
@@ -12,6 +15,7 @@ Last review: 2026-07-31
 - `/codes/` — no confirmed public redeem codes were found.
 - `/twitch-drops/` — no current official campaign with verified dates, requirements, and rewards was found.
 - `/pve-only/` — no complete official PvE-only progression mode is confirmed.
+- `/servers/` and `/region-lock/` — no live server status is claimed; any account behavior outside the published North American rule remains unconfirmed until an official update.
 
 ## Build and tier pages
 
@@ -48,3 +52,5 @@ Human review focus: role recommendations, launch patch references, and any weapo
 - `/patch-notes/` — update date, platform approval timing, and class changes.
 - `/price/` — list prices and the introductory discount end time.
 - `/review/` — the launch-week Steam review snapshot.
+- `/` — the three featured YouTube selections, titles, channels, embedding permission, and launch relevance.
+- `/privacy-policy/` — privacy-enhanced YouTube embedding language if the player implementation changes.

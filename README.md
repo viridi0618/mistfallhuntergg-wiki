@@ -10,6 +10,9 @@ Production domain: `https://mistfallhuntergg.wiki`
 - Static export through `output: "export"`
 - Local TypeScript content; no database, CMS, account system, or runtime API
 - Centralized page metadata, navigation, related guides, sources, and schemas
+- 49 public pages, including real Guides, Multiplayer, Settings & Fixes, Rewards, and Updates hubs
+- Page-level official hero images, captioned article figures, local favicons, and a web app manifest
+- Three manually selected YouTube videos with local thumbnails and click-to-load privacy-enhanced embeds
 - Optional analytics and advertising scripts controlled by environment values
 
 ## Local development
@@ -55,9 +58,9 @@ Primary sources used across the first release:
 - Official Xbox store page
 - Official PlayStation store listing
 
-Reliable hands-on media is used only for clearly identified review context. `CONTENT_REVIEW.md` lists version-sensitive, editorial, and human-review areas.
+Reliable hands-on media is used only for clearly identified review context. `CONTENT_REVIEW.md` lists version-sensitive, editorial, and human-review areas. `COMPETITOR_CONTENT_GAPS.md` records search-intent research without reproducing competitor copy, and `VIDEO_SELECTION.md` records the three homepage video choices.
 
-The local hero image is an official Steam promotional screenshot used for editorial identification. The social card is original site artwork and does not use an official game logo.
+Article imagery is stored locally from the official Mistfall Hunter website, Steam store, and Xbox store. The social card is original site artwork and does not use an official game logo.
 
 ## Deployment
 
