@@ -1,17 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const columns = [
   {
     title: "Popular Guides",
-    links: [["Beginner Guide", "/beginner-guide/"], ["How to Extract", "/how-to-extract/"], ["Solo Mode", "/solo-mode/"], ["Builds", "/builds/"]],
+    links: [["Guides Hub", "/guides/"], ["Beginner Guide", "/beginner-guide/"], ["How to Extract", "/how-to-extract/"], ["Gameplay", "/gameplay/"]],
   },
   {
     title: "Classes",
     links: [["All Classes", "/classes/"], ["Best Class", "/best-class/"], ["Best Solo Class", "/best-solo-class/"], ["Tier List", "/class-tier-list/"]],
   },
   {
-    title: "Help & Fixes",
-    links: [["Known Issues", "/known-issues/"], ["Fatal Error", "/fatal-error-fix/"], ["Stuttering", "/stuttering-fix/"], ["Connection", "/connection-fix/"]],
+    title: "Play & Help",
+    links: [["Multiplayer", "/multiplayer/"], ["Settings & Fixes", "/settings-fixes/"], ["Rewards", "/rewards/"], ["Updates", "/updates/"]],
   },
   {
     title: "Site",
@@ -24,7 +25,9 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-grid">
         <div className="footer-brand">
-          <div className="brand-mark" aria-hidden="true">M</div>
+          <div className="brand-logo" aria-hidden="true">
+            <Image src="/icon.png" alt="" width={40} height={40} />
+          </div>
           <h2>Mistfall Hunter Guide</h2>
           <p>Independent guides, classes, builds, fixes, and gameplay help for Mistfall Hunter.</p>
         </div>

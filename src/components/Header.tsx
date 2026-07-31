@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { primaryNav } from "@/data/pages";
 
@@ -6,7 +7,9 @@ export default function Header() {
     <header className="site-header">
       <div className="header-inner">
         <Link href="/" className="brand" aria-label="Mistfall Hunter Guide home">
-          <span className="brand-mark" aria-hidden="true">M</span>
+          <span className="brand-logo" aria-hidden="true">
+            <Image src="/icon.png" alt="" width={40} height={40} priority />
+          </span>
           <span>
             <strong>Mistfall Hunter</strong>
             <small>Guide</small>

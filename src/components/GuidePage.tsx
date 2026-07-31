@@ -1,10 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 import FAQ from "./FAQ";
 import GuideCard from "./GuideCard";
 import JsonLd from "./JsonLd";
-import { absoluteUrl, siteConfig } from "@/lib/site-config";
-import { categoryLanding, getPage } from "@/data/pages";
-import type { GuidePageData } from "@/lib/types";
+import { absoluteUrl } from "@/lib/site-config";
+import { getPage } from "@/data/pages";
+import type { ContentImage, GuidePageData, GuideSection } from "@/lib/types";
 
 function Table({ headers, rows }: { headers: string[]; rows: string[][] }) {
   return (
@@ -17,30 +18,88 @@ function Table({ headers, rows }: { headers: string[]; rows: string[][] }) {
   );
 }
 
+function headingId(heading: string) {
+  return heading
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function ContentFigure({ image }: { image: ContentImage }) {
+  return (
+    <figure className="content-figure">
+      <a href={image.sourceUrl} target="_blank" rel="noopener noreferrer">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          sizes="(max-width: 820px) 100vw, 790px"
+        />
+      </a>
+      <figcaption>{image.caption} <span>Source: {image.sourceLabel}.</span></figcaption>
+    </figure>
+  );
+}
+
+function ArticleSection({
+  section,
+  images,
+}: {
+  section: GuideSection;
+  images: ContentImage[];
+}) {
+  return (
+    <section id={headingId(section.heading)}>
+      <h2>{section.heading}</h2>
+      {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+      {section.bullets && <ul>{section.bullets.map((item) => <li key={item}>{item}</li>)}</ul>}
+      {section.table && <Table headers={section.table.headers} rows={section.table.rows} />}
+      {section.note && <aside className="note">{section.note}</aside>}
+      {images.map((image) => <ContentFigure key={image.src} image={image} />)}
+    </section>
+  );
+}
+
 export default function GuidePage({ page }: { page: GuidePageData }) {
   const url = absoluteUrl(`/${page.path}/`);
-  const categoryHref = categoryLanding[page.category] ?? "beginner-guide";
+  const label = page.breadcrumbLabel ?? page.h1;
   const related = page.related.map(getPage).filter((item): item is GuidePageData => Boolean(item));
-  const article = {
+  const category = page.categoryPath ? getPage(page.categoryPath) : undefined;
+  const isCategory = page.pageType === "category";
+  const heroImage = page.heroImage ?? page.image;
+  const heroImageUrl = heroImage ? absoluteUrl(heroImage) : undefined;
+  const toc = page.sections.length >= 3
+    ? page.sections.map((section) => ({ id: headingId(section.heading), label: section.heading }))
+    : [];
+  const breadcrumbItems = [
+    { name: "Home", url: absoluteUrl("/") },
+    ...(category ? [{ name: category.breadcrumbLabel ?? category.h1, url: absoluteUrl(`/${category.path}/`) }] : []),
+    { name: label, url },
+  ];
+  const pageSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": isCategory ? "CollectionPage" : page.pageType === "policy" ? "WebPage" : "Article",
     headline: page.h1,
+    name: page.h1,
     description: page.description,
     datePublished: page.published,
     dateModified: page.updated,
     mainEntityOfPage: url,
-    image: absoluteUrl(page.image ?? siteConfig.defaultSocialImage),
-    author: { "@type": "Organization", name: siteConfig.author, url: absoluteUrl("/editorial-policy/") },
-    publisher: { "@type": "Organization", name: siteConfig.name, url: absoluteUrl("/") },
+    image: heroImageUrl,
+    author: { "@type": "Organization", name: "Mistfall Hunter GG Editorial Team", url: absoluteUrl("/editorial-policy/") },
+    publisher: { "@type": "Organization", name: "Mistfall Hunter Guide", url: absoluteUrl("/") },
   };
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-      { "@type": "ListItem", position: 2, name: page.category, item: absoluteUrl(`/${categoryHref}/`) },
-      { "@type": "ListItem", position: 3, name: page.h1, item: url },
-    ],
+    itemListElement: breadcrumbItems.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
   };
   const faq = page.faqs.length ? {
     "@context": "https://schema.org",
@@ -54,14 +113,37 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
 
   return (
     <>
-      <JsonLd data={faq ? [article, breadcrumb, faq] : [article, breadcrumb]} />
+      <JsonLd data={faq ? [pageSchema, breadcrumb, faq] : [pageSchema, breadcrumb]} />
       <section className="page-hero">
-        <div className="hero-image" role="img" aria-label={page.imageAlt ?? "Gyldhunter exploring the mist-shrouded world of Mistfall Hunter"} />
+        {heroImage && (
+          <figure className="page-hero-media">
+            <Image
+              src={heroImage}
+              alt={page.heroImageAlt ?? page.imageAlt ?? ""}
+              width={page.heroImageWidth ?? 1600}
+              height={page.heroImageHeight ?? 900}
+              priority
+              sizes="100vw"
+            />
+            {page.heroImageCaption && (
+              <figcaption>
+                {page.heroImageCaption}{" "}
+                {page.heroImageSourceUrl && <a href={page.heroImageSourceUrl} target="_blank" rel="noopener noreferrer">Official source</a>}
+              </figcaption>
+            )}
+          </figure>
+        )}
+        <div className="page-hero-shade" />
         <div className="page-hero-inner">
           <nav className="breadcrumbs" aria-label="Breadcrumb">
-            <Link href="/">Home</Link><span>/</span>
-            <Link href={`/${categoryHref}/`}>{page.category}</Link><span>/</span>
-            <span aria-current="page">{page.h1}</span>
+            {breadcrumbItems.map((item, index) => (
+              <span className="breadcrumb-item" key={item.url}>
+                {index < breadcrumbItems.length - 1
+                  ? <Link href={new URL(item.url).pathname}>{item.name}</Link>
+                  : <span aria-current="page">{item.name}</span>}
+                {index < breadcrumbItems.length - 1 && <span aria-hidden="true">/</span>}
+              </span>
+            ))}
           </nav>
           <p className="eyebrow">{page.eyebrow}</p>
           <h1>{page.h1}</h1>
@@ -79,14 +161,21 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
             <div><dt>Information type</dt><dd>{page.informationType}</dd></div>
           </dl>
 
+          {toc.length > 0 && (
+            <details className="on-this-page" open>
+              <summary>On this page</summary>
+              <nav aria-label="On this page">
+                {toc.map((item) => <a key={item.id} href={`#${item.id}`}>{item.label}</a>)}
+              </nav>
+            </details>
+          )}
+
           {page.sections.map((section) => (
-            <section key={section.heading}>
-              <h2>{section.heading}</h2>
-              {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              {section.bullets && <ul>{section.bullets.map((item) => <li key={item}>{item}</li>)}</ul>}
-              {section.table && <Table headers={section.table.headers} rows={section.table.rows} />}
-              {section.note && <aside className="note">{section.note}</aside>}
-            </section>
+            <ArticleSection
+              key={section.heading}
+              section={section}
+              images={(page.contentImages ?? []).filter((image) => image.placementAfterHeading === section.heading)}
+            />
           ))}
 
           {page.faqs.length > 0 && (
@@ -109,7 +198,7 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
             <section className="sources">
               <p className="section-label">Evidence</p>
               <h2>Sources and further reading</h2>
-              <p>These are the primary pages used to verify this guide. Time-sensitive facts were last checked on {page.updated}.</p>
+              <p>These are the pages used to verify this guide. Time-sensitive facts were last checked on {page.updated}.</p>
               <ul>
                 {page.sources.map((source) => (
                   <li key={source.url}>
@@ -120,7 +209,11 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
               </ul>
             </section>
           )}
-          <p className="return-home">Browse the complete <Link href="/">Mistfall Hunter guide</Link> for current classes, builds, fixes, rewards, and gameplay help.</p>
+          <p className="return-home">
+            {category
+              ? <>Continue with the <Link href={`/${category.path}/`}>{category.breadcrumbLabel ?? category.h1} hub</Link> or browse all <Link href="/">Mistfall Hunter help</Link>.</>
+              : <>Browse the <Link href="/">Mistfall Hunter Guide home</Link> for classes, builds, multiplayer, fixes, rewards, and updates.</>}
+          </p>
         </article>
         <aside className="article-rail">
           <div>
@@ -128,11 +221,12 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
             <strong>Launch / Season 1</strong>
             <p>Verified against official launch material and immediate post-launch updates.</p>
           </div>
-          <nav aria-label="Useful guide links">
-            <Link href="/beginner-guide/">Beginner guide</Link>
-            <Link href="/classes/">All six classes</Link>
-            <Link href="/known-issues/">Known issues</Link>
-            <Link href="/patch-notes/">Patch notes</Link>
+          <nav aria-label="Useful section links">
+            <Link href="/guides/">Guides</Link>
+            <Link href="/classes/">Classes</Link>
+            <Link href="/multiplayer/">Multiplayer</Link>
+            <Link href="/settings-fixes/">Settings & Fixes</Link>
+            <Link href="/updates/">Updates</Link>
           </nav>
         </aside>
       </main>
