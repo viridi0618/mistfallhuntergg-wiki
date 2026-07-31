@@ -6,6 +6,7 @@ const sourceRoot = path.join(root, "src");
 const outRoot = path.join(root, "out");
 const expectedRoutes = [
   "",
+  "guides", "multiplayer", "settings-fixes", "rewards", "updates",
   "beginner-guide", "how-to-extract", "character-creation",
   "classes", "best-class", "best-solo-class", "class-tier-list",
   "classes/mercenary", "classes/sorcerer", "classes/blackarrow",
@@ -19,6 +20,19 @@ const expectedRoutes = [
   "disclaimer", "contact",
 ];
 const domain = "https://mistfallhuntergg.wiki";
+const siteRoutes = new Set(["about", "editorial-policy", "privacy-policy", "disclaimer", "contact"]);
+const coreImageRoutes = new Set([
+  "guides", "multiplayer", "settings-fixes", "rewards", "updates",
+  "beginner-guide", "how-to-extract", "classes", "best-class", "best-solo-class",
+  "class-tier-list", "builds", "gameplay", "solo-mode", "pve-only", "crossplay",
+  "servers", "region-lock", "play-with-friends", "best-settings", "controller-guide",
+  "fatal-error-fix", "stuttering-fix", "crashing-fix", "connection-fix",
+  "known-issues", "patch-notes", "review",
+]);
+const classRoutes = new Set([
+  "classes/mercenary", "classes/sorcerer", "classes/blackarrow",
+  "classes/shadowstrix", "classes/seer", "classes/withered-knight",
+]);
 
 function filesUnder(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -38,6 +52,20 @@ if (!sourceText.includes(domain)) errors.push("Production domain is missing from
 if (!fs.existsSync(path.join(root, "public", "mistfall-hunter-gyldenmist.jpg"))) errors.push("Local hero image is missing.");
 if (!fs.existsSync(path.join(root, "public", "og.png"))) errors.push("Social preview image is missing.");
 if (!fs.existsSync(path.join(root, "CONTENT_REVIEW.md"))) errors.push("CONTENT_REVIEW.md is missing.");
+if (!fs.existsSync(path.join(root, "COMPETITOR_CONTENT_GAPS.md"))) errors.push("COMPETITOR_CONTENT_GAPS.md is missing.");
+if (!fs.existsSync(path.join(root, "VIDEO_SELECTION.md"))) errors.push("VIDEO_SELECTION.md is missing.");
+for (const icon of [
+  "src/app/favicon.ico",
+  "src/app/icon.png",
+  "src/app/apple-icon.png",
+  "public/favicon-16x16.png",
+  "public/favicon-32x32.png",
+  "public/android-chrome-192x192.png",
+  "public/android-chrome-512x512.png",
+  "public/site.webmanifest",
+]) {
+  if (!fs.existsSync(path.join(root, icon))) errors.push(`Missing icon or manifest: ${icon}`);
+}
 
 if (fs.existsSync(outRoot)) {
   const titles = new Set();
@@ -60,6 +88,15 @@ if (fs.existsSync(outRoot)) {
     else if (descriptions.has(description)) errors.push(`Duplicate description on /${route}.`);
     else descriptions.add(description);
     if (!html.includes(`rel="canonical" href="${domain}`)) errors.push(`Invalid canonical on /${route}.`);
+    const imageSources = [...html.matchAll(/<img[^>]+src="([^"]+)"/g)].map((match) => match[1]);
+    for (const imageSource of imageSources) {
+      if (imageSource.startsWith("/")) {
+        const imagePath = imageSource.split("?")[0];
+        if (!fs.existsSync(path.join(outRoot, imagePath))) {
+          errors.push(`Broken local image on /${route}: ${imagePath}`);
+        }
+      }
+    }
 
     const localLinks = [...html.matchAll(/href="(\/[^"#?]*)"/g)]
       .map((match) => match[1])
@@ -68,6 +105,39 @@ if (fs.existsSync(outRoot)) {
       const clean = href.replace(/^\/|\/$/g, "");
       if (!expectedRoutes.includes(clean) && !fs.existsSync(path.join(outRoot, clean))) {
         errors.push(`Broken internal link on /${route}: ${href}`);
+      }
+    }
+
+    if (route && !siteRoutes.has(route)) {
+      if (!html.includes('class="page-hero-media"')) errors.push(`Missing page hero on /${route}.`);
+      const ogImage = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
+      if (!ogImage?.startsWith(`${domain}/images/`)) errors.push(`Missing page-level Open Graph image on /${route}.`);
+    }
+
+    const contentFigureCount = (html.match(/class="content-figure"/g) || []).length;
+    if (coreImageRoutes.has(route) && contentFigureCount < 3) {
+      errors.push(`Core page /${route} needs at least three content figures; found ${contentFigureCount}.`);
+    }
+    if (classRoutes.has(route) && contentFigureCount < 2) {
+      errors.push(`Class page /${route} needs at least two content figures; found ${contentFigureCount}.`);
+    }
+    if (contentFigureCount) {
+      const captionCount = (html.match(/<figcaption>/g) || []).length;
+      if (captionCount < contentFigureCount + 1) errors.push(`A figure on /${route} is missing a caption.`);
+    }
+
+    const h2Count = (html.match(/<h2\b/g) || []).length;
+    if (route && h2Count >= 3 && !html.includes('class="on-this-page"')) {
+      errors.push(`Page /${route} has ${h2Count} H2 headings but no table of contents.`);
+    }
+
+    const breadcrumbHtml = html.match(/<nav class="breadcrumbs"[\s\S]*?<\/nav>/)?.[0];
+    if (route && !breadcrumbHtml) {
+      errors.push(`Missing visible breadcrumb on /${route}.`);
+    } else if (breadcrumbHtml) {
+      const breadcrumbLinks = [...breadcrumbHtml.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+      if (new Set(breadcrumbLinks).size !== breadcrumbLinks.length) {
+        errors.push(`Duplicate breadcrumb URL on /${route}.`);
       }
     }
   }
@@ -82,6 +152,11 @@ if (fs.existsSync(outRoot)) {
   if (expectedRoutes.some((route) => !sitemap.includes(route ? `${domain}/${route}/` : `<loc>${domain}</loc>`))) {
     errors.push("sitemap.xml is missing one or more public pages.");
   }
+  const homeHtml = fs.readFileSync(path.join(outRoot, "index.html"), "utf8");
+  if ((homeHtml.match(/<article class="video-card/g) || []).length !== 3) errors.push("Home must render exactly three featured video cards.");
+  if (homeHtml.includes("<iframe")) errors.push("Home must not render YouTube iframes before a click.");
+  if (!homeHtml.includes("See Mistfall Hunter in Action")) errors.push("Featured video section is missing.");
+  if (!sourceText.includes("youtube-nocookie.com/embed/")) errors.push("Privacy-enhanced YouTube embed URLs are missing.");
 }
 
 if (errors.length) {
