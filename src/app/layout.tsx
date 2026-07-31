@@ -39,6 +39,9 @@ export const metadata: Metadata = {
     images: [siteConfig.defaultSocialImage],
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "2T888-ccr720MOh5ohnhHTCCAHhXaBBqWbXvxIoXUIM",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
