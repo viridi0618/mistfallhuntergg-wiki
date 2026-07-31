@@ -17,6 +17,17 @@ export type GuideSection = {
   note?: string;
 };
 
+export type ContentImage = {
+  src: string;
+  alt: string;
+  caption: string;
+  sourceLabel: string;
+  sourceUrl: string;
+  width: number;
+  height: number;
+  placementAfterHeading?: string;
+};
+
 export type GuidePageData = {
   path: string;
   category: string;
@@ -37,6 +48,16 @@ export type GuidePageData = {
   sources: GuideSource[];
   image?: string;
   imageAlt?: string;
+  heroImage?: string;
+  heroImageAlt?: string;
+  heroImageCaption?: string;
+  heroImageSourceUrl?: string;
+  heroImageWidth?: number;
+  heroImageHeight?: number;
+  contentImages?: ContentImage[];
+  breadcrumbLabel?: string;
+  categoryPath?: string;
+  pageType?: "article" | "category" | "policy";
   warning?: string;
 };
 
