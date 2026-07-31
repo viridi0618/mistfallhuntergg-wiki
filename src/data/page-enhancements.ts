@@ -114,6 +114,78 @@ const explicitContent: Record<string, string[]> = {
   "classes/withered-knight": ["steam-06", "steam-08"],
 };
 
+type ExplicitImageAssignment = {
+  key: string;
+  heading: string;
+  caption: string;
+};
+
+const explicitImageAssignments: Record<string, ExplicitImageAssignment[]> = {
+  "best-settings": [
+    { key: "steam-04", heading: "Build a stable baseline before increasing quality", caption: "Use the same demanding combat scene when comparing a stable baseline with higher visual settings." },
+  ],
+  fov: [
+    { key: "site-17", heading: "Safe camera and comfort adjustments", caption: "Compare camera comfort in both open and confined scenes before keeping an adjustment." },
+  ],
+  "controller-guide": [
+    { key: "steam-06", heading: "Controller symptom matrix", caption: "Menu navigation and combat input should be tested separately because they can fail at different stages." },
+  ],
+  "fatal-error-fix": [
+    { key: "site-17", heading: "Classify the fatal error by stage", caption: "Record whether the failure occurs at launch, during loading, or only after entering a playable area." },
+  ],
+  "stuttering-fix": [
+    { key: "steam-04", heading: "Run a repeatable frame-pacing test", caption: "Repeat one combat workload when checking whether a frame-pacing change actually helped." },
+  ],
+  "crashing-fix": [
+    { key: "steam-06", heading: "Crash type changes the first test", caption: "Separate interface crashes from loading and in-match crashes before choosing a troubleshooting path." },
+  ],
+  "connection-fix": [
+    { key: "site-19", heading: "Use a two-account comparison when possible", caption: "A two-account party test helps separate one account or network problem from a wider service incident." },
+  ],
+  servers: [
+    { key: "site-12", heading: "Account region, server region, and physical location", caption: "Server eligibility and physical distance are separate factors when diagnosing connection quality." },
+  ],
+  "region-lock": [
+    { key: "xbox-cover", heading: "Store region versus server region", caption: "Start with the storefront account and game build before treating a join failure as a network problem." },
+  ],
+  crossplay: [
+    { key: "xbox-cover", heading: "Platform-by-platform preparation", caption: "Cross-platform matchmaking still depends on supported platforms, current clients, and compatible account regions." },
+  ],
+  "known-issues": [
+    { key: "steam-06", heading: "How to confirm your current status", caption: "Recheck the exact interface or gameplay stage named in an issue after the relevant update is installed." },
+  ],
+  "patch-notes": [
+    { key: "steam-03", heading: "Guide areas affected by a patch", caption: "Combat changes should be retested in the class and build guidance they affect." },
+  ],
+  review: [
+    { key: "site-05", heading: "A practical fit test before buying", caption: "Combat, loot decisions, and extraction risk should all be part of a practical fit assessment." },
+  ],
+  "solo-mode": [
+    { key: "site-15", heading: "Build a solo route with three exits", caption: "A solo route needs a retreat, a covered reset, and a return direction rather than a promised safe corridor." },
+  ],
+  "pve-only": [
+    { key: "site-09", heading: "What official PvE language does and does not promise", caption: "Official monster encounters confirm PvE content, but do not by themselves confirm a separate PvE-only queue." },
+  ],
+};
+
+const explicitHeroCaptions: Record<string, string> = {
+  "best-settings": "An official gameplay environment suitable for building a repeatable visual-performance test.",
+  fov: "A centered solo scene useful for discussing camera framing without claiming an unsupported FOV value.",
+  "controller-guide": "A movement-heavy official combat scene relevant to checking controller input and camera response.",
+  "fatal-error-fix": "An official gameplay environment; the guide separates launch, loading, and in-match failure stages.",
+  "stuttering-fix": "An official traversal scene relevant to repeatable frame-pacing comparisons.",
+  "crashing-fix": "An official transition scene; crash diagnosis begins by recording the exact failure stage.",
+  "connection-fix": "A squad route in official art, relevant to party and connection troubleshooting.",
+  servers: "An official Weavereach environment; server eligibility and physical distance are evaluated separately.",
+  "region-lock": "Official key art used alongside account-region and storefront eligibility guidance.",
+  crossplay: "An official three-player encounter supporting the guide's platform and party checklist.",
+  "known-issues": "An official gameplay scene; issue status must be checked against the named client update.",
+  "patch-notes": "Official environment art introducing a dated digest of published game changes.",
+  review: "An official combat image used to frame the guide's source-aware launch assessment.",
+  "solo-mode": "An official solo traversal scene relevant to route and disengagement planning.",
+  "pve-only": "An official large-enemy encounter that confirms PvE content, not a separate PvE-only queue.",
+};
+
 const categoryByPath: Record<string, { label: string; path: string }> = {
   "beginner-guide": { label: "Guides", path: "guides" },
   "how-to-extract": { label: "Guides", path: "guides" },
@@ -714,14 +786,17 @@ const beginnerSections: GuideSection[] = [
   },
   {
     heading: "Your first five runs",
+    paragraphs: [
+      "Use replaceable equipment and give each early run one learning target. The risk rule is simple: preserve a response for the return, stop when the target is complete, and do not turn practice into an expensive chase.",
+    ],
     table: {
-      headers: ["Run", "Learning target", "Count it as a success when"],
+      headers: ["Run", "Learning target", "Count it as a success when", "Risk rule"],
       rows: [
-        ["1", "Movement, camera, defense, and one PvE enemy", "You can repeat the basic response without looking at the controls"],
-        ["2", "Loot value and inventory pace", "You reject items that do not serve the run"],
-        ["3", "Returner Woodling and Soul of Return flow", "You can explain the extraction sequence"],
-        ["4", "Sound, sightlines, and disengagement", "You leave one bad fight before it becomes a wipe"],
-        ["5", "A complete compact route", "You extract after the stated objective instead of extending it"],
+        ["1", "Movement, healing, defense, and one PvE enemy", "You can repeat the basic response without checking controls", "Take only equipment you can replace"],
+        ["2", "Loot value, cover, and inventory pace", "You reject items that do not serve the run", "Do not chase another player"],
+        ["3", "Returner Woodling and Soul of Return flow", "You can explain the extraction sequence", "Save one response for the exit"],
+        ["4", "Sound, sightlines, and disengagement", "You leave one bad fight before it becomes a wipe", "Set a route or inventory limit"],
+        ["5", "A complete compact route solo or with a squad", "You extract after the stated objective", "Leave after the objective succeeds"],
       ],
     },
   },
@@ -1719,11 +1794,22 @@ function pageImages(page: GuidePageData, sections: GuideSection[]) {
   const heroIndex = imageKeys.indexOf(heroKey);
   const headings = sections.map((section) => section.heading);
   const images: ContentImage[] = [];
-  const selected = explicitContent[page.path] ?? Array.from({ length: desired }, (_, index) => imageKeys[(heroIndex + (index + 1) * 7) % imageKeys.length]);
-  for (let index = 0; index < selected.length; index++) {
-    const candidate = selected[index];
-    if (candidate === heroKey) continue;
-    images.push(contentImage(candidate, headings[Math.min(index, headings.length - 1)]));
+  const assignments = explicitImageAssignments[page.path];
+  if (assignments) {
+    for (const assignment of assignments) {
+      if (assignment.key === heroKey) continue;
+      images.push({
+        ...contentImage(assignment.key, assignment.heading),
+        caption: assignment.caption,
+      });
+    }
+  } else {
+    const selected = explicitContent[page.path] ?? Array.from({ length: desired }, (_, index) => imageKeys[(heroIndex + (index + 1) * 7) % imageKeys.length]);
+    for (let index = 0; index < selected.length; index++) {
+      const candidate = selected[index];
+      if (candidate === heroKey) continue;
+      images.push(contentImage(candidate, headings[Math.min(index, headings.length - 1)]));
+    }
   }
   const hero = imageInfo[heroKey];
   return {
@@ -1731,7 +1817,7 @@ function pageImages(page: GuidePageData, sections: GuideSection[]) {
     imageAlt: hero.alt,
     heroImage: hero.src,
     heroImageAlt: hero.alt,
-    heroImageCaption: hero.caption,
+    heroImageCaption: explicitHeroCaptions[page.path] ?? hero.caption,
     heroImageSourceUrl: hero.sourceUrl,
     heroImageWidth: hero.width,
     heroImageHeight: hero.height,
@@ -1773,7 +1859,15 @@ export function enhancePage(page: GuidePageData): GuidePageData {
     category: category?.label ?? page.category,
     breadcrumbLabel: page.breadcrumbLabel ?? page.h1.replace(/^Mistfall Hunter\s+/i, ""),
     categoryPath: isCategory ? "" : category?.path ?? "",
-    pageType: isPolicy ? "policy" : isCategory ? "category" : "article",
+    pageType: page.path === "about"
+      ? "about"
+      : page.path === "contact"
+        ? "contact"
+        : isPolicy
+          ? "policy"
+          : isCategory
+            ? "category"
+            : "article",
     sections,
     faqs: classSlug ? [...page.faqs, ...(classFaqs[classSlug] ?? [])] : page.faqs,
     sources: [...sourceMap.values()],

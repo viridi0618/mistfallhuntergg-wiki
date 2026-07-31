@@ -29,19 +29,6 @@ const beginner: GuidePageData = {
       ],
     },
     {
-      heading: "Your first five runs",
-      table: {
-        headers: ["Run", "Primary goal", "Risk rule"],
-        rows: [
-          ["1", "Learn movement, healing, and the extraction sequence", "Take only equipment you can replace"],
-          ["2", "Identify safe cover and common PvE threats", "Do not chase another player"],
-          ["3", "Practice your class's defensive option", "Save one response for the exit"],
-          ["4", "Loot a compact route", "Set a time or inventory limit"],
-          ["5", "Try a planned objective with a squad or solo", "Leave after the objective succeeds"],
-        ],
-      },
-    },
-    {
       heading: "How to enter a match prepared",
       bullets: [
         "Choose a kit with a clear weapon and skill plan.",
@@ -281,7 +268,7 @@ const solo: GuidePageData = {
   category: "Gameplay",
   eyebrow: "Mode guide",
   keyword: "mistfall hunter solo mode",
-  title: "Mistfall Hunter Solo Mode: Rules & Tips",
+  title: "Mistfall Hunter Solo Mode Guide: Rules, Routes and Tips",
   description: "Mistfall Hunter solo mode explained: matchmaking, PvP risk, accessible content, Solo versus Trio, class choices, limits, and launch advice.",
   h1: "Mistfall Hunter Solo Mode",
   answer: "Yes, Mistfall Hunter supports solo play. Solo is a matchmaking and squad-size choice inside a PvPvE extraction game, not a private offline or PvE-only campaign.",
@@ -348,7 +335,7 @@ const pve: GuidePageData = {
   category: "Gameplay",
   eyebrow: "Mode status",
   keyword: "mistfall hunter pve only",
-  title: "Mistfall Hunter PvE Only: Is There a Mode?",
+  title: "Mistfall Hunter PvE-Only Mode Status and PvP Risk",
   description: "Is Mistfall Hunter PvE only? Learn the confirmed PvPvE design, whether PvP can be disabled, how training differs, and ways to lower player-conflict risk.",
   h1: "Mistfall Hunter PvE Only Mode",
   answer: "No confirmed full PvE-only extraction mode is currently advertised. Official store pages consistently describe Mistfall Hunter as PvPvE, and solo does not mean PvE-only.",
@@ -521,7 +508,7 @@ const regionLock: GuidePageData = {
   category: "Multiplayer",
   eyebrow: "Account restriction",
   keyword: "mistfall hunter region lock",
-  title: "Mistfall Hunter Region Lock: Account Rules",
+  title: "Mistfall Hunter Region Lock: Account and Server Rules",
   description: "Mistfall Hunter region lock explained: store account versus server region, the official North American restriction, cross-region friends, and switching limits.",
   h1: "Mistfall Hunter Region Lock",
   answer: "Mistfall Hunter has a confirmed North American account restriction: accounts registered in the US, Canada, Mexico, Puerto Rico, and the US Virgin Islands receive the North American build and can access only US-based North American servers.",

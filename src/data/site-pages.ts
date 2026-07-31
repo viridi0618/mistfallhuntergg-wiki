@@ -129,7 +129,7 @@ const review: GuidePageData = {
   category: "Guides",
   eyebrow: "Review roundup",
   keyword: "mistfall hunter review",
-  title: "Mistfall Hunter Review Roundup & Feedback",
+  title: "Mistfall Hunter Review Roundup: Launch Feedback Guide",
   description: "A Mistfall Hunter review roundup based on public media impressions and launch player feedback, covering combat, extraction, solo play, performance, and fit.",
   h1: "Mistfall Hunter Review Roundup and Player Feedback",
   answer: "Early public feedback finds a compelling fantasy extraction concept and class combat, while launch reviews also raise performance, server, balance, and polish concerns. This is a sourced roundup, not our long-term hands-on review.",

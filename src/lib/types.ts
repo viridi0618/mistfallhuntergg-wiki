@@ -57,7 +57,7 @@ export type GuidePageData = {
   contentImages?: ContentImage[];
   breadcrumbLabel?: string;
   categoryPath?: string;
-  pageType?: "article" | "category" | "policy";
+  pageType?: "article" | "category" | "policy" | "about" | "contact";
   warning?: string;
 };
 

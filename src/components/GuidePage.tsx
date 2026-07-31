@@ -18,12 +18,25 @@ function Table({ headers, rows }: { headers: string[]; rows: string[][] }) {
   );
 }
 
-function headingId(heading: string) {
+function headingSlug(heading: string) {
   return heading
     .toLowerCase()
     .replace(/&/g, "and")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
+}
+
+function sectionHeadings(sections: GuideSection[]) {
+  const seen = new Map<string, number>();
+  return sections.map((section) => {
+    const base = headingSlug(section.heading) || "section";
+    const count = (seen.get(base) ?? 0) + 1;
+    seen.set(base, count);
+    return {
+      section,
+      id: count === 1 ? base : `${base}-${count}`,
+    };
+  });
 }
 
 function ContentFigure({ image }: { image: ContentImage }) {
@@ -45,14 +58,16 @@ function ContentFigure({ image }: { image: ContentImage }) {
 
 function ArticleSection({
   section,
+  id,
   images,
 }: {
   section: GuideSection;
+  id: string;
   images: ContentImage[];
 }) {
   return (
-    <section id={headingId(section.heading)}>
-      <h2>{section.heading}</h2>
+    <section>
+      <h2 id={id}>{section.heading}</h2>
       {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
       {section.bullets && <ul>{section.bullets.map((item) => <li key={item}>{item}</li>)}</ul>}
       {section.table && <Table headers={section.table.headers} rows={section.table.rows} />}
@@ -67,29 +82,37 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
   const label = page.breadcrumbLabel ?? page.h1;
   const related = page.related.map(getPage).filter((item): item is GuidePageData => Boolean(item));
   const category = page.categoryPath ? getPage(page.categoryPath) : undefined;
-  const isCategory = page.pageType === "category";
   const heroImage = page.heroImage ?? page.image;
   const heroImageUrl = heroImage ? absoluteUrl(heroImage) : undefined;
+  const headings = sectionHeadings(page.sections);
   const toc = page.sections.length >= 3
-    ? page.sections.map((section) => ({ id: headingId(section.heading), label: section.heading }))
+    ? headings.map(({ section, id }) => ({ id, label: section.heading }))
     : [];
   const breadcrumbItems = [
     { name: "Home", url: absoluteUrl("/") },
     ...(category ? [{ name: category.breadcrumbLabel ?? category.h1, url: absoluteUrl(`/${category.path}/`) }] : []),
     { name: label, url },
   ];
+  const schemaType = {
+    article: "Article",
+    category: "CollectionPage",
+    policy: "WebPage",
+    about: "AboutPage",
+    contact: "ContactPage",
+  }[page.pageType ?? "article"];
   const pageSchema = {
     "@context": "https://schema.org",
-    "@type": isCategory ? "CollectionPage" : page.pageType === "policy" ? "WebPage" : "Article",
+    "@type": schemaType,
     headline: page.h1,
     name: page.h1,
     description: page.description,
-    datePublished: page.published,
-    dateModified: page.updated,
     mainEntityOfPage: url,
     image: heroImageUrl,
     author: { "@type": "Organization", name: "Mistfall Hunter GG Editorial Team", url: absoluteUrl("/editorial-policy/") },
     publisher: { "@type": "Organization", name: "Mistfall Hunter Guide", url: absoluteUrl("/") },
+    ...(page.pageType === "article"
+      ? { datePublished: page.published, dateModified: page.updated }
+      : {}),
   };
   const breadcrumb = {
     "@context": "https://schema.org",
@@ -119,7 +142,7 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
           <figure className="page-hero-media">
             <Image
               src={heroImage}
-              alt={page.heroImageAlt ?? page.imageAlt ?? ""}
+              alt={page.heroImageAlt ?? page.imageAlt ?? page.h1}
               width={page.heroImageWidth ?? 1600}
               height={page.heroImageHeight ?? 900}
               priority
@@ -170,9 +193,10 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
             </details>
           )}
 
-          {page.sections.map((section) => (
+          {headings.map(({ section, id }) => (
             <ArticleSection
-              key={section.heading}
+              key={id}
+              id={id}
               section={section}
               images={(page.contentImages ?? []).filter((image) => image.placementAfterHeading === section.heading)}
             />
@@ -187,7 +211,7 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
           )}
 
           {related.length > 0 && (
-            <section>
+            <section className="related-guides">
               <p className="section-label">Continue reading</p>
               <h2>Related guides</h2>
               <div className="related-grid">{related.map((relatedPage) => <GuideCard key={relatedPage.path} page={relatedPage} />)}</div>

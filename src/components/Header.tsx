@@ -8,7 +8,7 @@ export default function Header() {
       <div className="header-inner">
         <Link href="/" className="brand" aria-label="Mistfall Hunter Guide home">
           <span className="brand-logo" aria-hidden="true">
-            <Image src="/icon.png" alt="" width={40} height={40} priority />
+            <Image src="/icon.png" alt="Mistfall Hunter Guide emblem" width={40} height={40} priority />
           </span>
           <span>
             <strong>Mistfall Hunter</strong>

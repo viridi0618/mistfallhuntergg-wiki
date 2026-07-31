@@ -21,6 +21,12 @@ const expectedRoutes = [
 ];
 const domain = "https://mistfallhuntergg.wiki";
 const siteRoutes = new Set(["about", "editorial-policy", "privacy-policy", "disclaimer", "contact"]);
+const categoryRoutes = new Set(["guides", "multiplayer", "settings-fixes", "rewards", "updates", "classes", "builds", "gameplay"]);
+const compactImageRoutes = new Set([
+  "best-settings", "fov", "controller-guide", "fatal-error-fix", "stuttering-fix",
+  "crashing-fix", "connection-fix", "servers", "region-lock", "crossplay",
+  "known-issues", "patch-notes", "review", "solo-mode", "pve-only",
+]);
 const coreImageRoutes = new Set([
   "guides", "multiplayer", "settings-fixes", "rewards", "updates",
   "beginner-guide", "how-to-extract", "classes", "best-class", "best-solo-class",
@@ -82,6 +88,9 @@ if (fs.existsSync(outRoot)) {
     const title = html.match(/<title>(.*?)<\/title>/)?.[1];
     const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1];
     if (!title) errors.push(`Missing title on /${route}.`);
+    else if (title.includes("Mistfall Hunter Guide | Mistfall Hunter Guide")) {
+      errors.push(`Duplicated site name in title on /${route}: ${title}`);
+    }
     else if (titles.has(title)) errors.push(`Duplicate title on /${route}: ${title}`);
     else titles.add(title);
     if (!description) errors.push(`Missing meta description on /${route}.`);
@@ -89,6 +98,11 @@ if (fs.existsSync(outRoot)) {
     else descriptions.add(description);
     if (!html.includes(`rel="canonical" href="${domain}`)) errors.push(`Invalid canonical on /${route}.`);
     const imageSources = [...html.matchAll(/<img[^>]+src="([^"]+)"/g)].map((match) => match[1]);
+    const imageTags = [...html.matchAll(/<img\b[^>]*>/g)].map((match) => match[0]);
+    for (const imageTag of imageTags) {
+      const alt = imageTag.match(/\balt="([^"]*)"/)?.[1]?.trim();
+      if (!alt) errors.push(`Image with empty or missing alt text on /${route}.`);
+    }
     for (const imageSource of imageSources) {
       if (imageSource.startsWith("/")) {
         const imagePath = imageSource.split("?")[0];
@@ -115,20 +129,40 @@ if (fs.existsSync(outRoot)) {
     }
 
     const contentFigureCount = (html.match(/class="content-figure"/g) || []).length;
-    if (coreImageRoutes.has(route) && contentFigureCount < 3) {
+    if (compactImageRoutes.has(route) && contentFigureCount < 1) {
+      errors.push(`Relevance-mapped page /${route} needs at least one content figure; found ${contentFigureCount}.`);
+    } else if (coreImageRoutes.has(route) && !compactImageRoutes.has(route) && contentFigureCount < 3) {
       errors.push(`Core page /${route} needs at least three content figures; found ${contentFigureCount}.`);
     }
     if (classRoutes.has(route) && contentFigureCount < 2) {
       errors.push(`Class page /${route} needs at least two content figures; found ${contentFigureCount}.`);
     }
-    if (contentFigureCount) {
-      const captionCount = (html.match(/<figcaption>/g) || []).length;
-      if (captionCount < contentFigureCount + 1) errors.push(`A figure on /${route} is missing a caption.`);
+    const figures = [...html.matchAll(/<figure\b[\s\S]*?<\/figure>/g)].map((match) => match[0]);
+    for (const figure of figures) {
+      const caption = figure.match(/<figcaption\b[^>]*>([\s\S]*?)<\/figcaption>/)?.[1]
+        ?.replace(/<[^>]+>/g, "")
+        .trim();
+      if (!caption) errors.push(`A figure on /${route} is missing a non-empty caption.`);
     }
 
-    const h2Count = (html.match(/<h2\b/g) || []).length;
-    if (route && h2Count >= 3 && !html.includes('class="on-this-page"')) {
-      errors.push(`Page /${route} has ${h2Count} H2 headings but no table of contents.`);
+    const h2Ids = [...html.matchAll(/<h2\b[^>]*\bid="([^"]+)"[^>]*>/g)].map((match) => match[1]);
+    const duplicateH2Ids = h2Ids.filter((id, index) => h2Ids.indexOf(id) !== index);
+    if (duplicateH2Ids.length) {
+      errors.push(`Duplicate H2 ID on /${route}: ${[...new Set(duplicateH2Ids)].join(", ")}.`);
+    }
+    const tocHtml = html.match(/<details\b[^>]*class="on-this-page"[^>]*>[\s\S]*?<\/details>/)?.[0];
+    if (route && h2Ids.length >= 3 && !tocHtml) {
+      errors.push(`Page /${route} has ${h2Ids.length} content H2 headings but no table of contents.`);
+    }
+    if (tocHtml) {
+      const tocTargets = [...tocHtml.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]);
+      const duplicateTargets = tocTargets.filter((target, index) => tocTargets.indexOf(target) !== index);
+      if (duplicateTargets.length) {
+        errors.push(`Duplicate TOC target on /${route}: ${[...new Set(duplicateTargets)].join(", ")}.`);
+      }
+      for (const target of tocTargets) {
+        if (!h2Ids.includes(target)) errors.push(`Missing TOC target on /${route}: #${target}.`);
+      }
     }
 
     const breadcrumbHtml = html.match(/<nav class="breadcrumbs"[\s\S]*?<\/nav>/)?.[0];
@@ -138,6 +172,39 @@ if (fs.existsSync(outRoot)) {
       const breadcrumbLinks = [...breadcrumbHtml.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
       if (new Set(breadcrumbLinks).size !== breadcrumbLinks.length) {
         errors.push(`Duplicate breadcrumb URL on /${route}.`);
+      }
+      const currentPath = route ? `/${route}/` : "/";
+      if (breadcrumbLinks.includes(currentPath)) {
+        errors.push(`Breadcrumb current page is also linked on /${route}.`);
+      }
+      if (categoryRoutes.has(route)) {
+        const breadcrumbLabels = [...breadcrumbHtml.matchAll(/<(?:a|span)[^>]*>([^<>]+)<\/(?:a|span)>/g)]
+          .map((match) => match[1].trim())
+          .filter((label) => label && label !== "/");
+        const repeatedLabels = breadcrumbLabels.filter((label, index) => breadcrumbLabels.indexOf(label) !== index);
+        if (repeatedLabels.length) errors.push(`Category breadcrumb repeats a label on /${route}.`);
+      }
+    }
+
+    if (route) {
+      const ogType = html.match(/<meta property="og:type" content="([^"]+)"/)?.[1];
+      if (categoryRoutes.has(route) && ogType === "article") {
+        errors.push(`Category /${route} must not use article Open Graph type.`);
+      }
+      const jsonLdText = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
+      const jsonLd = jsonLdText ? JSON.parse(jsonLdText) : [];
+      const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+      const pageSchema = schemas.find((schema) =>
+        ["Article", "CollectionPage", "WebPage", "AboutPage", "ContactPage"].includes(schema?.["@type"])
+      );
+      if (!pageSchema) {
+        errors.push(`Missing page schema on /${route}.`);
+      } else if (pageSchema["@type"] === "Article") {
+        if (!pageSchema.datePublished || !pageSchema.dateModified) {
+          errors.push(`Article schema on /${route} needs datePublished and dateModified.`);
+        }
+      } else if ("datePublished" in pageSchema || "dateModified" in pageSchema) {
+        errors.push(`Non-article schema on /${route} must not include Article time fields.`);
       }
     }
   }

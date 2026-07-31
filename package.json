@@ -2,12 +2,14 @@
   "name": "mistfallhuntergg-wiki",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "check:site": "node scripts/check-site.mjs"
+    "check:site": "node scripts/check-site.mjs",
+    "report:keywords": "node scripts/report-keywords.mjs"
   },
   "dependencies": {
     "next": "16.2.12",

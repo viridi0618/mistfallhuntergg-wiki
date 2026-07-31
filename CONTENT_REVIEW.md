@@ -43,6 +43,10 @@ Human review focus: role recommendations, launch patch references, and any weapo
 
 ## Specific paragraphs recommended for human recheck
 
+- `/fatal-error-fix/`, `/stuttering-fix/`, `/crashing-fix/`, and `/connection-fix/`: recheck the "Safe troubleshooting order," "Evidence that makes the next step useful," and "Stop conditions and unsafe boundaries" sections against any newer official support workflow.
+- `/fov/`: recheck the cautious slider-status answer if an official platform menu or accessibility note documents the launch setting.
+- `/crossplay/`, `/servers/`, and `/region-lock/`: recheck account-region eligibility and deployed locations before changing the platform or party checklists.
+
 - `/servers/` — the five deployment countries and any new official locations.
 - `/region-lock/` — the North American account restriction and the pending region-unlock solution.
 - `/solo-mode/` — Brandrgarde Solo availability and the stated short-term Duo plan.

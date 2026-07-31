@@ -20,11 +20,12 @@ export async function generateMetadata({
   if (!page) return {};
   const canonical = `/${page.path}/`;
   const socialImage = page.heroImage ?? page.image ?? siteConfig.defaultSocialImage;
+  const isArticle = page.pageType === "article";
   return {
     title: { absolute: page.title },
     description: page.description,
     alternates: { canonical },
-    openGraph: {
+    openGraph: isArticle ? {
       title: page.title,
       description: page.description,
       url: canonical,
@@ -33,6 +34,13 @@ export async function generateMetadata({
       images: [{ url: socialImage, alt: page.heroImageAlt ?? page.imageAlt ?? page.h1 }],
       publishedTime: page.published,
       modifiedTime: page.updated,
+    } : {
+      title: page.title,
+      description: page.description,
+      url: canonical,
+      type: "website",
+      siteName: siteConfig.name,
+      images: [{ url: socialImage, alt: page.heroImageAlt ?? page.imageAlt ?? page.h1 }],
     },
     twitter: {
       card: "summary_large_image",

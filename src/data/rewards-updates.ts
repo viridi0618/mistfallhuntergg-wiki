@@ -319,7 +319,7 @@ const patchNotes: GuidePageData = {
   category: "Updates",
   eyebrow: "Official update digest",
   keyword: "mistfall hunter patch notes",
-  title: "Mistfall Hunter Patch Notes: Launch Updates",
+  title: "Mistfall Hunter Patch Notes: Launch Updates and Fixes",
   description: "Mistfall Hunter patch notes summarized with dates, major fixes, class balance, performance changes, console fixes, and affected guide pages.",
   h1: "Mistfall Hunter Patch Notes",
   answer: "The first launch update was scheduled for July 30, 2026 at 16:00 UTC and addressed the published known-issue list plus class balance changes. This page summarizes official notes instead of copying them.",

@@ -26,7 +26,7 @@ export default function Footer() {
       <div className="footer-grid">
         <div className="footer-brand">
           <div className="brand-logo" aria-hidden="true">
-            <Image src="/icon.png" alt="" width={40} height={40} />
+            <Image src="/icon.png" alt="Mistfall Hunter Guide emblem" width={40} height={40} />
           </div>
           <h2>Mistfall Hunter Guide</h2>
           <p>Independent guides, classes, builds, fixes, and gameplay help for Mistfall Hunter.</p>
