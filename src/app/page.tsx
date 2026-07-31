@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import FAQ from "@/components/FAQ";
+import FeaturedVideos from "@/components/FeaturedVideos";
 import GuideCard from "@/components/GuideCard";
 import JsonLd from "@/components/JsonLd";
 import { getPage } from "@/data/pages";
@@ -67,7 +69,7 @@ export default function Home() {
     "@type": "Organization",
     name: siteConfig.name,
     url: absoluteUrl("/"),
-    logo: absoluteUrl(siteConfig.defaultSocialImage),
+    logo: absoluteUrl("/icon.png"),
     description: siteConfig.description,
   };
   const faqSchema = {
@@ -84,7 +86,18 @@ export default function Home() {
     <>
       <JsonLd data={[website, organization, faqSchema]} />
       <section className="home-hero">
-        <div className="home-hero-bg" role="img" aria-label="Gyldhunter facing creatures in a mist-shrouded forest in Mistfall Hunter" />
+        <figure className="home-hero-media">
+          <Image
+            src="/images/official/site-01.webp"
+            alt="Ruined city beneath the spreading golden Gyldenmist"
+            width={1600}
+            height={900}
+            priority
+            sizes="100vw"
+          />
+          <figcaption>The Gyldenmist over Weavereach. <a href="https://mistfallhunter.com/" target="_blank" rel="noopener noreferrer">Official source</a></figcaption>
+        </figure>
+        <div className="home-hero-shade" />
         <div className="home-hero-inner">
           <p className="eyebrow">Independent • source-aware • launch updated</p>
           <h1>Mistfall Hunter Guide</h1>
@@ -119,6 +132,13 @@ export default function Home() {
           </dl>
         </section>
 
+        <figure className="home-figure">
+          <a href="https://mistfallhunter.com/" target="_blank" rel="noopener noreferrer">
+            <Image src="/images/official/site-03.webp" alt="Three Gyldhunters fighting Corroded creatures inside a cavern" width={1600} height={900} />
+          </a>
+          <figcaption>A squad manages PvE pressure in an official gameplay image. <span>Source: official Mistfall Hunter website.</span></figcaption>
+        </figure>
+
         <section>
           <p className="section-label">Choose a route</p>
           <h2>Popular Mistfall Hunter guides</h2>
@@ -134,6 +154,27 @@ export default function Home() {
           <p>Your first objective is not to collect the rarest possible inventory. It is to learn a repeatable run. Enter with equipment you can replace, choose a compact objective, and keep enough healing and class resources for the return journey. Watch where PvE fights force you to spend cooldowns, because rival players can use that moment to pressure you.</p>
           <p>The official loop is clear: scavenge, fight, and extract. The difficult part is deciding when the run has already succeeded. Set a threshold before deployment. That threshold might be a completed task, a nearly full bag, low healing, or a valuable item you do not want to risk. Leaving early with modest value creates progress; staying for one more room can reset the entire run.</p>
           <p>Use our <Link href="/beginner-guide/">Mistfall Hunter beginner guide</Link> for a five-run learning plan. Then read <Link href="/how-to-extract/">how to extract in Mistfall Hunter</Link> for the Returner Woodling and Soul of Return sequence. We do not publish fixed spawn coordinates or probabilities because official launch sources do not support them.</p>
+        </section>
+
+        <section>
+          <p className="section-label">First-five-run plan</p>
+          <h2>Learn one decision at a time</h2>
+          <p className="section-intro">A good first session is a sequence of controlled tests, not one expensive attempt to understand the entire game.</p>
+          <div className="home-copy-grid">
+            <div>
+              <h3>Runs one and two</h3>
+              <p>Learn movement, camera, defense, one weapon stance, and ordinary PvE. Then practice opening the inventory only after moving out of the combat footprint.</p>
+            </div>
+            <div>
+              <h3>Runs three and four</h3>
+              <p>Follow the Returner Woodling and Soul of Return flow. Set an extraction threshold and leave one unfavorable encounter before it consumes healing and cooldowns.</p>
+            </div>
+            <div>
+              <h3>Run five</h3>
+              <p>Complete one compact objective, reject loot that does not serve it, and extract while the run is still healthy. Record the first bad decision if the run fails.</p>
+            </div>
+          </div>
+          <p className="section-intro">Success is visible when you can explain why you entered, why you stopped looting, and why you chose the return. Continue with the <Link href="/guides/">Guides hub</Link> for the complete reading order.</p>
         </section>
 
         <section>
@@ -160,6 +201,13 @@ export default function Home() {
           <p>Read the <Link href="/best-class/">best class comparison</Link>, <Link href="/best-solo-class/">best solo class guide</Link>, and cautious <Link href="/class-tier-list/">class tier framework</Link>. None uses fabricated DPS, win rate, or extraction-rate data.</p>
         </section>
 
+        <figure className="home-figure">
+          <a href="https://store.steampowered.com/app/3282300/Mistfall_Hunter/" target="_blank" rel="noopener noreferrer">
+            <Image src="/images/official/steam-07.webp" alt="The six Mistfall Hunter launch classes posed together" width={1600} height={900} />
+          </a>
+          <figcaption>All six launch classes in official promotional art. <span>Source: official Steam store.</span></figcaption>
+        </figure>
+
         <section className="prose-section">
           <p className="section-label">Builds</p>
           <h2>How to choose a launch build</h2>
@@ -167,6 +215,15 @@ export default function Home() {
           <p>Official developer notes describe a Loadout System with saved configurations and share codes. A share code can import equipment and gem choices, but it does not prove that a setup is best for your patch, mode, budget, or skill level. Treat every imported setup as a hypothesis. Test it with replaceable gear, check whether it has a defensive response and a disengagement plan, and update it after balance notes.</p>
           <p>Our <Link href="/builds/">Mistfall Hunter builds hub</Link> gives one beginner, solo, and trio direction for each class. Every recommendation is labeled with mode, difficulty, game version, check date, and evidence type. Specific class pages explain why the direction works instead of presenting an unexplained list of equipment.</p>
         </section>
+
+        <figure className="home-figure">
+          <a href="https://store.steampowered.com/app/3282300/Mistfall_Hunter/" target="_blank" rel="noopener noreferrer">
+            <Image src="/images/official/steam-06.webp" alt="Mistfall Hunter class talent interface with connected upgrade nodes" width={1600} height={900} />
+          </a>
+          <figcaption>Build decisions connect through class talents and loadout choices. <span>Source: official Steam store.</span></figcaption>
+        </figure>
+
+        <FeaturedVideos />
 
         <section className="split-feature">
           <div>
