@@ -3,7 +3,7 @@ import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { siteConfig } from "@/lib/site-config";
-import "./globals.css";
+import "../globals.css";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;

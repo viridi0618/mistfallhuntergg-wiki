@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { keywordFamilies } from "../src/data/keyword-families.ts";
+import { localizedKeywordFamilies } from "../src/data/localized-pages.ts";
 
 const root = process.cwd();
 const outRoot = path.join(root, "out");
@@ -55,12 +56,12 @@ function visibleText(html, route) {
 }
 
 function wordCount(text) {
-  return text.match(/[a-z0-9]+(?:'[a-z0-9]+)?/gi)?.length ?? 0;
+  return text.match(/[\p{L}\p{N}]+(?:'[\p{L}\p{N}]+)?/gu)?.length ?? 0;
 }
 
 function phraseCount(text, phrase) {
-  const normalizedText = ` ${text.toLowerCase().replace(/[^a-z0-9']+/g, " ").trim()} `;
-  const normalizedPhrase = phrase.toLowerCase().replace(/[^a-z0-9']+/g, " ").trim();
+  const normalizedText = ` ${text.toLowerCase().replace(/[^\p{L}\p{N}']+/gu, " ").trim()} `;
+  const normalizedPhrase = phrase.toLowerCase().replace(/[^\p{L}\p{N}']+/gu, " ").trim();
   if (!normalizedPhrase) return 0;
   const escaped = normalizedPhrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   return normalizedText.match(new RegExp(`(?=\\b${escaped}\\b)`, "g"))?.length ?? 0;
@@ -87,7 +88,7 @@ if (!fs.existsSync(outRoot)) {
 }
 
 const rows = [];
-for (const [route, family] of Object.entries(keywordFamilies)) {
+for (const [route, family] of Object.entries({ ...keywordFamilies, ...localizedKeywordFamilies })) {
   if (family.variants.length < 4 || family.variants.length > 10) {
     console.error(`Keyword family for ${route} must contain 4-10 variants.`);
     process.exit(1);
@@ -105,6 +106,7 @@ for (const [route, family] of Object.entries(keywordFamilies)) {
   const exactDensity = percent(exact, words);
   const familyDensity = percent(familyCount, words);
   rows.push({
+    language: family.language ?? "en",
     route,
     primary: family.primary,
     words,
@@ -124,7 +126,7 @@ const semantic = rows
   .sort((a, b) => a.familyDensity - b.familyDensity || a.route.localeCompare(b.route))
   .slice(0, 10);
 const table = (items) => items.map((row) =>
-  `| ${md(row.route)} | ${md(row.primary)} | ${row.words} | ${row.exact} | ${row.exactDensity.toFixed(2)}% | ${row.familyCount} | ${row.familyDensity.toFixed(2)}% | ${row.status} |`
+  `| ${row.language.toUpperCase()} | ${md(row.route)} | ${md(row.primary)} | ${row.words} | ${row.exact} | ${row.exactDensity.toFixed(2)}% | ${row.familyCount} | ${row.familyDensity.toFixed(2)}% | ${row.status} |`
 ).join("\n");
 const routeList = (items) => items.length ? items.map((row) => `\`${row.route}\``).join(", ") : "None.";
 
@@ -134,20 +136,20 @@ Generated from the built static export in \`out\`. Policy pages are excluded. Co
 
 Exact-density status: below 0.5% = Low; 0.5–1.3% = Natural; 1.3–1.8% = Review; above 1.8% = Possible stuffing. Keyword-family density has a soft review range of 2.0–3.2%. This report never changes page copy and density results do not make the command fail.
 
-| URL | Primary keyword | Visible words | Exact count | Exact density | Family count | Family density | Status |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Language | URL | Primary keyword | Visible words | Exact count | Exact density | Family count | Family density | Status |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
 ${table(rows)}
 
 ## Lowest five exact densities
 
-| URL | Primary keyword | Visible words | Exact count | Exact density | Family count | Family density | Status |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Language | URL | Primary keyword | Visible words | Exact count | Exact density | Family count | Family density | Status |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
 ${table(byExact.slice(0, 5))}
 
 ## Highest five exact densities
 
-| URL | Primary keyword | Visible words | Exact count | Exact density | Family count | Family density | Status |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Language | URL | Primary keyword | Visible words | Exact count | Exact density | Family count | Family density | Status |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
 ${table(byExact.slice(-5).reverse())}
 
 ## Review queues

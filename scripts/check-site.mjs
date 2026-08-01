@@ -18,6 +18,11 @@ const expectedRoutes = [
   "known-issues", "patch-notes", "price", "platforms", "review",
   "system-requirements", "about", "editorial-policy", "privacy-policy",
   "disclaimer", "contact",
+  "es", "es/guia-principiantes", "es/como-extraer", "es/clases",
+  "es/mejor-clase", "es/mejor-clase-solo", "es/tier-list-clases", "es/builds",
+  "es/jugar-solo", "es/servidores", "es/bloqueo-regional", "es/codigos",
+  "de", "de/einstellungen", "de/ruckler-beheben", "de/absturz-beheben",
+  "de/server", "de/region-lock",
 ];
 const domain = "https://mistfallhuntergg.wiki";
 const siteRoutes = new Set(["about", "editorial-policy", "privacy-policy", "disclaimer", "contact"]);
@@ -195,7 +200,7 @@ if (fs.existsSync(outRoot)) {
       const jsonLd = jsonLdText ? JSON.parse(jsonLdText) : [];
       const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
       const pageSchema = schemas.find((schema) =>
-        ["Article", "CollectionPage", "WebPage", "AboutPage", "ContactPage"].includes(schema?.["@type"])
+        ["WebSite", "Article", "CollectionPage", "WebPage", "AboutPage", "ContactPage"].includes(schema?.["@type"])
       );
       if (!pageSchema) {
         errors.push(`Missing page schema on /${route}.`);

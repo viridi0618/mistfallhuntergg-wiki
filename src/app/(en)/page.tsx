@@ -14,7 +14,7 @@ const description = "Explore our Mistfall Hunter guide for beginner tips, classe
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/", languages: { en: "/", es: "/es/", de: "/de/", "x-default": "/" } },
   openGraph: { title, description, url: "/", type: "website", siteName: siteConfig.name, images: [siteConfig.defaultSocialImage] },
   twitter: { card: "summary_large_image", title, description, images: [siteConfig.defaultSocialImage] },
 };

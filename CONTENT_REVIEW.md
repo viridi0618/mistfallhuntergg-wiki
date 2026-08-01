@@ -58,3 +58,39 @@ Human review focus: role recommendations, launch patch references, and any weapo
 - `/review/` — the launch-week Steam review snapshot.
 - `/` — the three featured YouTube selections, titles, channels, embedding permission, and launch relevance.
 - `/privacy-policy/` — privacy-enhanced YouTube embedding language if the player implementation changes.
+# Multilingual release review (2026-08-01)
+
+## Pages using community information
+
+- `/es/clases/`, `/es/mejor-clase/`, `/es/mejor-clase-solo/`, `/es/tier-list-clases/`, `/es/builds/`, `/es/jugar-solo/`, `/es/servidores/`: the official community AMA is used as a named source. Recommendations remain editorial and no individual player report is presented as fact.
+- `/de/server/`: the official community AMA supplements the official launch FAQ. It is not used as live server telemetry.
+
+## Pages containing information that is not officially confirmed
+
+- `/es/codigos/`: no public redeem codes were confirmed in official sources checked on 2026-07-31. Recheck the status paragraph after future official campaigns.
+- `/es/jugar-solo/`: no complete PvE-only progression mode was confirmed in the reviewed sources.
+- `/es/como-extraer/`: fixed coordinates, universal timing and appearance probabilities are intentionally not supplied.
+- `/es/mejor-clase/`, `/es/mejor-clase-solo/`, `/es/tier-list-clases/`: rankings and recommendations are editorial, not official balance data.
+- `/de/server/`, `/es/servidores/`: no official live-status feed is used; the pages must not be read as real-time telemetry.
+- `/de/region-lock/`, `/es/bloqueo-regional/`: undocumented country, relocation and account exceptions remain unconfirmed.
+
+## Build or tier-list pages
+
+- `/es/builds/`: manually review the paragraphs under “Share codes y configuraciones importadas” after balance or Loadout-system changes.
+- `/es/tier-list-clases/`: manually review “Marco provisional de lanzamiento” after every official class-balance update.
+- `/es/mejor-clase/` and `/es/mejor-clase-solo/`: recommendations require a manual patch-sensitive review.
+
+## Fix pages using temporary workarounds
+
+- `/de/einstellungen/`: graphics-order guidance is editorial and hardware-dependent.
+- `/de/ruckler-beheben/`: SSD, frame-limit, overlay and per-setting tests are reversible comparisons, not guaranteed fixes.
+- `/de/absturz-beheben/`: file verification, stable driver and overlay tests are safe temporary diagnostics; the exact crash stage still needs evidence.
+
+## Paragraphs recommended for manual review
+
+- `/es/codigos/` — “Estado actual de códigos” after any official reward announcement.
+- `/es/servidores/` and `/de/server/` — confirmed country list and live-status limitation after service announcements.
+- `/es/bloqueo-regional/` and `/de/region-lock/` — the five-territory North America wording after FAQ updates.
+- `/es/tier-list-clases/` — the provisional framework after every balance patch.
+- `/de/ruckler-beheben/` — “Offizieller Launch-Kontext” after performance patches.
+- `/de/absturz-beheben/` — “Offiziell genannte Absturzbereiche” after known-issue or crash-fix notes.

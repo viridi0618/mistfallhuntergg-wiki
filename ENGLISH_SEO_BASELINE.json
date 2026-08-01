@@ -1,0 +1,840 @@
+{
+  "generatedFromCommit": "99b675af3d22cbf0774592ca3a3518bb7f60ebdc",
+  "generatedAt": "2026-08-01T09:02:17.774Z",
+  "publicPageCount": 49,
+  "pages": [
+    {
+      "path": "/",
+      "title": "Mistfall Hunter Guide: Classes, Builds, Fixes & Tips",
+      "description": "Explore our Mistfall Hunter guide for beginner tips, classes, builds, extraction help, solo play, servers, settings, fixes, rewards, and current updates.",
+      "h1": "Mistfall Hunter Guide",
+      "canonical": "https://mistfallhuntergg.wiki/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Guide: Classes, Builds, Fixes & Tips",
+      "ogDescription": "Explore our Mistfall Hunter guide for beginner tips, classes, builds, extraction help, solo play, servers, settings, fixes, rewards, and current updates.",
+      "ogType": "website",
+      "schemaTypes": [
+        "WebSite"
+      ]
+    },
+    {
+      "path": "/guides/",
+      "title": "Mistfall Hunter Guides: A Practical Reading Path",
+      "description": "Use the Mistfall Hunter guides hub to learn the extraction loop, prepare a first run, understand progression, compare platforms, and choose the next practical guide.",
+      "h1": "Mistfall Hunter Guides",
+      "canonical": "https://mistfallhuntergg.wiki/guides/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Guides: A Practical Reading Path",
+      "ogDescription": "Use the Mistfall Hunter guides hub to learn the extraction loop, prepare a first run, understand progression, compare platforms, and choose the next practical guide.",
+      "ogType": "website",
+      "schemaTypes": [
+        "CollectionPage"
+      ]
+    },
+    {
+      "path": "/multiplayer/",
+      "title": "Mistfall Hunter Multiplayer: Crossplay, Servers & Parties",
+      "description": "Understand Mistfall Hunter multiplayer, crossplay, solo and trio play, servers, account-region limits, party checks, and the safest connection troubleshooting order.",
+      "h1": "Mistfall Hunter Multiplayer",
+      "canonical": "https://mistfallhuntergg.wiki/multiplayer/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Multiplayer: Crossplay, Servers & Parties",
+      "ogDescription": "Understand Mistfall Hunter multiplayer, crossplay, solo and trio play, servers, account-region limits, party checks, and the safest connection troubleshooting order.",
+      "ogType": "website",
+      "schemaTypes": [
+        "CollectionPage"
+      ]
+    },
+    {
+      "path": "/settings-fixes/",
+      "title": "Mistfall Hunter Settings & Fixes: Safe Test Order",
+      "description": "Use a safe Mistfall Hunter settings and fixes workflow for performance, controllers, fatal errors, stuttering, crashes, and connection problems.",
+      "h1": "Mistfall Hunter Settings & Fixes",
+      "canonical": "https://mistfallhuntergg.wiki/settings-fixes/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Settings & Fixes: Safe Test Order",
+      "ogDescription": "Use a safe Mistfall Hunter settings and fixes workflow for performance, controllers, fatal errors, stuttering, crashes, and connection problems.",
+      "ogType": "website",
+      "schemaTypes": [
+        "CollectionPage"
+      ]
+    },
+    {
+      "path": "/rewards/",
+      "title": "Mistfall Hunter Rewards: Codes, Drops & Launch Gifts",
+      "description": "Separate Mistfall Hunter redeem codes, Twitch Drops, launch rewards, in-game mail, Deluxe cosmetics, Battle Pass access, and loadout share codes.",
+      "h1": "Mistfall Hunter Rewards",
+      "canonical": "https://mistfallhuntergg.wiki/rewards/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Rewards: Codes, Drops & Launch Gifts",
+      "ogDescription": "Separate Mistfall Hunter redeem codes, Twitch Drops, launch rewards, in-game mail, Deluxe cosmetics, Battle Pass access, and loadout share codes.",
+      "ogType": "website",
+      "schemaTypes": [
+        "CollectionPage"
+      ]
+    },
+    {
+      "path": "/updates/",
+      "title": "Mistfall Hunter Updates: Patch Notes & Known Issues",
+      "description": "Track Mistfall Hunter updates through official patch notes, known issues, fixed problems, launch balance changes, and careful version checks.",
+      "h1": "Mistfall Hunter Updates",
+      "canonical": "https://mistfallhuntergg.wiki/updates/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Updates: Patch Notes & Known Issues",
+      "ogDescription": "Track Mistfall Hunter updates through official patch notes, known issues, fixed problems, launch balance changes, and careful version checks.",
+      "ogType": "website",
+      "schemaTypes": [
+        "CollectionPage"
+      ]
+    },
+    {
+      "path": "/beginner-guide/",
+      "title": "Mistfall Hunter Beginner Guide: First Extractions",
+      "description": "A practical Mistfall Hunter beginner guide to the match loop, loot risk, classes, Returner Woodling extraction, solo play, resources, and early mistakes.",
+      "h1": "Mistfall Hunter Beginner Guide",
+      "canonical": "https://mistfallhuntergg.wiki/beginner-guide/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Beginner Guide: First Extractions",
+      "ogDescription": "A practical Mistfall Hunter beginner guide to the match loop, loot risk, classes, Returner Woodling extraction, solo play, resources, and early mistakes.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/how-to-extract/",
+      "title": "How to Extract in Mistfall Hunter Safely",
+      "description": "Learn how to extract in Mistfall Hunter using a Returner Woodling and Soul of Return, plus preparation, failure causes, solo tips, and current limits.",
+      "h1": "How to Extract in Mistfall Hunter",
+      "canonical": "https://mistfallhuntergg.wiki/how-to-extract/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "How to Extract in Mistfall Hunter Safely",
+      "ogDescription": "Learn how to extract in Mistfall Hunter using a Returner Woodling and Soul of Return, plus preparation, failure causes, solo tips, and current limits.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/character-creation/",
+      "title": "Mistfall Hunter Character Creation & Class Choice",
+      "description": "Mistfall Hunter character creation explained: appearance, class choice, account considerations, what affects combat, and safe decisions for a first Gyldhunter.",
+      "h1": "Mistfall Hunter Character Creation",
+      "canonical": "https://mistfallhuntergg.wiki/character-creation/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Character Creation & Class Choice",
+      "ogDescription": "Mistfall Hunter character creation explained: appearance, class choice, account considerations, what affects combat, and safe decisions for a first Gyldhunter.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/gameplay/",
+      "title": "Mistfall Hunter Gameplay Guide: PvPvE Loop",
+      "description": "Understand Mistfall Hunter gameplay: deployment, third-person combat, PvE and PvP threats, loot, classes, progression, squads, and extraction.",
+      "h1": "Mistfall Hunter Gameplay Guide",
+      "canonical": "https://mistfallhuntergg.wiki/gameplay/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Gameplay Guide: PvPvE Loop",
+      "ogDescription": "Understand Mistfall Hunter gameplay: deployment, third-person combat, PvE and PvP threats, loot, classes, progression, squads, and extraction.",
+      "ogType": "website",
+      "schemaTypes": [
+        "CollectionPage"
+      ]
+    },
+    {
+      "path": "/solo-mode/",
+      "title": "Mistfall Hunter Solo Mode Guide: Rules, Routes and Tips",
+      "description": "Mistfall Hunter solo mode explained: matchmaking, PvP risk, accessible content, Solo versus Trio, class choices, limits, and launch advice.",
+      "h1": "Mistfall Hunter Solo Mode",
+      "canonical": "https://mistfallhuntergg.wiki/solo-mode/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Solo Mode Guide: Rules, Routes and Tips",
+      "ogDescription": "Mistfall Hunter solo mode explained: matchmaking, PvP risk, accessible content, Solo versus Trio, class choices, limits, and launch advice.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/pve-only/",
+      "title": "Mistfall Hunter PvE-Only Mode Status and PvP Risk",
+      "description": "Is Mistfall Hunter PvE only? Learn the confirmed PvPvE design, whether PvP can be disabled, how training differs, and ways to lower player-conflict risk.",
+      "h1": "Mistfall Hunter PvE Only Mode",
+      "canonical": "https://mistfallhuntergg.wiki/pve-only/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter PvE-Only Mode Status and PvP Risk",
+      "ogDescription": "Is Mistfall Hunter PvE only? Learn the confirmed PvPvE design, whether PvP can be disabled, how training differs, and ways to lower player-conflict risk.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/crossplay/",
+      "title": "Is Mistfall Hunter Crossplay? Platforms Explained",
+      "description": "Is Mistfall Hunter crossplay? See the official cross-platform matchmaking confirmation, PC, PS5 and Xbox support, grouping limits, and region caveats.",
+      "h1": "Is Mistfall Hunter Crossplay?",
+      "canonical": "https://mistfallhuntergg.wiki/crossplay/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Is Mistfall Hunter Crossplay? Platforms Explained",
+      "ogDescription": "Is Mistfall Hunter crossplay? See the official cross-platform matchmaking confirmation, PC, PS5 and Xbox support, grouping limits, and region caveats.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/servers/",
+      "title": "Mistfall Hunter Servers: Regions & Connection Help",
+      "description": "Mistfall Hunter servers explained: five officially named deployment countries, choosing a region, latency, maintenance, queues, and connection checks.",
+      "h1": "Mistfall Hunter Servers",
+      "canonical": "https://mistfallhuntergg.wiki/servers/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Servers: Regions & Connection Help",
+      "ogDescription": "Mistfall Hunter servers explained: five officially named deployment countries, choosing a region, latency, maintenance, queues, and connection checks.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/region-lock/",
+      "title": "Mistfall Hunter Region Lock: Account and Server Rules",
+      "description": "Mistfall Hunter region lock explained: store account versus server region, the official North American restriction, cross-region friends, and switching limits.",
+      "h1": "Mistfall Hunter Region Lock",
+      "canonical": "https://mistfallhuntergg.wiki/region-lock/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Region Lock: Account and Server Rules",
+      "ogDescription": "Mistfall Hunter region lock explained: store account versus server region, the official North American restriction, cross-region friends, and switching limits.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/play-with-friends/",
+      "title": "How to Play Mistfall Hunter With Friends",
+      "description": "Learn how to play Mistfall Hunter with friends across PC, PS5, and Xbox, including party size, crossplay, regions, readiness, roles, and connection checks.",
+      "h1": "How to Play Mistfall Hunter With Friends",
+      "canonical": "https://mistfallhuntergg.wiki/play-with-friends/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "How to Play Mistfall Hunter With Friends",
+      "ogDescription": "Learn how to play Mistfall Hunter with friends across PC, PS5, and Xbox, including party size, crossplay, regions, readiness, roles, and connection checks.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/classes/",
+      "title": "Mistfall Hunter Classes: All Six Launch Roles",
+      "description": "Compare all six Mistfall Hunter classes, their official weapons, solo and trio roles, difficulty, strengths, and current launch balance context.",
+      "h1": "Mistfall Hunter Classes",
+      "canonical": "https://mistfallhuntergg.wiki/classes/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Classes: All Six Launch Roles",
+      "ogDescription": "Compare all six Mistfall Hunter classes, their official weapons, solo and trio roles, difficulty, strengths, and current launch balance context.",
+      "ogType": "website",
+      "schemaTypes": [
+        "CollectionPage"
+      ]
+    },
+    {
+      "path": "/best-class/",
+      "title": "Mistfall Hunter Best Class: Choose by Role",
+      "description": "Find the Mistfall Hunter best class for learning, ranged pressure, support, ambushes, frontline play, and solo without treating a live-game tier as permanent.",
+      "h1": "Mistfall Hunter Best Class",
+      "canonical": "https://mistfallhuntergg.wiki/best-class/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Best Class: Choose by Role",
+      "ogDescription": "Find the Mistfall Hunter best class for learning, ranged pressure, support, ambushes, frontline play, and solo without treating a live-game tier as permanent.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/best-solo-class/",
+      "title": "Mistfall Hunter Best Solo Class at Launch",
+      "description": "Compare the Mistfall Hunter best solo class choices by safety, range, PvE clearing, disengage tools, execution, and launch balance evidence.",
+      "h1": "Mistfall Hunter Best Solo Class",
+      "canonical": "https://mistfallhuntergg.wiki/best-solo-class/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Best Solo Class at Launch",
+      "ogDescription": "Compare the Mistfall Hunter best solo class choices by safety, range, PvE clearing, disengage tools, execution, and launch balance evidence.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/class-tier-list/",
+      "title": "Mistfall Hunter Class Tier List: Launch Snapshot",
+      "description": "A cautious Mistfall Hunter class tier list organized by use case, with official launch balance context and no invented damage or extraction statistics.",
+      "h1": "Mistfall Hunter Class Tier List",
+      "canonical": "https://mistfallhuntergg.wiki/class-tier-list/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Class Tier List: Launch Snapshot",
+      "ogDescription": "A cautious Mistfall Hunter class tier list organized by use case, with official launch balance context and no invented damage or extraction statistics.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/builds/",
+      "title": "Mistfall Hunter Builds: Six Class Directions",
+      "description": "Choose Mistfall Hunter builds by mode, weapon, skills, talents, gear risk, and evidence. Includes a launch direction for all six classes without fake stats.",
+      "h1": "Mistfall Hunter Builds",
+      "canonical": "https://mistfallhuntergg.wiki/builds/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Builds: Six Class Directions",
+      "ogDescription": "Choose Mistfall Hunter builds by mode, weapon, skills, talents, gear risk, and evidence. Includes a launch direction for all six classes without fake stats.",
+      "ogType": "website",
+      "schemaTypes": [
+        "CollectionPage"
+      ]
+    },
+    {
+      "path": "/classes/mercenary/",
+      "title": "Mercenary Guide: Weapons, Builds & Roles",
+      "description": "A source-aware mistfall hunter mercenary guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "h1": "Mistfall Hunter Mercenary Guide",
+      "canonical": "https://mistfallhuntergg.wiki/classes/mercenary/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mercenary Guide: Weapons, Builds & Roles",
+      "ogDescription": "A source-aware mistfall hunter mercenary guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/classes/sorcerer/",
+      "title": "Sorcerer Guide: Weapons, Builds & Roles",
+      "description": "A source-aware mistfall hunter sorcerer guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "h1": "Mistfall Hunter Sorcerer Guide",
+      "canonical": "https://mistfallhuntergg.wiki/classes/sorcerer/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Sorcerer Guide: Weapons, Builds & Roles",
+      "ogDescription": "A source-aware mistfall hunter sorcerer guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/classes/blackarrow/",
+      "title": "Blackarrow Guide: Weapons, Builds & Roles",
+      "description": "A source-aware mistfall hunter blackarrow guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "h1": "Mistfall Hunter Blackarrow Guide",
+      "canonical": "https://mistfallhuntergg.wiki/classes/blackarrow/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Blackarrow Guide: Weapons, Builds & Roles",
+      "ogDescription": "A source-aware mistfall hunter blackarrow guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/classes/shadowstrix/",
+      "title": "Shadowstrix Guide: Weapons, Builds & Roles",
+      "description": "A source-aware mistfall hunter shadowstrix guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "h1": "Mistfall Hunter Shadowstrix Guide",
+      "canonical": "https://mistfallhuntergg.wiki/classes/shadowstrix/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Shadowstrix Guide: Weapons, Builds & Roles",
+      "ogDescription": "A source-aware mistfall hunter shadowstrix guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/classes/seer/",
+      "title": "Seer Guide: Weapons, Builds & Roles",
+      "description": "A source-aware mistfall hunter seer guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "h1": "Mistfall Hunter Seer Guide",
+      "canonical": "https://mistfallhuntergg.wiki/classes/seer/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Seer Guide: Weapons, Builds & Roles",
+      "ogDescription": "A source-aware mistfall hunter seer guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/classes/withered-knight/",
+      "title": "Withered Knight Guide: Weapons, Builds & Roles",
+      "description": "A source-aware mistfall hunter withered knight guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "h1": "Mistfall Hunter Withered Knight Guide",
+      "canonical": "https://mistfallhuntergg.wiki/classes/withered-knight/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Withered Knight Guide: Weapons, Builds & Roles",
+      "ogDescription": "A source-aware mistfall hunter withered knight guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/fov/",
+      "title": "Mistfall Hunter FOV Settings and Camera Options Explained",
+      "description": "Mistfall Hunter FOV explained: slider status, field of view versus camera distance, safe in-game settings, motion comfort, platforms, and unsupported tools.",
+      "h1": "Mistfall Hunter FOV",
+      "canonical": "https://mistfallhuntergg.wiki/fov/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter FOV Settings and Camera Options Explained",
+      "ogDescription": "Mistfall Hunter FOV explained: slider status, field of view versus camera distance, safe in-game settings, motion comfort, platforms, and unsupported tools.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/best-settings/",
+      "title": "Mistfall Hunter Best Settings: Stable PC & Console Setup",
+      "description": "Mistfall Hunter best settings for image quality, frame-rate stability, low-end PCs, input response, stutter reduction, consoles, and a safe tuning order.",
+      "h1": "Mistfall Hunter Best Settings",
+      "canonical": "https://mistfallhuntergg.wiki/best-settings/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Best Settings: Stable PC & Console Setup",
+      "ogDescription": "Mistfall Hunter best settings for image quality, frame-rate stability, low-end PCs, input response, stutter reduction, consoles, and a safe tuning order.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/controller-guide/",
+      "title": "Mistfall Hunter Controller Guide: Setup and Safe Fixes",
+      "description": "Mistfall Hunter controller support on PC, PS5, and Xbox, with aiming, sensitivity, button prompts, common launch issues, and safe troubleshooting.",
+      "h1": "Mistfall Hunter Controller Guide",
+      "canonical": "https://mistfallhuntergg.wiki/controller-guide/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Controller Guide: Setup and Safe Fixes",
+      "ogDescription": "Mistfall Hunter controller support on PC, PS5, and Xbox, with aiming, sensitivity, button prompts, common launch issues, and safe troubleshooting.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/fatal-error-fix/",
+      "title": "Mistfall Hunter Fatal Error Fix: Safe Troubleshooting",
+      "description": "Troubleshoot a Mistfall Hunter fatal error safely with official issue checks, file verification, stable drivers, overlay isolation, settings, and support evidence.",
+      "h1": "Mistfall Hunter Fatal Error Fix",
+      "canonical": "https://mistfallhuntergg.wiki/fatal-error-fix/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Fatal Error Fix: Safe Troubleshooting",
+      "ogDescription": "Troubleshoot a Mistfall Hunter fatal error safely with official issue checks, file verification, stable drivers, overlay isolation, settings, and support evidence.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/stuttering-fix/",
+      "title": "Mistfall Hunter Stuttering Fix: Safe Frame-Pacing Steps",
+      "description": "Reduce Mistfall Hunter stuttering with official patch checks, SSD use, shader patience, stable settings, background-task isolation, drivers, and clear support data.",
+      "h1": "Mistfall Hunter Stuttering Fix",
+      "canonical": "https://mistfallhuntergg.wiki/stuttering-fix/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Stuttering Fix: Safe Frame-Pacing Steps",
+      "ogDescription": "Reduce Mistfall Hunter stuttering with official patch checks, SSD use, shader patience, stable settings, background-task isolation, drivers, and clear support data.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/crashing-fix/",
+      "title": "Mistfall Hunter Crashing Fixes for PC, PS5 and Xbox",
+      "description": "Troubleshoot Mistfall Hunter crashing on PC, PS5, and Xbox with updates, file checks, stable drivers, controller context, graphics isolation, and support details.",
+      "h1": "Mistfall Hunter Crashing Fix",
+      "canonical": "https://mistfallhuntergg.wiki/crashing-fix/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Crashing Fixes for PC, PS5 and Xbox",
+      "ogDescription": "Troubleshoot Mistfall Hunter crashing on PC, PS5, and Xbox with updates, file checks, stable drivers, controller context, graphics isolation, and support details.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/connection-fix/",
+      "title": "Mistfall Hunter Connection Error Fix and Network Checks",
+      "description": "Resolve a Mistfall Hunter connection error safely by checking official status, updates, account region, network stability, console requirements, and support evidence.",
+      "h1": "Mistfall Hunter Connection Error Fix",
+      "canonical": "https://mistfallhuntergg.wiki/connection-fix/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Connection Error Fix and Network Checks",
+      "ogDescription": "Resolve a Mistfall Hunter connection error safely by checking official status, updates, account region, network stability, console requirements, and support evidence.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/codes/",
+      "title": "Mistfall Hunter Codes: Verified Status",
+      "description": "Check the Mistfall Hunter codes status and learn how redeem codes differ from launch rewards, Twitch Drops, giveaways, build share codes, and activation keys.",
+      "h1": "Mistfall Hunter Codes",
+      "canonical": "https://mistfallhuntergg.wiki/codes/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Codes: Verified Status",
+      "ogDescription": "Check the Mistfall Hunter codes status and learn how redeem codes differ from launch rewards, Twitch Drops, giveaways, build share codes, and activation keys.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/twitch-drops/",
+      "title": "Mistfall Hunter Twitch Drops: Campaign Status",
+      "description": "Check Mistfall Hunter Twitch Drops status, how to verify a campaign, link accounts safely, claim rewards, and separate Drops from livestream reveals.",
+      "h1": "Mistfall Hunter Twitch Drops",
+      "canonical": "https://mistfallhuntergg.wiki/twitch-drops/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Twitch Drops: Campaign Status",
+      "ogDescription": "Check Mistfall Hunter Twitch Drops status, how to verify a campaign, link accounts safely, claim rewards, and separate Drops from livestream reveals.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/launch-rewards/",
+      "title": "Mistfall Hunter Launch Rewards & Eligibility",
+      "description": "Mistfall Hunter launch rewards explained: playtest carry-over items, the free Season 1 Battle Pass unlock, Deluxe bonuses, eligibility, and claim cautions.",
+      "h1": "Mistfall Hunter Launch Rewards",
+      "canonical": "https://mistfallhuntergg.wiki/launch-rewards/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Launch Rewards & Eligibility",
+      "ogDescription": "Mistfall Hunter launch rewards explained: playtest carry-over items, the free Season 1 Battle Pass unlock, Deluxe bonuses, eligibility, and claim cautions.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/skins/",
+      "title": "Mistfall Hunter Skins, Outfits & Cosmetics",
+      "description": "Mistfall Hunter skins and cosmetics explained: Deluxe items, launch-era rewards, Fate Coins, the free Season 1 Battle Pass, ownership, and safe purchases.",
+      "h1": "Mistfall Hunter Skins",
+      "canonical": "https://mistfallhuntergg.wiki/skins/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Skins, Outfits & Cosmetics",
+      "ogDescription": "Mistfall Hunter skins and cosmetics explained: Deluxe items, launch-era rewards, Fate Coins, the free Season 1 Battle Pass, ownership, and safe purchases.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/known-issues/",
+      "title": "Mistfall Hunter Known Issues & Current Status",
+      "description": "Mistfall Hunter known issues summarized from official launch posts, including controller, UI, extraction, reconnect, console, and fixed items.",
+      "h1": "Mistfall Hunter Known Issues",
+      "canonical": "https://mistfallhuntergg.wiki/known-issues/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Known Issues & Current Status",
+      "ogDescription": "Mistfall Hunter known issues summarized from official launch posts, including controller, UI, extraction, reconnect, console, and fixed items.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/patch-notes/",
+      "title": "Mistfall Hunter Patch Notes: Launch Updates and Fixes",
+      "description": "Mistfall Hunter patch notes summarized with dates, major fixes, class balance, performance changes, console fixes, and affected guide pages.",
+      "h1": "Mistfall Hunter Patch Notes",
+      "canonical": "https://mistfallhuntergg.wiki/patch-notes/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Patch Notes: Launch Updates and Fixes",
+      "ogDescription": "Mistfall Hunter patch notes summarized with dates, major fixes, class balance, performance changes, console fixes, and affected guide pages.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/price/",
+      "title": "Mistfall Hunter Price, Editions & Discount",
+      "description": "Mistfall Hunter price explained: official Standard and Deluxe US pricing, upgrade cost, launch discount window, regional pricing, and edition contents.",
+      "h1": "Mistfall Hunter Price",
+      "canonical": "https://mistfallhuntergg.wiki/price/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Price, Editions & Discount",
+      "ogDescription": "Mistfall Hunter price explained: official Standard and Deluxe US pricing, upgrade cost, launch discount window, regional pricing, and edition contents.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/platforms/",
+      "title": "Mistfall Hunter Platforms: PC, PS5 & Xbox",
+      "description": "Mistfall Hunter platforms confirmed for launch: Windows PC, PlayStation 5, and Xbox Series X|S, plus crossplay, Game Pass, controller, and console notes.",
+      "h1": "Mistfall Hunter Platforms",
+      "canonical": "https://mistfallhuntergg.wiki/platforms/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Platforms: PC, PS5 & Xbox",
+      "ogDescription": "Mistfall Hunter platforms confirmed for launch: Windows PC, PlayStation 5, and Xbox Series X|S, plus crossplay, Game Pass, controller, and console notes.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/review/",
+      "title": "Mistfall Hunter Review Roundup: Launch Feedback Guide",
+      "description": "A Mistfall Hunter review roundup based on public media impressions and launch player feedback, covering combat, extraction, solo play, performance, and fit.",
+      "h1": "Mistfall Hunter Review Roundup and Player Feedback",
+      "canonical": "https://mistfallhuntergg.wiki/review/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Review Roundup: Launch Feedback Guide",
+      "ogDescription": "A Mistfall Hunter review roundup based on public media impressions and launch player feedback, covering combat, extraction, solo play, performance, and fit.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/system-requirements/",
+      "title": "Mistfall Hunter System Requirements for PC",
+      "description": "Official Mistfall Hunter system requirements: minimum and recommended CPU, GPU, RAM, DirectX, Windows, storage, broadband, and SSD guidance.",
+      "h1": "Mistfall Hunter System Requirements",
+      "canonical": "https://mistfallhuntergg.wiki/system-requirements/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter System Requirements for PC",
+      "ogDescription": "Official Mistfall Hunter system requirements: minimum and recommended CPU, GPU, RAM, DirectX, Windows, storage, broadband, and SSD guidance.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
+      ]
+    },
+    {
+      "path": "/about/",
+      "title": "About Mistfall Hunter Guide",
+      "description": "Learn what Mistfall Hunter Guide covers, who edits it, how it uses sources, and its independent fan-made relationship to Bellring Games.",
+      "h1": "About Mistfall Hunter Guide",
+      "canonical": "https://mistfallhuntergg.wiki/about/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "About Mistfall Hunter Guide",
+      "ogDescription": "Learn what Mistfall Hunter Guide covers, who edits it, how it uses sources, and its independent fan-made relationship to Bellring Games.",
+      "ogType": "website",
+      "schemaTypes": [
+        "AboutPage"
+      ]
+    },
+    {
+      "path": "/editorial-policy/",
+      "title": "Editorial Policy | Mistfall Hunter Guide",
+      "description": "How Mistfall Hunter Guide verifies official facts, labels community information, handles builds, corrects errors, and updates version-sensitive content.",
+      "h1": "Editorial Policy",
+      "canonical": "https://mistfallhuntergg.wiki/editorial-policy/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Editorial Policy | Mistfall Hunter Guide",
+      "ogDescription": "How Mistfall Hunter Guide verifies official facts, labels community information, handles builds, corrects errors, and updates version-sensitive content.",
+      "ogType": "website",
+      "schemaTypes": [
+        "WebPage"
+      ]
+    },
+    {
+      "path": "/privacy-policy/",
+      "title": "Privacy Policy | Mistfall Hunter Guide",
+      "description": "Privacy information for Mistfall Hunter Guide, including optional analytics and advertising, external links, email contact, cookies, and data choices.",
+      "h1": "Privacy Policy",
+      "canonical": "https://mistfallhuntergg.wiki/privacy-policy/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Privacy Policy | Mistfall Hunter Guide",
+      "ogDescription": "Privacy information for Mistfall Hunter Guide, including optional analytics and advertising, external links, email contact, cookies, and data choices.",
+      "ogType": "website",
+      "schemaTypes": [
+        "WebPage"
+      ]
+    },
+    {
+      "path": "/disclaimer/",
+      "title": "Disclaimer | Mistfall Hunter Guide",
+      "description": "Independent fan-site, accuracy, trademarks, gameplay recommendation, technical troubleshooting, purchase, and external-link disclaimers.",
+      "h1": "Disclaimer",
+      "canonical": "https://mistfallhuntergg.wiki/disclaimer/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Disclaimer | Mistfall Hunter Guide",
+      "ogDescription": "Independent fan-site, accuracy, trademarks, gameplay recommendation, technical troubleshooting, purchase, and external-link disclaimers.",
+      "ogType": "website",
+      "schemaTypes": [
+        "WebPage"
+      ]
+    },
+    {
+      "path": "/contact/",
+      "title": "Contact Mistfall Hunter Guide",
+      "description": "Contact Mistfall Hunter Guide to report a correction, broken source, outdated patch fact, accessibility issue, or site problem.",
+      "h1": "Contact Mistfall Hunter Guide",
+      "canonical": "https://mistfallhuntergg.wiki/contact/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Contact Mistfall Hunter Guide",
+      "ogDescription": "Contact Mistfall Hunter Guide to report a correction, broken source, outdated patch fact, accessibility issue, or site problem.",
+      "ogType": "website",
+      "schemaTypes": [
+        "ContactPage"
+      ]
+    }
+  ]
+}

@@ -9,6 +9,8 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "check:site": "node scripts/check-site.mjs",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "check:english-seo": "node scripts/check-english-seo-baseline.mjs",
     "report:keywords": "node scripts/report-keywords.mjs"
   },
   "dependencies": {

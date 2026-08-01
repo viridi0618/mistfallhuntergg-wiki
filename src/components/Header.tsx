@@ -1,12 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import { primaryNav } from "@/data/pages";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-export default function Header() {
+const localizedNav = {
+  en: primaryNav,
+  es: [
+    { href: "/es/guia-principiantes/", label: "Principiantes" },
+    { href: "/es/clases/", label: "Clases" },
+    { href: "/es/builds/", label: "Builds" },
+    { href: "/es/jugar-solo/", label: "Juego en solitario" },
+    { href: "/es/servidores/", label: "Servidores" },
+  ],
+  de: [
+    { href: "/de/einstellungen/", label: "Einstellungen" },
+    { href: "/de/ruckler-beheben/", label: "Ruckler beheben" },
+    { href: "/de/absturz-beheben/", label: "Abstürze" },
+    { href: "/de/server/", label: "Server" },
+  ],
+} as const;
+
+export default function Header({ locale = "en" }: { locale?: keyof typeof localizedNav }) {
+  const home = locale === "en" ? "/" : `/${locale}/`;
   return (
     <header className="site-header">
       <div className="header-inner">
-        <Link href="/" className="brand" aria-label="Mistfall Hunter Guide home">
+        <Link href={home} className="brand" aria-label="Mistfall Hunter Guide home">
           <span className="brand-logo" aria-hidden="true">
             <Image src="/icon.png" alt="Mistfall Hunter Guide emblem" width={40} height={40} priority />
           </span>
@@ -16,12 +35,13 @@ export default function Header() {
           </span>
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {primaryNav.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}
+          {localizedNav[locale].map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}
         </nav>
+        <LanguageSwitcher />
         <details className="mobile-menu">
           <summary aria-label="Open navigation"><span /><span /><span /></summary>
           <nav aria-label="Mobile navigation">
-            {primaryNav.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}
+            {localizedNav[locale].map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}
           </nav>
         </details>
       </div>

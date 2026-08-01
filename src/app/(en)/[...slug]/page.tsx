@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import GuidePage from "@/components/GuidePage";
 import { getPage, pages } from "@/data/pages";
 import { siteConfig } from "@/lib/site-config";
+import { hreflangPaths } from "@/i18n/routes";
 
 export const dynamicParams = false;
 
@@ -21,10 +22,15 @@ export async function generateMetadata({
   const canonical = `/${page.path}/`;
   const socialImage = page.heroImage ?? page.image ?? siteConfig.defaultSocialImage;
   const isArticle = page.pageType === "article";
+  const translations = hreflangPaths(canonical);
+  const languages = {
+    ...translations,
+    "x-default": translations.en ?? canonical,
+  };
   return {
     title: { absolute: page.title },
     description: page.description,
-    alternates: { canonical },
+    alternates: { canonical, languages },
     openGraph: isArticle ? {
       title: page.title,
       description: page.description,
