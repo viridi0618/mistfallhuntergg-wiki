@@ -1372,42 +1372,29 @@ tbody tr:nth-child(even) td {
   font-size: 12px;
 }
 
-.wiki-status {
-  margin-bottom: 14px;
-}
-
-.wiki-status dl {
-  display: grid;
-  margin: 14px 0 0;
-  gap: 12px;
-}
-
-.wiki-status dl div {
-  display: grid;
-  gap: 3px;
-}
-
-.wiki-status dt {
-  color: var(--faint);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-.wiki-status dd {
-  margin: 0;
-  color: #c7cecc;
-  font-size: 12px;
-  line-height: 1.45;
-}
-
 .article-rail .wiki-related {
   margin-top: 0;
 }
 
 .article-rail .wiki-related .rail-label {
   padding: 16px 16px 4px;
+}
+
+.article-rail .wiki-version {
+  margin-top: 24px;
+  padding: 18px 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.article-rail .wiki-version strong {
+  display: block;
+  margin-top: 8px;
+  color: #c7cecc;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 .site-footer {

@@ -121,7 +121,7 @@ export default function LocalizedGuidePage({ page, pagesByPath }: { page: Locali
         {related.map((item) => <Link className="localized-related-card" href={item.path} key={item.path}><span>{item.eyebrow}</span><strong>{item.h1}</strong><small>{item.answer}</small></Link>)}
       </div></section>}
       <section className="sources"><p className="section-label">{t.evidence}</p><h2 id="page-sources">{t.sources}</h2><p>{t.checked} {page.updated}.</p><ul>{page.sources.map((source) => <li key={source.url}><span>{sourceLevel(source.level, page.locale)}</span><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section>
-    </article><ArticleOutline outline={outline} locale={page.locale} updated={page.updated} version={page.version} informationType={page.informationType}
+    </article><ArticleOutline outline={outline} locale={page.locale} version={page.version}
       related={related.slice(0, 4).map((item) => ({ href: item.path, label: item.h1 }))} /></main>
   </>;
 }

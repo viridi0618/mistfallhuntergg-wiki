@@ -8,24 +8,17 @@ import type { Locale } from "@/i18n/routes";
 type RelatedLink = { href: string; label: string };
 
 const labels = {
-  en: { toc: "On this page", status: "Page status", updated: "Updated", version: "Version", type: "Information type", related: "Related guides" },
-  es: { toc: "En esta página", status: "Estado de la página", updated: "Actualizada", version: "Versión", type: "Tipo de información", related: "Guías relacionadas" },
-  de: { toc: "Auf dieser Seite", status: "Seitenstatus", updated: "Aktualisiert", version: "Version", type: "Informationsart", related: "Verwandte Ratgeber" },
+  en: { toc: "On this page", related: "Related guides", gameVersion: "Current game version" },
+  es: { toc: "En esta página", related: "Guías relacionadas", gameVersion: "Versión actual del juego" },
+  de: { toc: "Auf dieser Seite", related: "Verwandte Ratgeber", gameVersion: "Aktuelle Spielversion" },
 } as const;
 
-function formattedDate(date: string, locale: Locale) {
-  const language = locale === "es" ? "es-ES" : locale === "de" ? "de-DE" : "en-US";
-  return new Intl.DateTimeFormat(language, { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
-}
-
 export default function ArticleOutline({
-  outline, locale, updated, version, informationType, related,
+  outline, locale, version, related,
 }: {
   outline: ArticleOutlineModel;
   locale: Locale;
-  updated: string;
   version: string;
-  informationType: string;
   related: RelatedLink[];
 }) {
   const t = labels[locale];
@@ -78,13 +71,12 @@ export default function ArticleOutline({
         </div>)}
       </div>
     </nav>}
-    <div className="wiki-status"><span className="rail-label">{t.status}</span><dl>
-      <div><dt>{t.updated}</dt><dd>{formattedDate(updated, locale)}</dd></div>
-      <div><dt>{t.version}</dt><dd>{version}</dd></div>
-      <div><dt>{t.type}</dt><dd>{informationType}</dd></div>
-    </dl></div>
     {related.length > 0 && <nav className="wiki-related" aria-label={t.related}><span className="rail-label">{t.related}</span>
       {related.slice(0, 4).map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
     </nav>}
+    <div className="wiki-version">
+      <span className="rail-label">{t.gameVersion}</span>
+      <strong>{version}</strong>
+    </div>
   </aside>;
 }

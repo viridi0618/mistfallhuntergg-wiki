@@ -237,9 +237,7 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
         <ArticleOutline
           outline={outline}
           locale="en"
-          updated={page.updated}
           version={page.version}
-          informationType={page.informationType}
           related={related.slice(0, 4).map((item) => ({ href: `/${item.path}/`, label: item.breadcrumbLabel ?? item.h1 }))}
         />
       </main>
