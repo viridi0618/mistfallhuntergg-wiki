@@ -1,7 +1,8 @@
 import type { GuidePageData } from "@/lib/types";
-import { OFFICIAL_SITE, STEAM, STEAM_NEWS } from "./sources";
+import { LAUNCH_UPDATE, KNOWN_ISSUES_OFFICIAL, OFFICIAL_SITE, STEAM, STEAM_NEWS } from "./sources";
 
 const checked = "2026-07-31";
+const launchChecked = "2026-08-01";
 const common = {
   updated: checked,
   published: "2026-07-31",
@@ -17,8 +18,9 @@ const codes: GuidePageData = {
   title: "Mistfall Hunter Codes: Verified Status",
   description: "Check the Mistfall Hunter codes status and learn how redeem codes differ from launch rewards, Twitch Drops, giveaways, build share codes, and activation keys.",
   h1: "Mistfall Hunter Codes",
-  answer: "There are currently no confirmed public Mistfall Hunter redeem codes in the official sources checked on July 31, 2026. This page distinguishes redeem codes from other reward and key types.",
+  answer: "There are currently no confirmed public Mistfall Hunter redeem codes in the official sources checked on August 1, 2026. The launch gift of Gesture: Thumbs Up and 500 Soul Coins arrives through in-game mail and is not a redeem code.",
   ...common,
+  updated: launchChecked,
   informationType: "Official-source verification",
   sections: [
     {
@@ -29,9 +31,16 @@ const codes: GuidePageData = {
           ["Public redeem code", "No confirmed information currently available", "No active string is published here"],
           ["Build share code", "Official system feature", "Imports a player loadout; it is not a reward code"],
           ["Game activation key", "Store purchase credential", "Not an in-game reward"],
-          ["Launch or event reward", "Eligibility-based", "Delivered by event, login, account, or mail rules"],
+          ["Launch milestone mail gift", "Eligibility-based", "Gesture: Thumbs Up and 500 Soul Coins arrive through in-game mail; no public string is entered"],
         ],
       },
+    },
+    {
+      heading: "The launch mail gift is not a code",
+      paragraphs: [
+        "The launch gift containing Gesture: Thumbs Up and 500 Soul Coins is delivered through in-game mail. It is not a redeem code, and players do not need to enter a public string to claim it.",
+        "The official claim deadline is September 1, 2026 at 00:00 UTC. Eligibility and delivery should be checked in the current game client rather than through a third-party claim page.",
+      ],
     },
     {
       heading: "How we verify a code",
@@ -60,12 +69,13 @@ const codes: GuidePageData = {
     },
   ],
   faqs: [
-    { question: "Are there active Mistfall Hunter codes?", answer: "No confirmed public redeem codes were found in the official sources checked on July 31, 2026." },
+    { question: "Are there active Mistfall Hunter codes?", answer: "No confirmed public redeem codes were found in the official sources checked on August 1, 2026." },
+    { question: "Is the 500 Soul Coins launch gift a code?", answer: "No. It is an eligibility-based in-game mail reward." },
     { question: "Is a build share code a reward code?", answer: "No. It imports a loadout configuration." },
     { question: "Where will verified codes come from?", answer: "Official Bellring Games announcements, the game client, or other official channels." },
   ],
   related: ["twitch-drops", "launch-rewards", "skins", "patch-notes"],
-  sources: [STEAM_NEWS, STEAM],
+  sources: [LAUNCH_UPDATE, STEAM],
 };
 
 const twitch: GuidePageData = {
@@ -136,15 +146,17 @@ const launchRewards: GuidePageData = {
   title: "Mistfall Hunter Launch Rewards & Eligibility",
   description: "Mistfall Hunter launch rewards explained: playtest carry-over items, the free Season 1 Battle Pass unlock, Deluxe bonuses, eligibility, and claim cautions.",
   h1: "Mistfall Hunter Launch Rewards",
-  answer: "Officially confirmed launch-era rewards depend on eligibility: qualifying playtest accounts can reclaim named cosmetics, and the Season 1 Battle Pass unlocks free after seven cumulative logins. Deluxe items require purchase.",
+  answer: "Official launch rewards include the Gesture: Thumbs Up and 500 Soul Coins mail gift for eligible logins before September 1, 2026 at 00:00 UTC, qualifying playtest carry-over cosmetics, the free Season 1 Battle Pass unlock after seven cumulative logins, and paid Deluxe Edition benefits.",
   ...common,
+  updated: launchChecked,
   informationType: "Official reward eligibility",
   sections: [
     {
       heading: "Confirmed launch reward categories",
       table: {
-        headers: ["Reward category", "Eligibility", "Status checked July 31"],
+        headers: ["Reward category", "Eligibility", "Claim status"],
         rows: [
+          ["Launch milestone mail gift", "Log in before September 1, 2026 at 00:00 UTC", "Gesture: Thumbs Up and 500 Soul Coins delivered through in-game mail"],
           ["Playtest participation cosmetics", "Use the same eligible account used in the qualifying test", "Officially described"],
           ["Season 1 Battle Pass", "Seven cumulative logins", "Officially described as free unlock"],
           ["Deluxe Edition cosmetics and Fate Coins", "Deluxe purchase or upgrade", "Paid edition benefit"],
@@ -152,6 +164,13 @@ const launchRewards: GuidePageData = {
           ["Twitch Drops", "No current official campaign verified", "Do not assume from stream promotion"],
         ],
       },
+    },
+    {
+      heading: "Launch milestone mail reward",
+      paragraphs: [
+        "Bellring Games announced Gesture: Thumbs Up and 500 Soul Coins as a first-day milestone gift. Eligible players receive the gift through in-game mail after logging in before the official deadline, September 1, 2026 at 00:00 UTC. No public redeem code is required.",
+        "If the mail does not appear, first confirm the account, install the current client version, and check the in-game mailbox. The announcement does not guarantee retroactive delivery to every account that logs in after the deadline, and there is no third-party claim link.",
+      ],
     },
     {
       heading: "Playtest carry-over rewards",
@@ -181,11 +200,12 @@ const launchRewards: GuidePageData = {
   ],
   faqs: [
     { question: "Is the Season 1 Battle Pass free?", answer: "Official DevNote #7 says it unlocks free after seven cumulative login days." },
+    { question: "Do I need a redeem code for the 500 Soul Coins?", answer: "No. The official launch gift is delivered through in-game mail and is not a public redeem code." },
     { question: "Do beta rewards carry over?", answer: "Certain officially announced cosmetics do, when the same eligible account is used." },
     { question: "Are Deluxe rewards free launch rewards?", answer: "No. They are paid edition entitlements." },
   ],
   related: ["skins", "codes", "twitch-drops", "patch-notes"],
-  sources: [STEAM_NEWS, STEAM],
+  sources: [LAUNCH_UPDATE, STEAM_NEWS, STEAM],
 };
 
 const skins: GuidePageData = {
@@ -260,8 +280,9 @@ const knownIssues: GuidePageData = {
   title: "Mistfall Hunter Known Issues & Current Status",
   description: "Mistfall Hunter known issues summarized from official launch posts, including controller, UI, extraction, reconnect, console, and fixed items.",
   h1: "Mistfall Hunter Known Issues",
-  answer: "Bellring Games published a launch known-issues list and then scheduled an immediate update covering those items. Update first; if a listed symptom remains, report the platform, version, and reproduction steps.",
+  answer: "Bellring Games listed launch issues and then marked the named cases fixed in the July 30 update. Install the current platform update first, reproduce the exact issue, and remember that a similar symptom may have a different cause; if it persists, report the platform, client version, and reproduction steps.",
   ...common,
+  updated: launchChecked,
   informationType: "Official issue and fix summary",
   sections: [
     {
@@ -269,15 +290,36 @@ const knownIssues: GuidePageData = {
       table: {
         headers: ["Category", "Issue summary", "Platforms", "Official status", "Workaround / action"],
         rows: [
-          ["Tutorial", "Incorrect Sorcerer key prompts in some languages", "All relevant", "Listed fixed in first update", "Update client"],
-          ["Combat UI", "Flameblade visual range mismatch", "All relevant", "Listed fixed", "Update client"],
-          ["Extraction", "Extra Soul of Return consumption near Soul Tree", "All relevant", "Listed fixed", "Avoid repeated boundary entry until updated"],
-          ["Inventory", "Secondary menu could not split items", "All relevant", "Listed fixed", "Use split hotkey before update"],
-          ["Connection", "Some console matches failed to reconnect", "Console", "Listed fixed", "Update and record match details"],
-          ["Controller", "Leaderboard, gear, and Auction House navigation faults", "Controller users", "Listed fixed", "Update; use alternate input where available"],
-          ["Console UI", "PS5 deck screen display anomaly", "PS5", "Listed fixed", "Restart game before update"],
+          ["Sorcerer tutorial", "Incorrect spellcasting key prompts in some languages", "All relevant", "Listed fixed in the July 30 update", "Update client and retest the tutorial"],
+          ["Combat UI", "Flameblade visual range did not match its damage range", "All relevant", "Listed fixed in the July 30 update", "Update client"],
+          ["Extraction", "Repeated Soul Tree boundary entry could consume an extra Soul of Return", "All relevant", "Listed fixed in the July 30 update", "Update before reproducing the same sequence"],
+          ["Inventory", "Items could not be split through the secondary menu", "All relevant", "Listed fixed in the July 30 update", "Update; the split hotkey was the earlier workaround"],
+          ["Connection", "Some console matches could not reconnect after disconnection", "Console", "Listed fixed in the July 30 update", "Update and record match details if it persists"],
+          ["General Harald", "An occasional impassable area could appear during the challenge", "All relevant", "Listed fixed in the July 30 update", "Update and report the exact location if reproduced"],
+          ["Guide UI", "Closing the guide interface very quickly could leave some keys unresponsive", "All relevant", "Listed fixed in the July 30 update", "Update and record the closing sequence"],
+          ["Seasonal Leaderboard", "Moving the controller cursor to specific regions could crash the game", "Controller users", "Listed fixed in the July 30 update", "Update and report the screen position if reproduced"],
+          ["Loadout", "Equipment could not be unequipped with a controller", "Controller users", "Listed fixed in the July 30 update", "Update and retest the same item"],
+          ["Auction House", "Some gem slots could not be selected with the D-pad", "Controller users", "Listed fixed in the July 30 update", "Update and compare D-pad input"],
+          ["Training Room", "Public Training Room settings could not be opened with a controller", "Controller users", "Listed fixed in the July 30 update", "Update and retest the settings action"],
+          ["Xbox PC", "An incorrect popup appeared when exiting the game", "Xbox PC", "Listed fixed in the July 30 update", "Update and record the prompt if it remains"],
+          ["PS5 UI", "The deck screen could occasionally display abnormally", "PS5", "Listed fixed in the July 30 update", "Update; restart was the published pre-update workaround"],
+          ["Audio", "Execution Animation: Execute - Voidflame Requiem had missing audio", "All relevant", "Listed fixed in the July 30 update", "Update and report the exact animation if silent"],
         ],
       },
+      subsections: [
+        {
+          heading: "Controller and interface cases",
+          paragraphs: ["The official update listed fixes for the Seasonal Leaderboard crash, Loadout unequip action, Auction House D-pad selection, Training Room settings, Xbox PC exit prompt, PS5 deck display, and guide UI input case. Retest only after the current platform update is installed."],
+        },
+        {
+          heading: "Extraction, inventory, and reconnect cases",
+          paragraphs: ["The named fixes include extra Soul of Return consumption, secondary-menu item splitting, some console reconnect failures, and the General Harald impassable area. A similar symptom in a different sequence should be reported as a new reproduction."],
+        },
+        {
+          heading: "Audio and presentation cases",
+          paragraphs: ["The update also listed the Voidflame Requiem audio issue, Flameblade range presentation, and Sorcerer tutorial prompts as fixed. This status summarizes the official note and is not a guarantee for every client or platform."],
+        },
+      ],
     },
     {
       heading: "Crashes and performance",
@@ -311,7 +353,7 @@ const knownIssues: GuidePageData = {
     { question: "Where can I report a bug?", answer: "Use in-game customer support or official community channels." },
   ],
   related: ["patch-notes", "fatal-error-fix", "stuttering-fix", "crashing-fix", "controller-guide"],
-  sources: [STEAM_NEWS, STEAM],
+  sources: [KNOWN_ISSUES_OFFICIAL, LAUNCH_UPDATE, STEAM],
 };
 
 const patchNotes: GuidePageData = {
@@ -324,21 +366,36 @@ const patchNotes: GuidePageData = {
   h1: "Mistfall Hunter Patch Notes",
   answer: "The first launch update was scheduled for July 30, 2026 at 16:00 UTC and addressed the published known-issue list plus class balance changes. This page summarizes official notes instead of copying them.",
   ...common,
+  updated: launchChecked,
   informationType: "Official patch summary",
   sections: [
     {
       heading: "July 30, 2026 launch update summary",
       table: {
-        headers: ["Area", "Main change", "Guide impact"],
+        headers: ["Area", "Official change", "Pages affected"],
         rows: [
-          ["Known issues", "Fixed the launch list across tutorial, extraction, inventory, controller, reconnect, and console UI", "Update troubleshooting and extraction cautions"],
-          ["Withered Knight", "Adjusted Polearm & Shield energy and turning; raised several attack values", "Recheck class and build feel"],
-          ["Sorcerer", "Fixed Flameblade presentation and tutorial prompts", "Controller and known-issue pages"],
-          ["Controller", "Fixed leaderboard, loadout, Auction House, and Training Room faults", "Controller troubleshooting"],
-          ["Connection", "Fixed some console reconnect failures", "Connection guide"],
+          ["Launch reward", "Gesture: Thumbs Up and 500 Soul Coins through in-game mail before September 1, 2026 at 00:00 UTC", "Rewards, Launch Rewards, Codes"],
+          ["Withered Knight", "Polearm & Shield energy costs were reduced; Tier-1 Charged Dash turning, Basic Attack thrust damage, Spear Barrage multiplier, and Rainbow Piercer cooldown were improved", "Withered Knight guide"],
+          ["Sorcerer", "Chant Guard description corrected; Flameblade range presentation and tutorial prompts fixed", "Sorcerer guide, Known Issues"],
+          ["Controller/UI", "Leaderboard crash, Loadout, Auction House, Training Room, Xbox PC prompt, and PS5 deck issues listed fixed", "Known Issues, Controller Guide"],
+          ["Gameplay", "Soul of Return, item splitting, console reconnect, General Harald, guide UI, and Voidflame Requiem audio cases listed fixed", "Extraction, Connection, Known Issues"],
         ],
       },
-      note: "Patch date and summary follow the official Steam announcement checked July 31. Store approval timing can differ by platform.",
+      note: "Patch date and summary follow the official Steam announcement checked August 1. Store approval timing can differ by platform.",
+      subsections: [
+        {
+          heading: "Rewards and eligibility",
+          paragraphs: ["The launch milestone gift contains Gesture: Thumbs Up and 500 Soul Coins. It is delivered through in-game mail to eligible accounts that log in before September 1, 2026 at 00:00 UTC, and it is not a public redeem code."],
+        },
+        {
+          heading: "Class balance details",
+          paragraphs: ["The update includes qualitative Polearm & Shield adjustments for Withered Knight and a corrected Chant Guard description for Sorcerer. Neither change alone establishes a new global class ranking."],
+        },
+        {
+          heading: "Controller and gameplay fixes",
+          paragraphs: ["The official list covers controller, interface, extraction, inventory, reconnect, challenge-area, audio, and crash cases. Each item remains described as listed fixed rather than guaranteed resolved on every configuration."],
+        },
+      ],
     },
     {
       heading: "Launch-version balance context",
@@ -372,7 +429,7 @@ const patchNotes: GuidePageData = {
     { question: "Do old builds still work?", answer: "They may function, but balance changes can alter their relative value." },
   ],
   related: ["known-issues", "classes", "builds", "stuttering-fix", "crashing-fix"],
-  sources: [STEAM_NEWS, STEAM],
+  sources: [LAUNCH_UPDATE, KNOWN_ISSUES_OFFICIAL, STEAM],
 };
 
 export const rewardUpdatePages: GuidePageData[] = [

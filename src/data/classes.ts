@@ -1,7 +1,8 @@
 import type { ClassProfile, GuidePageData } from "@/lib/types";
-import { GAMESRADAR, OFFICIAL_SITE, STEAM, STEAM_NEWS } from "./sources";
+import { GAMESRADAR, LAUNCH_UPDATE, OFFICIAL_SITE, STEAM, STEAM_NEWS } from "./sources";
 
 const checked = "2026-07-31";
+const launchChecked = "2026-08-01";
 const classSourceNote =
   "Bellring Games describes two weapon stances and several archetypes for each launch class. Balance changed immediately around launch, so this page avoids fixed damage numbers and treats recommendations as version-sensitive.";
 
@@ -30,7 +31,15 @@ const profiles: ClassProfile[] = [
     team: "Excellent follow-up damage and control behind a frontline.",
     difficulty: "Moderate. Aiming, spacing, and knowing when it is safe to chant are central.",
     setup: "Use Elemental for repeatable reaction pressure or Stardust when your group can protect longer cast windows.",
-    patch: "Launch updates improved parts of the Stardust kit, while a day-one patch corrected Flameblade range presentation and tutorial prompts.",
+    patch: "The July 30 update corrected Chant Guard's description as well as Flameblade range presentation and Sorcerer tutorial prompts. The description correction documents the intended effect; it is not an extra hidden buff.",
+    patchChanges: [
+      "Chant Guard increases Chanting Speed for Stardust spells.",
+      "While chanting a Stardust spell, the first attack received does not interrupt chanting.",
+      "The interruption protection has a cooldown; the official announcement does not provide its duration.",
+      "Stardust Torrent's casting phase also benefits from Chant Guard.",
+      "The update also listed the Flameblade visual-range mismatch and incorrect tutorial key prompts as fixed.",
+    ],
+    updated: launchChecked,
   },
   {
     slug: "blackarrow",
@@ -82,7 +91,17 @@ const profiles: ClassProfile[] = [
     team: "Can pull targets, disrupt formations, rescue a downed ally at range, or hold space with the shield route.",
     difficulty: "Moderate with Greatsword; higher with Polearm & Shield.",
     setup: "Use Greatsword for Consecutive Break or Delayed Detonation. Use Polearm & Shield for reach, protection, and team utility.",
-    patch: "Polearm & Shield launched with Season 1 and received immediate energy and turning adjustments in the first update.",
+    patch: "The July 30 changes improve Polearm & Shield resource flow, Tier-1 Charged Dash turning, and parts of its attack performance. They do not by themselves establish a new overall class ranking.",
+    patchChanges: [
+      "Charged Dash drains slightly less Energy during the shield-raising charge phase.",
+      "Tier-1 Charged Dash has slightly improved turning performance.",
+      "The thrust hits in the first and third Basic Attack sequences deal slightly more damage.",
+      "Spear Barrage has a slightly higher damage multiplier.",
+      "Rainbow Piercer costs slightly less Energy.",
+      "Rainbow Piercer has a slightly shorter cooldown.",
+      "Block costs less Energy.",
+    ],
+    updated: launchChecked,
   },
 ];
 
@@ -97,7 +116,7 @@ function classPage(profile: ClassProfile): GuidePageData {
     description: `A source-aware ${keyword} guide covering weapons, strengths, solo and team roles, beginner difficulty, build direction, and launch patch context.`,
     h1: `Mistfall Hunter ${profile.name} Guide`,
     answer: `${profile.name} is the game's ${profile.role}. ${profile.solo}`,
-    updated: checked,
+    updated: profile.updated ?? checked,
     published: "2026-07-31",
     version: "Launch / Season 1",
     platforms: "PC, PS5, Xbox Series X|S",
@@ -149,6 +168,7 @@ function classPage(profile: ClassProfile): GuidePageData {
       {
         heading: "Current patch impact",
         paragraphs: [profile.patch],
+        bullets: profile.patchChanges,
         note: "This summary follows official launch and immediate post-launch notes. It does not convert patch wording into unsupported DPS rankings.",
       },
     ],
@@ -159,7 +179,7 @@ function classPage(profile: ClassProfile): GuidePageData {
       { question: `What is a safe ${profile.name} build?`, answer: profile.setup },
     ],
     related: ["classes", "best-class", "best-solo-class", "class-tier-list", "builds"],
-    sources: [STEAM_NEWS, OFFICIAL_SITE],
+    sources: profile.updated === launchChecked ? [LAUNCH_UPDATE, OFFICIAL_SITE] : [STEAM_NEWS, OFFICIAL_SITE],
   };
 }
 
@@ -368,6 +388,16 @@ const tierList: GuidePageData = {
         "The table groups classes by the job they perform well rather than forcing every mode into a single S-to-D ladder. A class listed as a competitive alternative can be the better choice for an experienced specialist or a particular trio.",
         "No official source publishes a complete ranking. Bellring Games instead discusses weapon archetypes, live data, and targeted adjustments. This page therefore avoids fabricated win rates, DPS, extraction rates, or universal matchup claims.",
       ],
+      subsections: [
+        {
+          heading: "Compare classes within one mode",
+          paragraphs: ["Solo survival, trio coordination, PvE clearing, and contested extraction reward different strengths. Read each recommendation in the mode named by the table instead of treating it as a universal rank."],
+        },
+        {
+          heading: "Separate role value from raw damage",
+          paragraphs: ["Control, protection, reach, and a reliable disengage can decide a run without producing the largest visible hit. The framework values whether a class completes its job consistently, not an unverified damage total."],
+        },
+      ],
     },
     {
       heading: "Patch changes that can move the order",
@@ -421,6 +451,20 @@ const builds: GuidePageData = {
       paragraphs: [
         "Define the job first: safe PvE clearing, solo survival, PvP burst, trio support, or extraction consistency. Pick a weapon archetype that serves that job, then choose skills that share the same range, resource rhythm, and engagement plan.",
         "Avoid mixing every attractive effect. A coherent build normally has a way to start a fight, create pressure, survive the response, and disengage or finish. If one of those steps is missing, equipment rarity will not solve the structural weakness.",
+      ],
+      subsections: [
+        {
+          heading: "Define the build's job",
+          paragraphs: ["Name the result the build must deliver: safe clearing, solo survival, burst pressure, support, or consistent extraction. Every later choice should make that job easier to repeat."],
+        },
+        {
+          heading: "Check the defensive answer",
+          paragraphs: ["Identify what happens when the first attack fails. A practical setup needs healing, protection, control, movement, or another supported way to survive the opponent's response."],
+        },
+        {
+          heading: "Plan the disengage",
+          paragraphs: ["Reserve a route or ability for leaving a bad fight. A build that can engage but cannot reset may win isolated exchanges and still lose the extraction run."],
+        },
       ],
     },
     {

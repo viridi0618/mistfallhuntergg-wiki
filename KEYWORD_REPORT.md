@@ -6,91 +6,91 @@ Exact-density status: below 0.5% = Low; 0.5–1.3% = Natural; 1.3–1.8% = Revie
 
 | Language | URL | Primary keyword | Visible words | Exact count | Exact density | Family count | Family density | Status |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| EN | / | mistfall hunter guide | 2932 | 2 | 0.07% | 7 | 0.24% | Low |
-| EN | /guides/ | mistfall hunter guides | 753 | 0 | 0.00% | 6 | 0.80% | Low |
-| EN | /multiplayer/ | mistfall hunter multiplayer | 679 | 0 | 0.00% | 4 | 0.59% | Low |
-| EN | /settings-fixes/ | mistfall hunter settings and fixes | 696 | 0 | 0.00% | 2 | 0.29% | Low |
-| EN | /rewards/ | mistfall hunter rewards | 674 | 0 | 0.00% | 10 | 1.48% | Low |
-| EN | /updates/ | mistfall hunter updates | 643 | 0 | 0.00% | 10 | 1.56% | Low |
-| EN | /beginner-guide/ | mistfall hunter beginner guide | 1482 | 0 | 0.00% | 4 | 0.27% | Low |
-| EN | /how-to-extract/ | how to extract in mistfall hunter | 1187 | 0 | 0.00% | 24 | 2.02% | Low |
-| EN | /character-creation/ | mistfall hunter character creation | 394 | 0 | 0.00% | 0 | 0.00% | Low |
-| EN | /classes/ | mistfall hunter classes | 717 | 2 | 0.28% | 2 | 0.28% | Low |
-| EN | /best-class/ | mistfall hunter best class | 1307 | 0 | 0.00% | 8 | 0.61% | Low |
-| EN | /best-solo-class/ | mistfall hunter best solo class | 742 | 0 | 0.00% | 4 | 0.54% | Low |
-| EN | /class-tier-list/ | mistfall hunter class tier list | 1208 | 1 | 0.08% | 4 | 0.33% | Low |
-| EN | /classes/mercenary/ | mistfall hunter mercenary | 1198 | 0 | 0.00% | 1 | 0.08% | Low |
-| EN | /classes/sorcerer/ | mistfall hunter sorcerer | 1203 | 0 | 0.00% | 3 | 0.25% | Low |
-| EN | /classes/blackarrow/ | mistfall hunter blackarrow | 1170 | 0 | 0.00% | 1 | 0.09% | Low |
-| EN | /classes/shadowstrix/ | mistfall hunter shadowstrix | 1140 | 0 | 0.00% | 7 | 0.61% | Low |
-| EN | /classes/seer/ | mistfall hunter seer | 1169 | 0 | 0.00% | 1 | 0.09% | Low |
-| EN | /classes/withered-knight/ | mistfall hunter withered knight | 1199 | 0 | 0.00% | 14 | 1.17% | Low |
-| EN | /builds/ | mistfall hunter builds | 1439 | 1 | 0.07% | 1 | 0.07% | Low |
-| EN | /solo-mode/ | mistfall hunter solo mode | 875 | 0 | 0.00% | 3 | 0.34% | Low |
-| EN | /pve-only/ | mistfall hunter pve only | 797 | 0 | 0.00% | 5 | 0.63% | Low |
-| EN | /gameplay/ | mistfall hunter gameplay guide | 1113 | 0 | 0.00% | 1 | 0.09% | Low |
-| EN | /crossplay/ | is mistfall hunter crossplay | 785 | 0 | 0.00% | 6 | 0.76% | Low |
-| EN | /servers/ | mistfall hunter servers | 853 | 0 | 0.00% | 3 | 0.35% | Low |
-| EN | /region-lock/ | mistfall hunter region lock | 815 | 0 | 0.00% | 9 | 1.10% | Low |
-| EN | /play-with-friends/ | how to play mistfall hunter with friends | 796 | 0 | 0.00% | 0 | 0.00% | Low |
-| EN | /fov/ | mistfall hunter fov | 420 | 0 | 0.00% | 5 | 1.19% | Low |
-| EN | /best-settings/ | mistfall hunter best settings | 652 | 0 | 0.00% | 2 | 0.31% | Low |
-| EN | /controller-guide/ | mistfall hunter controller | 607 | 0 | 0.00% | 4 | 0.66% | Low |
-| EN | /fatal-error-fix/ | mistfall hunter fatal error | 927 | 0 | 0.00% | 0 | 0.00% | Low |
-| EN | /stuttering-fix/ | mistfall hunter stuttering | 899 | 0 | 0.00% | 6 | 0.67% | Low |
-| EN | /crashing-fix/ | mistfall hunter crashing | 974 | 0 | 0.00% | 4 | 0.41% | Low |
-| EN | /connection-fix/ | mistfall hunter connection error | 989 | 0 | 0.00% | 0 | 0.00% | Low |
-| EN | /codes/ | mistfall hunter codes | 379 | 2 | 0.53% | 3 | 0.79% | Natural |
-| EN | /twitch-drops/ | mistfall hunter twitch drops | 360 | 0 | 0.00% | 0 | 0.00% | Low |
-| EN | /launch-rewards/ | mistfall hunter launch rewards | 401 | 0 | 0.00% | 2 | 0.50% | Low |
-| EN | /skins/ | mistfall hunter skins | 350 | 0 | 0.00% | 0 | 0.00% | Low |
-| EN | /known-issues/ | mistfall hunter known issues | 825 | 0 | 0.00% | 2 | 0.24% | Low |
-| EN | /patch-notes/ | mistfall hunter patch notes | 775 | 0 | 0.00% | 1 | 0.13% | Low |
-| EN | /price/ | mistfall hunter price | 326 | 0 | 0.00% | 3 | 0.92% | Low |
-| EN | /platforms/ | mistfall hunter platforms | 340 | 1 | 0.29% | 6 | 1.76% | Low |
-| EN | /review/ | mistfall hunter review | 636 | 0 | 0.00% | 1 | 0.16% | Low |
-| EN | /system-requirements/ | mistfall hunter system requirements | 389 | 0 | 0.00% | 2 | 0.51% | Low |
-| ES | /es/ | mistfall hunter en español | 701 | 1 | 0.14% | 1 | 0.14% | Low |
-| ES | /es/guia-principiantes/ | guía para principiantes de mistfall hunter | 754 | 1 | 0.13% | 1 | 0.13% | Low |
-| ES | /es/como-extraer/ | extraer en mistfall hunter | 659 | 1 | 0.15% | 1 | 0.15% | Low |
-| ES | /es/clases/ | clases de mistfall hunter | 637 | 1 | 0.16% | 1 | 0.16% | Low |
-| ES | /es/mejor-clase/ | mejor clase de mistfall hunter | 579 | 1 | 0.17% | 1 | 0.17% | Low |
-| ES | /es/mejor-clase-solo/ | mejor clase para jugar solo en mistfall hunter | 555 | 1 | 0.18% | 1 | 0.18% | Low |
-| ES | /es/tier-list-clases/ | tier list de clases de mistfall hunter | 534 | 1 | 0.19% | 1 | 0.19% | Low |
-| ES | /es/builds/ | builds de mistfall hunter | 550 | 1 | 0.18% | 1 | 0.18% | Low |
-| ES | /es/jugar-solo/ | jugar solo en mistfall hunter | 559 | 1 | 0.18% | 1 | 0.18% | Low |
-| ES | /es/servidores/ | servidores de mistfall hunter | 566 | 2 | 0.35% | 2 | 0.35% | Low |
-| ES | /es/bloqueo-regional/ | bloqueo regional de mistfall hunter | 586 | 1 | 0.17% | 1 | 0.17% | Low |
-| ES | /es/codigos/ | códigos de mistfall hunter | 469 | 1 | 0.21% | 1 | 0.21% | Low |
-| DE | /de/ | mistfall hunter guide auf deutsch | 544 | 1 | 0.18% | 2 | 0.37% | Low |
-| DE | /de/einstellungen/ | mistfall hunter einstellungen für stabile leistung | 532 | 1 | 0.19% | 1 | 0.19% | Low |
-| DE | /de/ruckler-beheben/ | mistfall hunter ruckler beheben | 515 | 1 | 0.19% | 1 | 0.19% | Low |
-| DE | /de/absturz-beheben/ | mistfall hunter absturz beheben | 503 | 1 | 0.20% | 1 | 0.20% | Low |
-| DE | /de/server/ | mistfall hunter server | 431 | 2 | 0.46% | 2 | 0.46% | Low |
-| DE | /de/region-lock/ | mistfall hunter region lock | 475 | 1 | 0.21% | 1 | 0.21% | Low |
+| EN | / | mistfall hunter guide | 2961 | 2 | 0.07% | 7 | 0.24% | Low |
+| EN | /guides/ | mistfall hunter guides | 788 | 0 | 0.00% | 8 | 1.02% | Low |
+| EN | /multiplayer/ | mistfall hunter multiplayer | 718 | 0 | 0.00% | 5 | 0.70% | Low |
+| EN | /settings-fixes/ | mistfall hunter settings and fixes | 732 | 0 | 0.00% | 2 | 0.27% | Low |
+| EN | /rewards/ | mistfall hunter rewards | 731 | 0 | 0.00% | 9 | 1.23% | Low |
+| EN | /updates/ | mistfall hunter updates | 696 | 0 | 0.00% | 10 | 1.44% | Low |
+| EN | /beginner-guide/ | mistfall hunter beginner guide | 1671 | 0 | 0.00% | 6 | 0.36% | Low |
+| EN | /how-to-extract/ | how to extract in mistfall hunter | 1363 | 0 | 0.00% | 35 | 2.57% | Low |
+| EN | /character-creation/ | mistfall hunter character creation | 417 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /classes/ | mistfall hunter classes | 752 | 3 | 0.40% | 3 | 0.40% | Low |
+| EN | /best-class/ | mistfall hunter best class | 1386 | 0 | 0.00% | 11 | 0.79% | Low |
+| EN | /best-solo-class/ | mistfall hunter best solo class | 780 | 0 | 0.00% | 6 | 0.77% | Low |
+| EN | /class-tier-list/ | mistfall hunter class tier list | 1362 | 2 | 0.15% | 8 | 0.59% | Low |
+| EN | /classes/mercenary/ | mistfall hunter mercenary | 1257 | 0 | 0.00% | 1 | 0.08% | Low |
+| EN | /classes/sorcerer/ | mistfall hunter sorcerer | 1336 | 0 | 0.00% | 4 | 0.30% | Low |
+| EN | /classes/blackarrow/ | mistfall hunter blackarrow | 1231 | 0 | 0.00% | 1 | 0.08% | Low |
+| EN | /classes/shadowstrix/ | mistfall hunter shadowstrix | 1201 | 0 | 0.00% | 7 | 0.58% | Low |
+| EN | /classes/seer/ | mistfall hunter seer | 1230 | 0 | 0.00% | 1 | 0.08% | Low |
+| EN | /classes/withered-knight/ | mistfall hunter withered knight | 1340 | 0 | 0.00% | 14 | 1.04% | Low |
+| EN | /builds/ | mistfall hunter builds | 1615 | 2 | 0.12% | 2 | 0.12% | Low |
+| EN | /solo-mode/ | mistfall hunter solo mode | 919 | 0 | 0.00% | 5 | 0.54% | Low |
+| EN | /pve-only/ | mistfall hunter pve only | 860 | 0 | 0.00% | 8 | 0.93% | Low |
+| EN | /gameplay/ | mistfall hunter gameplay guide | 1192 | 0 | 0.00% | 1 | 0.08% | Low |
+| EN | /crossplay/ | is mistfall hunter crossplay | 827 | 0 | 0.00% | 8 | 0.97% | Low |
+| EN | /servers/ | mistfall hunter servers | 902 | 0 | 0.00% | 5 | 0.55% | Low |
+| EN | /region-lock/ | mistfall hunter region lock | 872 | 0 | 0.00% | 11 | 1.26% | Low |
+| EN | /play-with-friends/ | how to play mistfall hunter with friends | 840 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /fov/ | mistfall hunter fov | 442 | 0 | 0.00% | 6 | 1.36% | Low |
+| EN | /best-settings/ | mistfall hunter best settings | 796 | 0 | 0.00% | 4 | 0.50% | Low |
+| EN | /controller-guide/ | mistfall hunter controller | 635 | 0 | 0.00% | 6 | 0.94% | Low |
+| EN | /fatal-error-fix/ | mistfall hunter fatal error | 1191 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /stuttering-fix/ | mistfall hunter stuttering | 1190 | 0 | 0.00% | 8 | 0.67% | Low |
+| EN | /crashing-fix/ | mistfall hunter crashing | 1274 | 0 | 0.00% | 5 | 0.39% | Low |
+| EN | /connection-fix/ | mistfall hunter connection error | 1172 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /codes/ | mistfall hunter codes | 513 | 3 | 0.58% | 4 | 0.78% | Natural |
+| EN | /twitch-drops/ | mistfall hunter twitch drops | 394 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /launch-rewards/ | mistfall hunter launch rewards | 570 | 0 | 0.00% | 6 | 1.05% | Low |
+| EN | /skins/ | mistfall hunter skins | 382 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /known-issues/ | mistfall hunter known issues | 1274 | 0 | 0.00% | 3 | 0.24% | Low |
+| EN | /patch-notes/ | mistfall hunter patch notes | 1006 | 0 | 0.00% | 1 | 0.10% | Low |
+| EN | /price/ | mistfall hunter price | 345 | 0 | 0.00% | 5 | 1.45% | Low |
+| EN | /platforms/ | mistfall hunter platforms | 357 | 2 | 0.56% | 7 | 1.96% | Natural |
+| EN | /review/ | mistfall hunter review | 672 | 0 | 0.00% | 1 | 0.15% | Low |
+| EN | /system-requirements/ | mistfall hunter system requirements | 410 | 0 | 0.00% | 2 | 0.49% | Low |
+| ES | /es/ | mistfall hunter en español | 733 | 1 | 0.14% | 1 | 0.14% | Low |
+| ES | /es/guia-principiantes/ | guía para principiantes de mistfall hunter | 868 | 1 | 0.12% | 1 | 0.12% | Low |
+| ES | /es/como-extraer/ | extraer en mistfall hunter | 771 | 1 | 0.13% | 1 | 0.13% | Low |
+| ES | /es/clases/ | clases de mistfall hunter | 681 | 1 | 0.15% | 1 | 0.15% | Low |
+| ES | /es/mejor-clase/ | mejor clase de mistfall hunter | 617 | 1 | 0.16% | 1 | 0.16% | Low |
+| ES | /es/mejor-clase-solo/ | mejor clase para jugar solo en mistfall hunter | 593 | 1 | 0.17% | 1 | 0.17% | Low |
+| ES | /es/tier-list-clases/ | tier list de clases de mistfall hunter | 635 | 1 | 0.16% | 1 | 0.16% | Low |
+| ES | /es/builds/ | builds de mistfall hunter | 662 | 1 | 0.15% | 1 | 0.15% | Low |
+| ES | /es/jugar-solo/ | jugar solo en mistfall hunter | 659 | 1 | 0.15% | 1 | 0.15% | Low |
+| ES | /es/servidores/ | servidores de mistfall hunter | 612 | 2 | 0.33% | 2 | 0.33% | Low |
+| ES | /es/bloqueo-regional/ | bloqueo regional de mistfall hunter | 629 | 1 | 0.16% | 1 | 0.16% | Low |
+| ES | /es/codigos/ | códigos de mistfall hunter | 600 | 1 | 0.17% | 1 | 0.17% | Low |
+| DE | /de/ | mistfall hunter guide auf deutsch | 577 | 1 | 0.17% | 2 | 0.35% | Low |
+| DE | /de/einstellungen/ | mistfall hunter einstellungen für stabile leistung | 619 | 1 | 0.16% | 1 | 0.16% | Low |
+| DE | /de/ruckler-beheben/ | mistfall hunter ruckler beheben | 634 | 1 | 0.16% | 1 | 0.16% | Low |
+| DE | /de/absturz-beheben/ | mistfall hunter absturz beheben | 621 | 1 | 0.16% | 1 | 0.16% | Low |
+| DE | /de/server/ | mistfall hunter server | 461 | 2 | 0.43% | 2 | 0.43% | Low |
+| DE | /de/region-lock/ | mistfall hunter region lock | 513 | 1 | 0.19% | 1 | 0.19% | Low |
 
 ## Lowest five exact densities
 
 | Language | URL | Primary keyword | Visible words | Exact count | Exact density | Family count | Family density | Status |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| EN | /beginner-guide/ | mistfall hunter beginner guide | 1482 | 0 | 0.00% | 4 | 0.27% | Low |
-| EN | /best-class/ | mistfall hunter best class | 1307 | 0 | 0.00% | 8 | 0.61% | Low |
-| EN | /best-settings/ | mistfall hunter best settings | 652 | 0 | 0.00% | 2 | 0.31% | Low |
-| EN | /best-solo-class/ | mistfall hunter best solo class | 742 | 0 | 0.00% | 4 | 0.54% | Low |
-| EN | /character-creation/ | mistfall hunter character creation | 394 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /beginner-guide/ | mistfall hunter beginner guide | 1671 | 0 | 0.00% | 6 | 0.36% | Low |
+| EN | /best-class/ | mistfall hunter best class | 1386 | 0 | 0.00% | 11 | 0.79% | Low |
+| EN | /best-settings/ | mistfall hunter best settings | 796 | 0 | 0.00% | 4 | 0.50% | Low |
+| EN | /best-solo-class/ | mistfall hunter best solo class | 780 | 0 | 0.00% | 6 | 0.77% | Low |
+| EN | /character-creation/ | mistfall hunter character creation | 417 | 0 | 0.00% | 0 | 0.00% | Low |
 
 ## Highest five exact densities
 
 | Language | URL | Primary keyword | Visible words | Exact count | Exact density | Family count | Family density | Status |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| EN | /codes/ | mistfall hunter codes | 379 | 2 | 0.53% | 3 | 0.79% | Natural |
-| DE | /de/server/ | mistfall hunter server | 431 | 2 | 0.46% | 2 | 0.46% | Low |
-| ES | /es/servidores/ | servidores de mistfall hunter | 566 | 2 | 0.35% | 2 | 0.35% | Low |
-| EN | /platforms/ | mistfall hunter platforms | 340 | 1 | 0.29% | 6 | 1.76% | Low |
-| EN | /classes/ | mistfall hunter classes | 717 | 2 | 0.28% | 2 | 0.28% | Low |
+| EN | /codes/ | mistfall hunter codes | 513 | 3 | 0.58% | 4 | 0.78% | Natural |
+| EN | /platforms/ | mistfall hunter platforms | 357 | 2 | 0.56% | 7 | 1.96% | Natural |
+| DE | /de/server/ | mistfall hunter server | 461 | 2 | 0.43% | 2 | 0.43% | Low |
+| EN | /classes/ | mistfall hunter classes | 752 | 3 | 0.40% | 3 | 0.40% | Low |
+| ES | /es/servidores/ | servidores de mistfall hunter | 612 | 2 | 0.33% | 2 | 0.33% | Low |
 
 ## Review queues
 
 - Suspected exact-match stuffing: None.
-- Do not add more keyword repetitions without a manual readability review: `/codes/`
-- Could add specific semantic terms later if they fit a useful sentence: `/character-creation/`, `/connection-fix/`, `/fatal-error-fix/`, `/play-with-friends/`, `/skins/`, `/twitch-drops/`, `/builds/`, `/classes/mercenary/`, `/classes/blackarrow/`, `/classes/seer/`
+- Do not add more keyword repetitions without a manual readability review: `/codes/`, `/platforms/`
+- Could add specific semantic terms later if they fit a useful sentence: `/character-creation/`, `/connection-fix/`, `/fatal-error-fix/`, `/play-with-friends/`, `/skins/`, `/twitch-drops/`, `/classes/mercenary/`, `/classes/blackarrow/`, `/classes/seer/`, `/gameplay/`

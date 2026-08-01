@@ -99,6 +99,20 @@ const bestSettings: GuidePageData = {
         "Restart when the menu or shader process requests it.",
         "Test the same area or scenario after each change.",
       ],
+      subsections: [
+        {
+          heading: "Establish a repeatable baseline",
+          paragraphs: ["Use the detected preset, a frame-rate target your system can sustain, and the same representative combat or traversal scene. A repeatable test makes real improvements easier to distinguish from normal variation."],
+        },
+        {
+          heading: "Change one expensive setting",
+          paragraphs: ["Lower one likely GPU-heavy option such as shadows, effects, reflections, or volumetrics, then repeat the baseline. Avoid changing resolution, drivers, overlays, and several quality settings in the same test."],
+        },
+        {
+          heading: "Confirm or revert",
+          paragraphs: ["Keep a change only when the same scene becomes more stable without an unacceptable image-quality cost. Restore settings that do not help so the final configuration remains understandable."],
+        },
+      ],
     },
     {
       heading: "Stutter and shader context",
@@ -210,6 +224,20 @@ const sharedFixSections = (settingsStep: string, errorCapture: string): GuideSec
         ["5", "Stop after the first successful supported change", "Document the result instead of stacking more fixes"],
       ],
     },
+    subsections: [
+      {
+        heading: "Update and restart",
+        paragraphs: ["Install the current game and platform update, then restart before reproducing the exact failure stage. This clears stale client state and applies any officially published fix first."],
+      },
+      {
+        heading: "Verify the supported baseline",
+        paragraphs: ["Repair game files through the store and use supported system and driver updates. Retest without stacking unrelated changes so the result identifies one useful cause or exclusion."],
+      },
+      {
+        heading: "Test optional layers separately",
+        paragraphs: ["Close only nonessential overlays or recording tools one at a time, then restore anything that makes no difference. Do not disable security or anti-cheat to create a test result."],
+      },
+    ],
   },
   {
     heading: "Evidence that makes the next step useful",
@@ -267,6 +295,16 @@ const fatal = fixPage({
       "Official launch notes acknowledged and fixed several random crash causes, including vegetation animation and AMD hair-rendering issues. A new fatal error may therefore be version-, driver-, or scene-specific rather than one universal fault.",
       "Match the time and behavior against current known-issue and patch posts. If Bellring Games lists the same fault, prioritize the official update over local experimentation.",
     ],
+    subsections: [
+      {
+        heading: "Capture the exact fatal error",
+        paragraphs: ["Record the full message, any identifier, and the last screen or action before the failure. Similar-looking fatal-error dialogs can come from different triggers, so the wording matters."],
+      },
+      {
+        heading: "Match the current game version",
+        paragraphs: ["Confirm the installed version and platform update before using older advice. A workaround written for a beta or a superseded build is not evidence for the current release."],
+      },
+    ],
   },
   settingsStep: "Apply a lower preset and remove overclocking for one test",
   errorCapture: "Exact fatal-error text and any crash identifier.",
@@ -285,6 +323,20 @@ const stutter = fixPage({
       "Bellring Games said the launch version targeted Unreal Engine shader precompilation hitches, asset-loading spikes, combat micro-stutters, memory use, low-end PCs, consoles, and camp frame rate. It also warned that improvement varies by system.",
       "That makes updating the client the first step. Do not apply beta-era shader workarounds after the official launch optimization without evidence.",
     ],
+    subsections: [
+      {
+        heading: "First-visit hitch",
+        paragraphs: ["Note whether a brief hitch appears only when an area or effect is seen for the first time. Repeated tests help separate one-time loading behavior from a persistent frame-pacing problem."],
+      },
+      {
+        heading: "Repeated combat spike",
+        paragraphs: ["Reproduce the same ability, enemy group, or effect if possible and record whether the spike occurs every time. This is more useful than labeling every uneven frame as the same shader issue."],
+      },
+      {
+        heading: "Degradation over time",
+        paragraphs: ["If performance worsens during a long session, record the approximate time, map transitions, and memory or temperature context. Treat this as a separate pattern from a launch or first-area hitch."],
+      },
+    ],
   },
   settingsStep: "Set a stable frame cap and lower shadows, effects, or volumetrics",
   errorCapture: "A short frame-time symptom description: traversal, first effect, combat, inventory, or constant.",
@@ -302,6 +354,20 @@ const crashing = fixPage({
     paragraphs: [
       "Official notes mention random crashes tied to vegetation animation, AMD hair rendering, the controller cursor on the Seasonal Leaderboard, and a PS5 deck display anomaly. The immediate launch update lists fixes for these issues.",
       "A crash in a different screen or map needs separate evidence. Do not assume a community workaround for one trigger applies to every crash.",
+    ],
+    subsections: [
+      {
+        heading: "Crash before the main menu",
+        paragraphs: ["Record whether the client closes during startup, authentication, or initial loading. Verify files and the current platform update before changing graphics settings that the game has not yet loaded."],
+      },
+      {
+        heading: "Crash while loading a match",
+        paragraphs: ["Capture the selected mode, map, party state, and loading stage. Retest once after the supported baseline so support can distinguish a repeatable transition from a single interrupted session."],
+      },
+      {
+        heading: "Crash during a match or menu action",
+        paragraphs: ["Record the exact area, action, input method, and visible effect or menu. Official launch fixes were trigger-specific, so this context is essential before associating a new crash with an older listed issue."],
+      },
     ],
   },
   settingsStep: "Restore the platform default preset and test the problem screen again",

@@ -703,6 +703,10 @@ summary:focus-visible {
   gap: 70px;
 }
 
+.article {
+  min-width: 0;
+}
+
 .page-facts {
   display: grid;
   margin: 0 0 72px;
@@ -763,9 +767,37 @@ summary:focus-visible {
   color: var(--gold-light);
 }
 
+.mobile-article-outline {
+  display: none;
+}
+
+.mobile-outline-group {
+  display: grid;
+  gap: 7px;
+}
+
+.on-this-page .mobile-outline-h3 {
+  padding-left: 16px;
+  color: var(--faint);
+  font-size: 12px;
+}
+
 .article h2 {
   font-size: 34px;
   scroll-margin-top: 100px;
+}
+
+.article h3 {
+  margin: 34px 0 0;
+  color: #e3e6e2;
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 500;
+  scroll-margin-top: 100px;
+}
+
+.article-subsection + .article-subsection {
+  margin-top: 28px;
 }
 
 .article p {
@@ -1238,7 +1270,11 @@ tbody tr:nth-child(even) td {
 
 .article-rail {
   position: sticky;
-  top: 104px;
+  top: 96px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #35403f transparent;
 }
 
 .article-rail > div {
@@ -1278,6 +1314,100 @@ tbody tr:nth-child(even) td {
 
 .article-rail nav a:hover {
   color: var(--gold-light);
+}
+
+.article-rail .wiki-outline {
+  display: block;
+  margin: 0 0 24px;
+  border: 0;
+  background: transparent;
+}
+
+.wiki-outline-list {
+  margin-top: 12px;
+  border-left: 1px solid #35403f;
+}
+
+.wiki-outline-group {
+  display: grid;
+}
+
+.article-rail .wiki-outline a {
+  position: relative;
+  padding: 5px 4px 5px 16px;
+  border: 0;
+  color: #9da8a5;
+  line-height: 1.35;
+}
+
+.article-rail .wiki-outline a::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1px;
+  width: 2px;
+  content: "";
+  background: transparent;
+}
+
+.article-rail .wiki-outline a:hover {
+  color: #d9dfdc;
+}
+
+.article-rail .wiki-outline a[aria-current="location"] {
+  color: var(--gold-light);
+}
+
+.article-rail .wiki-outline a[aria-current="location"]::before {
+  background: var(--gold-light);
+}
+
+.article-rail .wiki-outline-h2 {
+  font-size: 14px;
+}
+
+.article-rail .wiki-outline-h3 {
+  padding-left: 30px;
+  color: #77827f;
+  font-size: 12px;
+}
+
+.wiki-status {
+  margin-bottom: 14px;
+}
+
+.wiki-status dl {
+  display: grid;
+  margin: 14px 0 0;
+  gap: 12px;
+}
+
+.wiki-status dl div {
+  display: grid;
+  gap: 3px;
+}
+
+.wiki-status dt {
+  color: var(--faint);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.wiki-status dd {
+  margin: 0;
+  color: #c7cecc;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.article-rail .wiki-related {
+  margin-top: 0;
+}
+
+.article-rail .wiki-related .rail-label {
+  padding: 16px 16px 4px;
 }
 
 .site-footer {
@@ -1411,8 +1541,20 @@ tbody tr:nth-child(even) td {
   }
 
   .article-layout {
-    grid-template-columns: minmax(0, 1fr) 240px;
-    gap: 36px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .desktop-article-outline {
+    display: none;
+  }
+
+  .mobile-article-outline {
+    display: block;
+  }
+
+  .on-this-page nav {
+    grid-template-columns: 1fr;
   }
 
   .footer-grid {
@@ -1446,15 +1588,6 @@ tbody tr:nth-child(even) td {
 
   .guide-grid,
   .home-copy-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .article-rail {
-    position: static;
-    order: -1;
-  }
-
-  .article-rail nav {
     grid-template-columns: 1fr 1fr;
   }
 

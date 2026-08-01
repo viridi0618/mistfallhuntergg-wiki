@@ -6,15 +6,26 @@ export type GuideSource = {
   level: SourceLevel;
 };
 
+export type GuideTable = {
+  headers: string[];
+  rows: string[][];
+};
+
+export type GuideSubsection = {
+  heading: string;
+  paragraphs?: string[];
+  bullets?: string[];
+  table?: GuideTable;
+  note?: string;
+};
+
 export type GuideSection = {
   heading: string;
   paragraphs?: string[];
   bullets?: string[];
-  table?: {
-    headers: string[];
-    rows: string[][];
-  };
+  table?: GuideTable;
   note?: string;
+  subsections?: GuideSubsection[];
 };
 
 export type ContentImage = {
@@ -73,4 +84,6 @@ export type ClassProfile = {
   difficulty: string;
   setup: string;
   patch: string;
+  patchChanges?: string[];
+  updated?: string;
 };

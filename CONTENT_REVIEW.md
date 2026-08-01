@@ -1,6 +1,6 @@
 # Content Review
 
-Last review: 2026-07-31
+Last review: 2026-08-01
 
 ## Pages using public player or review context
 
@@ -67,7 +67,7 @@ Human review focus: role recommendations, launch patch references, and any weapo
 
 ## Pages containing information that is not officially confirmed
 
-- `/es/codigos/`: no public redeem codes were confirmed in official sources checked on 2026-07-31. Recheck the status paragraph after future official campaigns.
+- `/es/codigos/`: no public redeem codes were confirmed in official sources checked on 2026-08-01. Recheck the status paragraph after future official campaigns.
 - `/es/jugar-solo/`: no complete PvE-only progression mode was confirmed in the reviewed sources.
 - `/es/como-extraer/`: fixed coordinates, universal timing and appearance probabilities are intentionally not supplied.
 - `/es/mejor-clase/`, `/es/mejor-clase-solo/`, `/es/tier-list-clases/`: rankings and recommendations are editorial, not official balance data.
@@ -94,3 +94,15 @@ Human review focus: role recommendations, launch patch references, and any weapo
 - `/es/tier-list-clases/` — the provisional framework after every balance patch.
 - `/de/ruckler-beheben/` — “Offizieller Launch-Kontext” after performance patches.
 - `/de/absturz-beheben/` — “Offiziell genannte Absturzbereiche” after known-issue or crash-fix notes.
+
+## August 1 launch-content refresh
+
+- `/launch-rewards/` — the launch milestone mail gift, eligibility deadline, playtest carry-over, Season 1 Battle Pass, and Deluxe Edition categories should be rechecked after a newer official reward announcement.
+- `/codes/` — the launch mail gift is explicitly separated from public redeem codes; continue to recheck the no-confirmed-code status.
+- `/classes/withered-knight/` — the July 30 Polearm & Shield changes are qualitative. Manually review the “Current patch impact” section after the next balance update and do not infer a tier movement from this patch alone.
+- `/classes/sorcerer/` — the Chant Guard wording follows the official description correction. Manually review its Stardust interaction and unspecified cooldown after future skill-note changes.
+- `/patch-notes/` — the July 30 summary is intentionally compact. Recheck reward eligibility, platform rollout context, class changes, and named fixes against any later announcement.
+- `/known-issues/` — the controller, UI, reconnect, extraction, inventory, challenge, audio, and crash entries are described as “Listed fixed in the July 30 update,” not guaranteed fixed for every client.
+- `/es/codigos/` — the Spanish launch-mail clarification was synchronized on August 1 while the public redeem-code status remains unconfirmed.
+
+Time-sensitive manual review: recheck `/launch-rewards/`, `/codes/`, `/patch-notes/`, `/known-issues/`, and `/es/codigos/` whenever Bellring Games publishes a later reward, code, known-issue, or patch announcement. Recheck the Withered Knight and Sorcerer patch-impact paragraphs after any later class balance or skill-description change.

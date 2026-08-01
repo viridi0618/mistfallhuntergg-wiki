@@ -44,6 +44,55 @@ const classRoutes = new Set([
   "classes/mercenary", "classes/sorcerer", "classes/blackarrow",
   "classes/shadowstrix", "classes/seer", "classes/withered-knight",
 ]);
+const excludedOutlineIds = new Set(["page-faq", "page-related", "page-sources"]);
+
+function classBlock(html, tag, className) {
+  return html.match(new RegExp(`<${tag}\\b[^>]*class="[^"]*\\b${className}\\b[^"]*"[^>]*>[\\s\\S]*?<\\/${tag}>`))?.[0] ?? "";
+}
+
+function inspectArticleOutline(html, route, errors) {
+  const article = html.match(/<article\b[^>]*class="[^"]*\barticle\b[^"]*"[^>]*>[\s\S]*?<\/article>/)?.[0] ?? "";
+  const headings = [...article.matchAll(/<(h[23])\b([^>]*)>/g)].map((match) => ({
+    level: Number(match[1].slice(1)),
+    id: match[2].match(/\bid="([^"]+)"/)?.[1] ?? "",
+  })).filter((heading) => heading.level === 2 || heading.id);
+  const subsectionCount = (article.match(/class="article-subsection"/g) ?? []).length;
+  const outlinedH3Count = headings.filter((heading) => heading.level === 3).length;
+  if (subsectionCount !== outlinedH3Count) errors.push(`Page /${route} has an article subsection without an identified H3.`);
+  for (const heading of headings) if (!heading.id) errors.push(`Page /${route} has an H${heading.level} without an ID.`);
+  const ids = headings.map((heading) => heading.id).filter(Boolean);
+  const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
+  if (duplicates.length) errors.push(`Duplicate H2/H3 ID on /${route}: ${[...new Set(duplicates)].join(", ")}.`);
+
+  let parentH2 = "";
+  for (const heading of headings) {
+    if (heading.level === 2) parentH2 = excludedOutlineIds.has(heading.id) ? "" : heading.id;
+    if (heading.level === 3 && !parentH2) errors.push(`H3 #${heading.id} on /${route} does not belong to a content H2.`);
+  }
+
+  const outlineHeadings = headings.filter((heading) => !excludedOutlineIds.has(heading.id));
+  const outlineIds = outlineHeadings.map((heading) => heading.id);
+  const h2Count = outlineHeadings.filter((heading) => heading.level === 2).length;
+  const h3Count = outlineHeadings.filter((heading) => heading.level === 3).length;
+  const shouldShow = h2Count >= 3 || h3Count > 0;
+  const mobileToc = classBlock(html, "details", "on-this-page");
+  const desktopToc = classBlock(html, "nav", "wiki-outline");
+  if (shouldShow && (!mobileToc || !desktopToc)) errors.push(`Page /${route} is missing its mobile or desktop article outline.`);
+  if (!shouldShow && (mobileToc || desktopToc)) errors.push(`Short page /${route} unexpectedly renders an article outline.`);
+
+  for (const [kind, toc] of [["mobile", mobileToc], ["desktop", desktopToc]]) {
+    if (!toc) continue;
+    if (/<h1\b|<h4\b/i.test(toc)) errors.push(`${kind} TOC on /${route} contains a forbidden H1 or H4.`);
+    const targets = [...toc.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]);
+    const duplicateTargets = targets.filter((target, index) => targets.indexOf(target) !== index);
+    if (duplicateTargets.length) errors.push(`Duplicate ${kind} TOC target on /${route}: ${[...new Set(duplicateTargets)].join(", ")}.`);
+    for (const target of targets) {
+      if (!ids.includes(target)) errors.push(`Missing ${kind} TOC target on /${route}: #${target}.`);
+      if (excludedOutlineIds.has(target)) errors.push(`${kind} TOC on /${route} incorrectly includes #${target}.`);
+    }
+    if (targets.join("|") !== outlineIds.join("|")) errors.push(`${kind} TOC on /${route} does not match the H2/H3 article order.`);
+  }
+}
 
 function filesUnder(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -150,25 +199,7 @@ if (fs.existsSync(outRoot)) {
       if (!caption) errors.push(`A figure on /${route} is missing a non-empty caption.`);
     }
 
-    const h2Ids = [...html.matchAll(/<h2\b[^>]*\bid="([^"]+)"[^>]*>/g)].map((match) => match[1]);
-    const duplicateH2Ids = h2Ids.filter((id, index) => h2Ids.indexOf(id) !== index);
-    if (duplicateH2Ids.length) {
-      errors.push(`Duplicate H2 ID on /${route}: ${[...new Set(duplicateH2Ids)].join(", ")}.`);
-    }
-    const tocHtml = html.match(/<details\b[^>]*class="on-this-page"[^>]*>[\s\S]*?<\/details>/)?.[0];
-    if (route && h2Ids.length >= 3 && !tocHtml) {
-      errors.push(`Page /${route} has ${h2Ids.length} content H2 headings but no table of contents.`);
-    }
-    if (tocHtml) {
-      const tocTargets = [...tocHtml.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]);
-      const duplicateTargets = tocTargets.filter((target, index) => tocTargets.indexOf(target) !== index);
-      if (duplicateTargets.length) {
-        errors.push(`Duplicate TOC target on /${route}: ${[...new Set(duplicateTargets)].join(", ")}.`);
-      }
-      for (const target of tocTargets) {
-        if (!h2Ids.includes(target)) errors.push(`Missing TOC target on /${route}: #${target}.`);
-      }
-    }
+    inspectArticleOutline(html, route, errors);
 
     const breadcrumbHtml = html.match(/<nav class="breadcrumbs"[\s\S]*?<\/nav>/)?.[0];
     if (route && !breadcrumbHtml) {

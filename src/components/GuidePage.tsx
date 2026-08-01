@@ -3,9 +3,11 @@ import Link from "next/link";
 import FAQ from "./FAQ";
 import GuideCard from "./GuideCard";
 import JsonLd from "./JsonLd";
+import ArticleOutline from "./ArticleOutline";
 import { absoluteUrl } from "@/lib/site-config";
 import { getPage } from "@/data/pages";
-import type { ContentImage, GuidePageData, GuideSection } from "@/lib/types";
+import { buildArticleOutline, outlineIsVisible, type OutlineItem } from "@/lib/article-outline";
+import type { ContentImage, GuidePageData, GuideSection, GuideSubsection } from "@/lib/types";
 
 function Table({ headers, rows }: { headers: string[]; rows: string[][] }) {
   return (
@@ -16,27 +18,6 @@ function Table({ headers, rows }: { headers: string[]; rows: string[][] }) {
       </table>
     </div>
   );
-}
-
-function headingSlug(heading: string) {
-  return heading
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
-
-function sectionHeadings(sections: GuideSection[]) {
-  const seen = new Map<string, number>();
-  return sections.map((section) => {
-    const base = headingSlug(section.heading) || "section";
-    const count = (seen.get(base) ?? 0) + 1;
-    seen.set(base, count);
-    return {
-      section,
-      id: count === 1 ? base : `${base}-${count}`,
-    };
-  });
 }
 
 function ContentFigure({ image }: { image: ContentImage }) {
@@ -58,23 +39,36 @@ function ContentFigure({ image }: { image: ContentImage }) {
 
 function ArticleSection({
   section,
-  id,
+  outlineItem,
   images,
 }: {
   section: GuideSection;
-  id: string;
+  outlineItem: OutlineItem;
   images: ContentImage[];
 }) {
   return (
     <section>
-      <h2 id={id}>{section.heading}</h2>
+      <h2 id={outlineItem.id}>{section.heading}</h2>
       {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
       {section.bullets && <ul>{section.bullets.map((item) => <li key={item}>{item}</li>)}</ul>}
       {section.table && <Table headers={section.table.headers} rows={section.table.rows} />}
       {section.note && <aside className="note">{section.note}</aside>}
+      {section.subsections?.map((subsection, index) => (
+        <ArticleSubsection key={outlineItem.children?.[index]?.id ?? subsection.heading} subsection={subsection} id={outlineItem.children?.[index]?.id ?? `subsection-${index + 1}`} />
+      ))}
       {images.map((image) => <ContentFigure key={image.src} image={image} />)}
     </section>
   );
+}
+
+function ArticleSubsection({ subsection, id }: { subsection: GuideSubsection; id: string }) {
+  return <div className="article-subsection">
+    <h3 id={id}>{subsection.heading}</h3>
+    {subsection.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+    {subsection.bullets && <ul>{subsection.bullets.map((item) => <li key={item}>{item}</li>)}</ul>}
+    {subsection.table && <Table headers={subsection.table.headers} rows={subsection.table.rows} />}
+    {subsection.note && <aside className="note">{subsection.note}</aside>}
+  </div>;
 }
 
 export default function GuidePage({ page }: { page: GuidePageData }) {
@@ -84,10 +78,8 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
   const category = page.categoryPath ? getPage(page.categoryPath) : undefined;
   const heroImage = page.heroImage ?? page.image;
   const heroImageUrl = heroImage ? absoluteUrl(heroImage) : undefined;
-  const headings = sectionHeadings(page.sections);
-  const toc = page.sections.length >= 3
-    ? headings.map(({ section, id }) => ({ id, label: section.heading }))
-    : [];
+  const outline = buildArticleOutline(page.sections);
+  const showOutline = outlineIsVisible(outline);
   const breadcrumbItems = [
     { name: "Home", url: absoluteUrl("/") },
     ...(category ? [{ name: category.breadcrumbLabel ?? category.h1, url: absoluteUrl(`/${category.path}/`) }] : []),
@@ -184,20 +176,23 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
             <div><dt>Information type</dt><dd>{page.informationType}</dd></div>
           </dl>
 
-          {toc.length > 0 && (
-            <details className="on-this-page" open>
+          {showOutline && (
+            <details className="on-this-page mobile-article-outline">
               <summary>On this page</summary>
               <nav aria-label="On this page">
-                {toc.map((item) => <a key={item.id} href={`#${item.id}`}>{item.label}</a>)}
+                {outline.items.map((item) => <span className="mobile-outline-group" key={item.id}>
+                  <a className="mobile-outline-h2" href={`#${item.id}`}>{item.label}</a>
+                  {item.children?.map((child) => <a className="mobile-outline-h3" key={child.id} href={`#${child.id}`}>{child.label}</a>)}
+                </span>)}
               </nav>
             </details>
           )}
 
-          {headings.map(({ section, id }) => (
+          {page.sections.map((section, index) => (
             <ArticleSection
-              key={id}
-              id={id}
+              key={outline.items[index].id}
               section={section}
+              outlineItem={outline.items[index]}
               images={(page.contentImages ?? []).filter((image) => image.placementAfterHeading === section.heading)}
             />
           ))}
@@ -205,7 +200,7 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
           {page.faqs.length > 0 && (
             <section>
               <p className="section-label">Quick answers</p>
-              <h2>Frequently asked questions</h2>
+              <h2 id="page-faq">Frequently asked questions</h2>
               <FAQ items={page.faqs} />
             </section>
           )}
@@ -213,7 +208,7 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
           {related.length > 0 && (
             <section className="related-guides">
               <p className="section-label">Continue reading</p>
-              <h2>Related guides</h2>
+              <h2 id="page-related">Related guides</h2>
               <div className="related-grid">{related.map((relatedPage) => <GuideCard key={relatedPage.path} page={relatedPage} />)}</div>
             </section>
           )}
@@ -221,7 +216,7 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
           {page.sources.length > 0 && (
             <section className="sources">
               <p className="section-label">Evidence</p>
-              <h2>Sources and further reading</h2>
+              <h2 id="page-sources">Sources and further reading</h2>
               <p>These are the pages used to verify this guide. Time-sensitive facts were last checked on {page.updated}.</p>
               <ul>
                 {page.sources.map((source) => (
@@ -239,20 +234,14 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
               : <>Browse the <Link href="/">Mistfall Hunter Guide home</Link> for classes, builds, multiplayer, fixes, rewards, and updates.</>}
           </p>
         </article>
-        <aside className="article-rail">
-          <div>
-            <span className="rail-label">Current snapshot</span>
-            <strong>Launch / Season 1</strong>
-            <p>Verified against official launch material and immediate post-launch updates.</p>
-          </div>
-          <nav aria-label="Useful section links">
-            <Link href="/guides/">Guides</Link>
-            <Link href="/classes/">Classes</Link>
-            <Link href="/multiplayer/">Multiplayer</Link>
-            <Link href="/settings-fixes/">Settings & Fixes</Link>
-            <Link href="/updates/">Updates</Link>
-          </nav>
-        </aside>
+        <ArticleOutline
+          outline={outline}
+          locale="en"
+          updated={page.updated}
+          version={page.version}
+          informationType={page.informationType}
+          related={related.slice(0, 4).map((item) => ({ href: `/${item.path}/`, label: item.breadcrumbLabel ?? item.h1 }))}
+        />
       </main>
     </>
   );

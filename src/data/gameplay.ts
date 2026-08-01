@@ -38,6 +38,20 @@ const beginner: GuidePageData = {
         "Check the selected mode, map, server, and squad before confirming.",
         "Review current official notices if connection or stability looks abnormal.",
       ],
+      subsections: [
+        {
+          heading: "Choose a replaceable kit",
+          paragraphs: ["Use equipment you can afford to lose while learning routes and combat timing. A repeatable kit gives you a stable baseline and keeps one failed run from consuming the rest of your reserve."],
+        },
+        {
+          heading: "Set one run objective",
+          paragraphs: ["Decide before deployment whether the run is for practice, resources, a task, or player conflict. A specific objective makes the extract-or-continue decision easier once supplies begin to fall."],
+        },
+        {
+          heading: "Keep an exit resource",
+          paragraphs: ["Do not spend every heal, movement skill, and defensive cooldown on optional fights. Preserve enough recovery and mobility to reach and protect the return process."],
+        },
+      ],
     },
     {
       heading: "Loot, death, and early resource management",
@@ -123,6 +137,20 @@ const extract: GuidePageData = {
         "Keep one movement, control, or defensive skill ready.",
         "Decide which loot can be dropped if inventory management becomes urgent.",
         "Tell teammates who watches, who fights, and who handles the interaction.",
+      ],
+      subsections: [
+        {
+          heading: "Confirm the Soul of Return",
+          paragraphs: ["Before changing route, confirm that the Returner Woodling is defeated and the required Soul of Return is accounted for. Do not rely on an old beta route or an assumed fixed spawn."],
+        },
+        {
+          heading: "Reset health and cooldowns",
+          paragraphs: ["Heal, reload, and let essential movement or defensive tools recover before beginning the return. Starting immediately with depleted resources makes predictable interference much harder to survive."],
+        },
+        {
+          heading: "Choose a defensible approach",
+          paragraphs: ["Approach through cover when possible and check the directions that expose you to monsters or rival players. In a squad, assign the interaction and guard roles before anyone commits."],
+        },
       ],
     },
     {

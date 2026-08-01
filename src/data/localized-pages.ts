@@ -8,17 +8,25 @@ import {
 const UPDATED = "2026-08-01";
 const PUBLISHED = "2026-08-01";
 const OFFICIAL_URL = "https://mistfallhunter.com/";
+const STEAM_URL = "https://store.steampowered.com/app/3282300/Mistfall_Hunter/";
 const imagePool = ["site-01", "site-03", "site-06", "steam-07", "steam-06", "site-15", "site-07", "steam-03"];
 
 type PageSpec = Omit<LocalizedPageData, "updated" | "published" | "heroImage" | "heroImageAlt" | "heroImageCaption" | "heroImageSourceUrl" | "contentImages"> & {
   imageIndex: number;
-  contentAlt: string;
+  heroAlt: string;
+  heroCaption: string;
+  contentImageAlt: string;
   contentCaption: string;
 };
 
 function page(spec: PageSpec): LocalizedPageData {
   const heroKey = imagePool[spec.imageIndex % imagePool.length];
   const contentKey = imagePool[(spec.imageIndex + 1) % imagePool.length];
+  const heroOnSteam = heroKey.startsWith("steam-");
+  const contentOnSteam = contentKey.startsWith("steam-");
+  const localizedSourceLabel = (onSteam: boolean) => spec.locale === "es"
+    ? (onSteam ? "Galería oficial de Steam" : "Sitio oficial de Mistfall Hunter")
+    : (onSteam ? "Offizielle Steam-Galerie" : "Offizielle Mistfall-Hunter-Website");
   const allSections = [...spec.sections, ...additionalSections(spec.path)];
   const lead = keywordLead(spec.path);
   const sections = allSections.map((section, index) => index === 0 && lead
@@ -30,12 +38,12 @@ function page(spec: PageSpec): LocalizedPageData {
     updated: UPDATED,
     published: PUBLISHED,
     heroImage: `/images/official/${heroKey}.webp`,
-    heroImageAlt: spec.contentAlt,
-    heroImageCaption: spec.contentCaption,
-    heroImageSourceUrl: OFFICIAL_URL,
+    heroImageAlt: spec.heroAlt,
+    heroImageCaption: spec.heroCaption,
+    heroImageSourceUrl: heroOnSteam ? STEAM_URL : OFFICIAL_URL,
     contentImages: [{
-      src: `/images/official/${contentKey}.webp`, alt: spec.contentAlt, caption: spec.contentCaption,
-      sourceLabel: "Official Mistfall Hunter website", sourceUrl: OFFICIAL_URL, width: 1600, height: 900,
+      src: `/images/official/${contentKey}.webp`, alt: spec.contentImageAlt, caption: spec.contentCaption,
+      sourceLabel: localizedSourceLabel(contentOnSteam), sourceUrl: contentOnSteam ? STEAM_URL : OFFICIAL_URL, width: 1600, height: 900,
       placementAfterHeading: spec.sections[0]?.heading,
     }],
   };
@@ -284,7 +292,9 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿Hay códigos activos?", answer: "No encontramos códigos públicos de canje confirmados en las fuentes oficiales revisadas el 31 de julio de 2026." },
     ],
     related: ["/es/guia-principiantes/", "/es/como-extraer/", "/es/clases/", "/es/builds/"],
-    sources: [OFFICIAL_SITE, STEAM, LAUNCH_FAQ], contentAlt: "Paisaje de Weavereach bajo la Gyldenmist", contentCaption: "Arte oficial del mundo de Mistfall Hunter." }),
+    sources: [OFFICIAL_SITE, STEAM, LAUNCH_FAQ],
+    heroAlt: "Puente de una fortaleza en ruinas junto a la Gyldenmist dorada", heroCaption: "La fortaleza de Weavereach presenta el mundo que recorren las guías en español.",
+    contentImageAlt: "Tres Gyldhunters combatiendo criaturas Corroded en una caverna", contentCaption: "El combate de escuadrón ilustra el ciclo PvPvE explicado en esta introducción." }),
 
   page({ ...esCommon, path: "/es/guia-principiantes/", englishPath: "/beginner-guide/", imageIndex: 1, pageType: "article",
     title: "Guía para principiantes de Mistfall Hunter: primeras partidas",
@@ -303,7 +313,10 @@ const spanishPages: LocalizedPageData[] = [
         "Incursión 3: sigue el proceso de Returner Woodling y Soul of Return sin buscar botín adicional.",
         "Incursión 4: fija un umbral de salida, por ejemplo poca curación o un objeto que no quieres perder.",
         "Incursión 5: completa una meta compacta y extrae mientras la situación todavía es favorable.",
-      ], note: "El lugar exacto, la probabilidad de aparición y una ruta universal no están confirmados por fuentes oficiales; no los presentamos como hechos." },
+      ], note: "El lugar exacto, la probabilidad de aparición y una ruta universal no están confirmados por fuentes oficiales; no los presentamos como hechos.", subsections: [
+        { heading: "Equipo que puedas reemplazar", paragraphs: ["Usa un conjunto sencillo cuyo coste no cambie tu forma de jugar. Así puedes repetir una ruta y distinguir un error de decisión de una diferencia causada por el equipo."] },
+        { heading: "Un objetivo por incursión", paragraphs: ["Elige práctica de movimiento, PvE, retorno o una tarea concreta. Cuando el objetivo se cumple, compara el valor de salir con el riesgo real de continuar."] },
+      ] },
       { heading: "Elige una clase que enseñe decisiones claras", paragraphs: [
         "Mercenary es nuestra recomendación editorial para aprender porque Sword & Shield ofrece una respuesta defensiva legible. Blackarrow puede funcionar para quien ya controla distancia y puntería, mientras que Seer aporta apoyo directo a un grupo. Eso no convierte a ninguna clase en la mejor de forma permanente.",
         "Prueba primero el ritmo de recursos, el alcance y la recuperación de una clase. No copies una build avanzada hasta que entiendas qué problema resuelve. El sistema de Loadout puede compartir configuraciones, pero un share code importa una selección; no demuestra que sea óptima para tu modo o parche.",
@@ -319,7 +332,8 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿Qué debo aprender primero?", answer: "Movimiento, defensa, gestión de curación y el proceso de regreso. Añade optimización de build después." },
     ],
     related: ["/es/como-extraer/", "/es/clases/", "/es/jugar-solo/"], sources: [OFFICIAL_SITE, LAUNCH_FAQ, STEAM],
-    contentAlt: "Escuadrón enfrentándose a criaturas Corroded", contentCaption: "Un combate PvE en una imagen oficial de Mistfall Hunter." }),
+    heroAlt: "Tres Gyldhunters luchando contra criaturas Corroded dentro de una caverna", heroCaption: "Una incursión oficial muestra por qué movimiento, recursos y cooperación importan al empezar.",
+    contentImageAlt: "Gyldhunter alzando una mano ante un efecto circular de regreso", contentCaption: "La imagen de regreso acompaña el primer plan práctico de extracción." }),
 
   page({ ...esCommon, path: "/es/como-extraer/", englishPath: "/how-to-extract/", imageIndex: 2, pageType: "article",
     title: "Cómo extraer en Mistfall Hunter: Soul of Return y regreso",
@@ -337,6 +351,9 @@ const spanishPages: LocalizedPageData[] = [
         "Escucha movimiento cercano y comprueba las rutas por las que podría llegar otro Gyldhunter.",
         "Deja de ordenar el inventario cuando estés expuesto; decide antes qué objeto abandonarías.",
         "No gastes toda la movilidad para llegar unos segundos antes si la necesitarás durante la defensa.",
+      ], subsections: [
+        { heading: "Confirma la Soul of Return", paragraphs: ["Comprueba que el Returner Woodling fue derrotado y que el objeto necesario está disponible antes de cambiar de ruta. No dependas de coordenadas antiguas de una Demo."] },
+        { heading: "Prepara salud, cobertura y salida", paragraphs: ["Recupera recursos, escucha los accesos y conserva una habilidad para interrumpir o abandonar el intento. En trío, decide quién realiza la acción y quién vigila."] },
       ] },
       { heading: "Cuándo dejar de recoger botín", paragraphs: [
         "Define un umbral antes de entrar. Puede ser haber completado una tarea, tener poca curación o encontrar un objeto valioso. El umbral evita que una emoción de corto plazo cambie un plan que ya había tenido éxito.",
@@ -353,7 +370,8 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿La extracción es segura al comenzar?", answer: "No debes tratarla como segura. Conserva salud, movilidad e información para completar el proceso." },
     ],
     related: ["/es/guia-principiantes/", "/es/jugar-solo/", "/es/servidores/"], sources: [OFFICIAL_SITE, KNOWN_ISSUES_OFFICIAL, LAUNCH_UPDATE],
-    contentAlt: "Efecto circular de regreso en Mistfall Hunter", contentCaption: "Arte oficial asociado al proceso de regreso." }),
+    heroAlt: "Gyldhunter frente a un efecto circular luminoso de regreso", heroCaption: "El arte oficial representa el momento de regreso que esta guía explica.",
+    contentImageAlt: "Las seis clases de lanzamiento de Mistfall Hunter posando juntas", contentCaption: "La elección de clase también determina las herramientas disponibles para preparar el regreso." }),
 
   page({ ...esCommon, path: "/es/clases/", englishPath: "/classes/", imageIndex: 3, pageType: "collection",
     title: "Clases de Mistfall Hunter: las seis clases de lanzamiento",
@@ -386,7 +404,8 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿Puedo cambiar de clase durante una incursión?", answer: "Esta guía no encontró confirmación oficial que permita cambiar de clase dentro de una incursión; comprueba la interfaz actual antes de asumirlo." },
     ],
     related: ["/es/mejor-clase/", "/es/mejor-clase-solo/", "/es/tier-list-clases/", "/es/builds/"], sources: [STEAM, DEVNOTE_7, COMMUNITY_AMA],
-    contentAlt: "Las seis clases de Mistfall Hunter reunidas", contentCaption: "Arte promocional oficial con las clases de lanzamiento." }),
+    heroAlt: "Las seis clases de Mistfall Hunter reunidas en arte promocional", heroCaption: "La galería oficial presenta las seis clases disponibles en el lanzamiento.",
+    contentImageAlt: "Interfaz de talentos de Mistfall Hunter con nodos conectados", contentCaption: "Los talentos amplían la identidad de cada clase después de elegirla." }),
 
   page({ ...esCommon, path: "/es/mejor-clase/", englishPath: "/best-class/", imageIndex: 4, pageType: "article",
     title: "Mejor clase de Mistfall Hunter según modo y experiencia",
@@ -418,7 +437,8 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿La mejor clase cambia entre solo y trío?", answer: "Sí puede cambiar la recomendación, porque el apoyo, la protección de lanzamientos y el control coordinado tienen un valor distinto." },
     ],
     related: ["/es/clases/", "/es/mejor-clase-solo/", "/es/tier-list-clases/"], sources: [DEVNOTE_7, LAUNCH_UPDATE, COMMUNITY_AMA],
-    contentAlt: "Interfaz oficial de talentos de clase", contentCaption: "Las decisiones de build dependen de talentos y función." }),
+    heroAlt: "Interfaz de talentos de Mistfall Hunter con mejoras conectadas", heroCaption: "La mejor elección depende de cómo conviertes talentos y herramientas en una función concreta.",
+    contentImageAlt: "Gyldhunter solitario ante una abertura luminosa en una caverna", contentCaption: "Una ruta expuesta recuerda que la clase debe evaluarse junto con posición y retirada." }),
 
   page({ ...esCommon, path: "/es/mejor-clase-solo/", englishPath: "/best-solo-class/", imageIndex: 5, pageType: "article",
     title: "Mejor clase para jugar solo en Mistfall Hunter",
@@ -450,7 +470,8 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿Qué clase solo es más fácil para aprender?", answer: "Mercenary puede ofrecer una ruta defensiva más clara para un principiante que todavía no controla distancia y puntería." },
     ],
     related: ["/es/jugar-solo/", "/es/clases/", "/es/builds/"], sources: [OFFICIAL_SITE, DEVNOTE_7, COMMUNITY_AMA],
-    contentAlt: "Gyldhunter solitario avanzando por una caverna", contentCaption: "Arte oficial de una ruta en solitario." }),
+    heroAlt: "Gyldhunter solitario frente a una salida luminosa dentro de una caverna", heroCaption: "La ruta en solitario sitúa la recomendación de clase en su contexto real de riesgo.",
+    contentImageAlt: "Puente de una fortaleza en ruinas junto a una tormenta dorada", contentCaption: "El acceso expuesto de la fortaleza refuerza la importancia de alcance, cobertura y salida." }),
 
   page({ ...esCommon, path: "/es/tier-list-clases/", englishPath: "/class-tier-list/", imageIndex: 6, pageType: "article",
     title: "Tier list de clases de Mistfall Hunter por modo",
@@ -463,6 +484,9 @@ const spanishPages: LocalizedPageData[] = [
       { heading: "Cómo leer esta tier list", paragraphs: [
         "Una letra aislada oculta demasiada información. Dividimos la evaluación entre aprendizaje, solo y trío. La misma clase puede subir cuando un compañero protege sus acciones y bajar cuando debe crear su propia ventana.",
         "No usamos valores de DPS o porcentajes que no están publicados. La posición es una recomendación editorial fechada y debe revisarse cuando cambian habilidades, recursos, recuperación o emparejamiento.",
+      ], subsections: [
+        { heading: "Compara dentro del mismo modo", paragraphs: ["Solo, trío, aprendizaje y extracción premian herramientas distintas. Usa únicamente la columna que coincide con tu objetivo antes de comparar dos clases."] },
+        { heading: "Distingue función y daño", paragraphs: ["Protección, control, alcance y retirada pueden decidir una incursión sin producir el golpe más grande. La lista no sustituye esos trabajos por cifras no verificadas."] },
       ] },
       { heading: "Marco provisional de lanzamiento", table: { headers: ["Contexto", "Grupo recomendado", "Lectura correcta"], rows: [
         ["Aprendizaje", "Mercenary", "Plan defensivo claro; no significa victoria automática"], ["Solo a distancia", "Blackarrow", "Buena separación si la puntería y ruta acompañan"],
@@ -484,7 +508,8 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿Cuándo se actualizará la clasificación?", answer: "Cuando una nota oficial o pruebas recientes cambien una función central. Cada revisión conserva fecha y versión." },
     ],
     related: ["/es/mejor-clase/", "/es/mejor-clase-solo/", "/es/builds/"], sources: [DEVNOTE_7, LAUNCH_UPDATE, COMMUNITY_AMA],
-    contentAlt: "Fortaleza de Weavereach bajo un cielo dorado", contentCaption: "Entorno oficial usado como contexto visual de lanzamiento." }),
+    heroAlt: "Puente de una fortaleza en ruinas junto a la Gyldenmist dorada", heroCaption: "Una tier list útil debe considerar el entorno y no solo el potencial de daño.",
+    contentImageAlt: "Gyldhunter de combate cuerpo a cuerpo atacando junto a un aliado", contentCaption: "El combate cooperativo muestra por qué las funciones cambian entre solo y trío." }),
 
   page({ ...esCommon, path: "/es/builds/", englishPath: "/builds/", imageIndex: 7, pageType: "collection",
     title: "Builds de Mistfall Hunter: cómo crear una configuración útil",
@@ -501,7 +526,10 @@ const spanishPages: LocalizedPageData[] = [
       { heading: "Capas que deben estar alineadas", table: { headers: ["Capa", "Pregunta de control", "Error común"], rows: [
         ["Arma", "¿Qué alcance y recuperación define?", "Elegir solo por rareza"], ["Habilidades", "¿Cómo crea, gana o abandona una ventana?", "Gastar toda la movilidad al entrar"],
         ["Talentos", "¿Refuerzan el ciclo principal?", "Dividir puntos entre planes incompatibles"], ["Equipo y Affix Gems", "¿Aportan utilidad medible?", "Copiar sin revisar coste o versión"],
-      ] } },
+      ] }, subsections: [
+        { heading: "Define el trabajo", paragraphs: ["Describe el resultado que la build debe repetir y elimina las piezas que no lo apoyan. Un objetivo claro permite evaluar el conjunto sin depender de una etiqueta como best build."] },
+        { heading: "Conserva defensa y retirada", paragraphs: ["Comprueba qué harás si falla la primera acción. Una build práctica necesita sobrevivir a la respuesta y abandonar un combate que ya no favorece la extracción."] },
+      ] },
       { heading: "Share codes y configuraciones importadas", paragraphs: [
         "Los desarrolladores describieron un sistema de Loadout con configuraciones guardadas y share codes. Esos códigos importan elecciones de equipo y gemas; no son códigos de canje, no entregan recompensas y no demuestran que una build sea la mejor.",
         "Antes de importar, pide modo, versión y presupuesto. Sustituye piezas que no puedas reemplazar y prueba una situación controlada. Si la configuración no tiene respuesta defensiva o salida, identifica qué sacrificio pretende compensarlo.",
@@ -516,7 +544,8 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿Debo copiar una build de Beta?", answer: "No sin verificar. Las habilidades, costes y balance pueden cambiar; confirma que corresponde al cliente actual." },
     ],
     related: ["/es/clases/", "/es/mejor-clase/", "/es/jugar-solo/"], sources: [DEVNOTE_7, COMMUNITY_AMA, STEAM],
-    contentAlt: "Interfaz de talentos y configuración de clase", contentCaption: "Arte oficial relacionado con decisiones de build." }),
+    heroAlt: "Gyldhunter acorazado atacando cuerpo a cuerpo junto a un aliado", heroCaption: "Una build debe explicar cómo sostiene su función durante un combate real.",
+    contentImageAlt: "Puente de una fortaleza destruida junto a la Gyldenmist dorada", contentCaption: "La fortaleza de Weavereach aporta contexto al riesgo para el que se prepara cada build." }),
 
   page({ ...esCommon, path: "/es/jugar-solo/", englishPath: "/solo-mode/", imageIndex: 5, pageType: "article",
     title: "Cómo jugar solo en Mistfall Hunter: modo y estrategia",
@@ -533,7 +562,10 @@ const spanishPages: LocalizedPageData[] = [
       { heading: "Build autosuficiente", bullets: [
         "Incluye una respuesta defensiva inmediata.", "Mantén una herramienta de movimiento o control para retirarte.",
         "Elige un ciclo que funcione sin que un aliado proteja el lanzamiento.", "No sacrifiques toda supervivencia por daño teórico.",
-        "Lleva una cantidad de recursos compatible con el objetivo, no con una incursión perfecta." ] },
+        "Lleva una cantidad de recursos compatible con el objetivo, no con una incursión perfecta." ], subsections: [
+        { heading: "Respuesta inmediata", paragraphs: ["Reserva una defensa, control o movimiento que funcione sin ayuda. Si toda la seguridad depende de que un aliado cree espacio, la build todavía no es autosuficiente."] },
+        { heading: "Salida después del error", paragraphs: ["Prueba qué ocurre cuando falla tu habilidad principal. Debes poder recuperar distancia o abandonar la pelea sin gastar todos los recursos destinados al regreso."] },
+      ] },
       { heading: "Rutas, sonido y terceros", paragraphs: [
         "Evita combatir en un punto sin salida conocida. Antes de comprometer una habilidad larga, identifica dónde recuperarás espacio. Si escuchas otra pelea, decide si puedes rodearla; acercarte solo porque hay jugadores ocupados también te expone a un tercer participante.",
         "Tras una pelea, prioriza salud, información y salida antes que inventario. Cambia de ángulo y no permanezcas en el lugar exacto donde el ruido anunció tu posición.",
@@ -549,7 +581,8 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿Qué debería llevar en solo?", answer: "Una respuesta defensiva, una salida y recursos suficientes para el objetivo y el regreso; evita depender de protección de equipo." },
     ],
     related: ["/es/mejor-clase-solo/", "/es/como-extraer/", "/es/builds/"], sources: [OFFICIAL_SITE, LAUNCH_FAQ, COMMUNITY_AMA],
-    contentAlt: "Jugador solitario recorriendo una zona de Mistfall Hunter", contentCaption: "Una ruta solitaria en arte oficial." }),
+    heroAlt: "Gyldhunter solitario observando una abertura brillante en una caverna", heroCaption: "El juego solo exige leer rutas expuestas y conservar una retirada.",
+    contentImageAlt: "Puente de una fortaleza de Weavereach bajo una tormenta dorada", contentCaption: "El puente expuesto ilustra por qué una ruta segura importa tanto como el combate." }),
 
   page({ ...esCommon, path: "/es/servidores/", englishPath: "/servers/", imageIndex: 6, pageType: "article",
     title: "Servidores de Mistfall Hunter: regiones y estado confirmado",
@@ -583,7 +616,8 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿Crossplay permite elegir cualquier servidor?", answer: "No necesariamente. La región de la cuenta puede limitar acceso; crossplay no reemplaza esa regla oficial." },
     ],
     related: ["/es/bloqueo-regional/", "/es/jugar-solo/", "/es/guia-principiantes/"], sources: [LAUNCH_FAQ, XBOX, COMMUNITY_AMA],
-    contentAlt: "Paisaje de Weavereach usado para la guía de servidores", contentCaption: "Entorno oficial de Mistfall Hunter." }),
+    heroAlt: "Puente de una fortaleza de Weavereach junto a una tormenta dorada", heroCaption: "La imagen ambiental no representa estado de servicio; esta página solo enumera países confirmados.",
+    contentImageAlt: "Gyldhunter acorazado luchando junto a un compañero", contentCaption: "El juego en grupo depende de acceso compatible y no demuestra que un servidor esté operativo." }),
 
   page({ ...esCommon, path: "/es/bloqueo-regional/", englishPath: "/region-lock/", imageIndex: 7, pageType: "article",
     title: "Bloqueo regional de Mistfall Hunter: cuentas de Norteamérica",
@@ -616,23 +650,26 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿Una VPN soluciona el bloqueo?", answer: "No recomendamos VPN ni cambios de región. No existe una solución oficial confirmada de ese tipo y puede afectar cuenta, compra o conexión." },
     ],
     related: ["/es/servidores/", "/es/jugar-solo/"], sources: [LAUNCH_FAQ, XBOX],
-    contentAlt: "Mapa ambiental de Mistfall Hunter bajo la Gyldenmist", contentCaption: "Imagen oficial usada como contexto de región." }),
+    heroAlt: "Gyldhunter acorazado atacando junto a otro combatiente", heroCaption: "El arte de grupo contextualiza una guía sobre cuentas que intentan jugar en la misma región.",
+    contentImageAlt: "Puente de una fortaleza en ruinas junto a la Gyldenmist dorada", contentCaption: "La fortaleza oficial aporta contexto visual sin presentarse como un mapa de regiones." }),
 
   page({ ...esCommon, path: "/es/codigos/", englishPath: "/codes/", imageIndex: 0, pageType: "article",
     title: "Códigos de Mistfall Hunter: estado de canje verificado",
     description: "Estado actualizado de códigos de Mistfall Hunter: no hay códigos públicos de canje confirmados y explicamos la diferencia con rewards, Drops, keys y share codes.",
-    h1: "Códigos de Mistfall Hunter", eyebrow: "Sin códigos confirmados • revisión oficial • 31 de julio de 2026",
-    answer: "No hay códigos públicos de canje de Mistfall Hunter confirmados en las fuentes oficiales revisadas el 31 de julio de 2026. Esta página separa códigos de recompensas de lanzamiento, Twitch Drops, giveaways, game keys y share codes de Loadout.",
+    h1: "Códigos de Mistfall Hunter", eyebrow: "Sin códigos confirmados • revisión oficial • 1 de agosto de 2026",
+    answer: "No hay códigos públicos de canje de Mistfall Hunter confirmados en las fuentes oficiales revisadas el 1 de agosto de 2026. El regalo de lanzamiento con Gesture: Thumbs Up y 500 Soul Coins llega por el correo del juego y no requiere una cadena pública.",
     informationType: "Estado oficial revisado; no se publican códigos no verificados",
     warning: "No introduzcas credenciales en generadores de códigos ni trates un share code de build como código de recompensa.",
     sections: [
       { heading: "Estado actual de códigos", paragraphs: [
         "Revisamos el sitio oficial, la tienda y los anuncios oficiales de Steam disponibles para el lanzamiento. No encontramos un código público de canje con texto, recompensa, vigencia y método de uso confirmados. Por eso no mostramos una lista artificial de códigos activos.",
+        "El regalo de lanzamiento con Gesture: Thumbs Up y 500 Soul Coins se entrega mediante el correo del juego. No es un código de canje y no requiere introducir una cadena pública. El anuncio fija como fecha límite el 1 de septiembre de 2026 a las 00:00 UTC.",
         "La fecha de revisión importa. Una campaña futura puede cambiar la respuesta; cuando exista un anuncio directo, añadiremos su periodo, requisitos, plataforma y enlace oficial.",
       ] },
       { heading: "No todos los códigos significan recompensa", table: { headers: ["Tipo", "Función", "¿Es redeem code?"], rows: [
         ["Loadout share code", "Importa configuración de equipo y gemas", "No"], ["Game key", "Activa una copia del juego", "No"],
         ["Giveaway", "Promoción con reglas propias", "No necesariamente"], ["Twitch Drop", "Recompensa por campaña y cuenta vinculada", "No necesariamente"],
+        ["Regalo de lanzamiento por correo", "Gesture: Thumbs Up y 500 Soul Coins para cuentas elegibles", "No; llega mediante el correo del juego"],
         ["Redeem code", "Cadena oficial introducida en un canal confirmado", "Sí, solo si está anunciado"],
       ] } },
       { heading: "Cómo verificaremos un código futuro", bullets: [
@@ -644,12 +681,14 @@ const spanishPages: LocalizedPageData[] = [
       ] },
     ],
     faqs: [
-      { question: "¿Hay códigos activos de Mistfall Hunter?", answer: "No se encontraron códigos públicos de canje confirmados en fuentes oficiales revisadas el 31 de julio de 2026." },
+      { question: "¿Hay códigos activos de Mistfall Hunter?", answer: "No se encontraron códigos públicos de canje confirmados en fuentes oficiales revisadas el 1 de agosto de 2026." },
+      { question: "¿El regalo de 500 Soul Coins es un código?", answer: "No. Es una recompensa para cuentas elegibles que se entrega mediante el correo del juego." },
       { question: "¿Un share code de build da objetos?", answer: "No. Importa una configuración de Loadout; no otorga moneda, skins ni recompensas." },
       { question: "¿Dónde se publicaría un código real?", answer: "Debe aparecer en un canal oficial con texto, vigencia, condiciones y método de canje verificables." },
     ],
     related: ["/es/", "/es/builds/", "/es/guia-principiantes/"], sources: [OFFICIAL_SITE, STEAM_NEWS, LAUNCH_UPDATE, LAUNCH_FAQ],
-    contentAlt: "Arte oficial de Mistfall Hunter con ciudad en ruinas", contentCaption: "Imagen oficial; no representa un código de recompensa." }),
+    heroAlt: "Puente de una fortaleza en ruinas junto a la Gyldenmist dorada", heroCaption: "El arte oficial no representa un código ni una pantalla de canje.",
+    contentImageAlt: "Tres Gyldhunters combatiendo criaturas Corroded en una caverna", contentCaption: "La escena de juego acompaña la distinción entre recompensas y cadenas de canje." }),
 ];
 
 const deCommon = {
@@ -689,7 +728,8 @@ const germanPages: LocalizedPageData[] = [
       { question: "Ist Crossplay gleichbedeutend mit freier Regionswahl?", answer: "Nein. Crossplay hebt die offiziell beschriebene Kontoregion-Regel für Nordamerika nicht auf." },
     ],
     related: ["/de/einstellungen/", "/de/ruckler-beheben/", "/de/absturz-beheben/", "/de/server/"], sources: [OFFICIAL_SITE, STEAM, DEVNOTE_7],
-    contentAlt: "Weavereach unter dem goldenen Gyldenmist", contentCaption: "Offizielle Spielgrafik aus Mistfall Hunter." }),
+    heroAlt: "Brücke einer Festungsruine neben dem goldenen Gyldenmist", heroCaption: "Die Festung von Weavereach bildet den visuellen Rahmen für den deutschen Hilfebereich.",
+    contentImageAlt: "Drei Gyldhunter kämpfen in einer Höhle gegen Corroded-Kreaturen", contentCaption: "Die Kampfszene zeigt den Spielkontext, den die technischen Ratgeber unterstützen." }),
 
   page({ ...deCommon, path: "/de/einstellungen/", englishPath: "/best-settings/", imageIndex: 4, pageType: "article",
     title: "Mistfall Hunter Einstellungen: FPS und Bildqualität abstimmen",
@@ -707,7 +747,10 @@ const germanPages: LocalizedPageData[] = [
         ["1", "Frame-Limit und Auflösung", "Stabiler Zielwert statt ständigem Limitwechsel"], ["2", "Schatten und volumetrische Effekte", "GPU-Last in komplexen Szenen"],
         ["3", "Effekte und Reflexionen", "Kampfspitzen und Lesbarkeit"], ["4", "Texturen", "Nur bei Speicherproblemen schrittweise senken"],
         ["5", "Upscaling", "Bildruhe und Lesbarkeit gegen Leistung abwägen"],
-      ] } },
+      ] }, subsections: [
+        { heading: "Ausgangswert festhalten", paragraphs: ["Notiere Preset, Auflösung und Frame-Limit und nutze eine wiederholbare Szene. Ohne diesen Ausgangswert lässt sich eine ruhigere Bewegung nicht zuverlässig einer Option zuordnen."] },
+        { heading: "Eine teure Option vergleichen", paragraphs: ["Ändere Schatten, Effekte, Reflexionen oder Volumetrik einzeln und wiederhole den Test. Setze eine Änderung zurück, wenn sie das sichtbare Muster nicht verbessert."] },
+      ] },
       { heading: "Frame-Limit und gleichmäßige Frame Times", paragraphs: [
         "Ein Ziel, das dein System in anspruchsvollen Szenen hält, fühlt sich häufig ruhiger an als ein höherer Durchschnitt mit großen Schwankungen. Vergleiche zum Beispiel einen begrenzten Lauf und einen unbegrenzten Lauf in derselben Szene. Ändere nicht gleichzeitig Preset, Treiber und Limit.",
         "Wenn die Rate nur beim ersten Besuch einer Zone fällt, kann das Muster anders sein als ein dauerhaftes GPU-Limit. Nutze dann den Ruckler-Ratgeber und wiederhole die Route nach einem Neustart, bevor du die Bildqualität pauschal stark reduzierst.",
@@ -723,7 +766,8 @@ const germanPages: LocalizedPageData[] = [
       { question: "Garantiert ein Frame-Limit weniger Ruckler?", answer: "Nein. Es kann Schwankungen glätten, behebt aber keine bestätigte Ursache in jedem Fall." },
     ],
     related: ["/de/ruckler-beheben/", "/de/absturz-beheben/"], sources: [DEVNOTE_7, STEAM, LAUNCH_UPDATE],
-    contentAlt: "Offizielle Talent- und Spieloberfläche von Mistfall Hunter", contentCaption: "Offizielle Grafik als Kontext für die technische Anleitung." }),
+    heroAlt: "Mistfall-Hunter-Talentoberfläche mit verbundenen Verbesserungsknoten", heroCaption: "Die offizielle Oberfläche steht hier für ein klares, lesbares Ausgangsprofil und nicht für ein Grafikmenü.",
+    contentImageAlt: "Einzelner Gyldhunter vor einem hellen Höhlenausgang", contentCaption: "Die Spielsituation dient als wiederholbare Szene zum Vergleichen von Einstellungen." }),
 
   page({ ...deCommon, path: "/de/ruckler-beheben/", englishPath: "/stuttering-fix/", imageIndex: 3, pageType: "article",
     title: "Mistfall Hunter Ruckler beheben: Frame-Time-Checkliste",
@@ -737,7 +781,11 @@ const germanPages: LocalizedPageData[] = [
         ["Nur beim ersten Besuch", "Shader- oder Asset-Vorbereitung", "Dieselbe Route erneut laden"], ["An jeder Gebietsgrenze", "Streaming oder Speicher", "SSD und identische Grenze vergleichen"],
         ["Nur in effektstarken Kämpfen", "GPU- oder Effektlast", "Effekte nach Frame-Limit senken"], ["Wird über Zeit stärker", "Speicher oder Temperatur", "Kurze und lange Sitzung dokumentieren"],
         ["Dauerhaft niedrige Rate", "Anhaltendes Leistungslimit", "Einstellungsreihenfolge nutzen"],
-      ] } },
+      ] }, subsections: [
+        { heading: "Erster Durchlauf", paragraphs: ["Wiederhole dieselbe Route und notiere, ob die Spitze nur beim ersten Kontakt mit Gebiet oder Effekt auftritt. Das Muster ist ein Hinweis, aber noch keine bestätigte Ursache."] },
+        { heading: "Wiederkehrende Kampfspitze", paragraphs: ["Teste dieselbe Fähigkeit oder Effektgruppe mit einem stabilen Limit. Tritt die Spitze jedes Mal auf, dokumentiere Szene und Version für einen gezielten Vergleich."] },
+        { heading: "Verschlechterung über Zeit", paragraphs: ["Notiere Sitzungsdauer, Kartenwechsel und Temperatur- oder Speicherkontext. Behandle dieses Muster getrennt von einem kurzen Ruckler beim ersten Laden."] },
+      ] },
       { heading: "Offizieller Launch-Kontext", paragraphs: [
         "Bellring Games nennt in DevNote #7 Arbeiten an Shader-Vorkompilierung, Asset-Loading, Speichernutzung, Low-End-PCs, Konsolen, Camp-Framerate und Mikrorucklern im Kampf. Diese Aussagen bestätigen Entwicklungsbereiche, nicht die Ursache auf deinem einzelnen System.",
         "Nutze deshalb die aktuelle Version und trenne Beobachtung von Erklärung. Wenn ein zweiter Lauf derselben Route ruhiger ist, ist das ein Muster; es beweist allein noch keinen bestimmten Shader-Fehler.",
@@ -757,7 +805,8 @@ const germanPages: LocalizedPageData[] = [
       { question: "Soll ich alle Grafikoptionen gleichzeitig senken?", answer: "Nein. Ändere jeweils eine Option, sonst kannst du die wirksame Ursache nicht erkennen." },
     ],
     related: ["/de/einstellungen/", "/de/absturz-beheben/"], sources: [DEVNOTE_7, KNOWN_ISSUES_OFFICIAL, LAUNCH_UPDATE],
-    contentAlt: "Sechs Klassen in einer offiziellen Mistfall-Hunter-Szene", contentCaption: "Offizielle Spielgrafik; die Anleitung macht keine FPS-Versprechen." }),
+    heroAlt: "Sechs Mistfall-Hunter-Klassen in offizieller Gruppenillustration", heroCaption: "Die Klassenillustration ist kein Frame-Time-Beweis; sie kennzeichnet nur den Spielbezug des Ratgebers.",
+    contentImageAlt: "Talentoberfläche mit mehreren verbundenen Knoten", contentCaption: "Die UI-Aufnahme ist ein Beispiel für eine Szene, in der Eingabe und Bildruhe beobachtet werden können." }),
 
   page({ ...deCommon, path: "/de/absturz-beheben/", englishPath: "/crashing-fix/", imageIndex: 2, pageType: "article",
     title: "Mistfall Hunter Absturz beheben: PC- und Konsolen-Schritte",
@@ -770,6 +819,10 @@ const germanPages: LocalizedPageData[] = [
       { heading: "Zuerst den Absturztyp erfassen", paragraphs: [
         "Notiere, ob der Fehler beim Start, Laden, im Camp, im Kampf oder beim Return auftritt. Halte exakten Meldungstext, Screenshot ohne Kontodaten, Client-Version, Plattform, Datum und Uhrzeit fest. Ein Freeze ohne Prozessende ist ein anderes Symptom als ein sofortiger Desktop-Absturz.",
         "Auf Windows sind Anwendungsfehler und ein eventuell genannter Modulname hilfreich. Auf PlayStation oder Xbox sind Plattform-Fehlercode, Rückkehr zum Dashboard und die letzte UI-Aktion wichtiger. Vermische diese Daten nicht.",
+      ], subsections: [
+        { heading: "Absturz vor dem Hauptmenü", paragraphs: ["Trenne Start, Anmeldung und erstes Laden. Prüfe Version und Dateien, bevor du Einstellungen änderst, die der Client möglicherweise noch nicht geladen hat."] },
+        { heading: "Absturz beim Match-Laden", paragraphs: ["Dokumentiere Modus, Karte, Gruppe und Ladephase. Ein erneuter Test nach dem sicheren Ausgangszustand zeigt, ob der Übergang reproduzierbar ist."] },
+        { heading: "Absturz im Match oder Menü", paragraphs: ["Halte Ort, Aktion, Eingabegerät und sichtbaren Effekt oder Bildschirm fest. Die offiziell genannten Launch-Fixes waren auslöserspezifisch und dürfen nicht pauschal übertragen werden."] },
       ] },
       { heading: "Sichere Reihenfolge auf PC", bullets: [
         "Aktuelle Spielversion und Windows-Updates prüfen.", "PC vollständig neu starten.", "Spieldateien über den offiziellen Client verifizieren.",
@@ -790,7 +843,8 @@ const germanPages: LocalizedPageData[] = [
       { question: "Sind PC- und Konsolen-Schritte gleich?", answer: "Nur die Grundlagen wie Update, Neustart und Dokumentation. Treiber, DLLs und Windows-Dateien gelten nicht für Konsole." },
     ],
     related: ["/de/einstellungen/", "/de/ruckler-beheben/"], sources: [DEVNOTE_7, KNOWN_ISSUES_OFFICIAL, LAUNCH_UPDATE],
-    contentAlt: "Offizieller Return-Effekt in einer Mistfall-Hunter-Szene", contentCaption: "Offizielle Grafik als visueller Kontext der Fehlerhilfe." }),
+    heroAlt: "Gyldhunter hebt die Hand vor einem kreisförmigen Return-Effekt", heroCaption: "Die offizielle Return-Szene ist keine Aufnahme eines Absturzfehlers.",
+    contentImageAlt: "Sechs Mistfall-Hunter-Klassen stehen in einer offiziellen Gruppenansicht", contentCaption: "Die Klassenansicht liefert Spielkontext, ohne eine bestimmte Absturzursache zu behaupten." }),
 
   page({ ...deCommon, path: "/de/server/", englishPath: "/servers/", imageIndex: 6, pageType: "article",
     title: "Mistfall Hunter Server: bestätigte Länder und Status-Hinweise",
@@ -824,7 +878,8 @@ const germanPages: LocalizedPageData[] = [
       { question: "Kann jedes Konto jeden Server wählen?", answer: "Nein. Mindestens für die offiziell genannten nordamerikanischen Kontoregionen gilt eine Zugriffsbeschränkung." },
     ],
     related: ["/de/region-lock/", "/de/"], sources: [LAUNCH_FAQ, XBOX, COMMUNITY_AMA],
-    contentAlt: "Weavereach-Landschaft als Hintergrund des Server-Ratgebers", contentCaption: "Offizielle Mistfall-Hunter-Umgebung." }),
+    heroAlt: "Brücke einer Festungsruine neben einem goldenen Sturm", heroCaption: "Die Weavereach-Landschaft ist keine Live-Serverkarte; der Ratgeber nennt nur bestätigte Länder.",
+    contentImageAlt: "Gepanzerter Nahkämpfer greift neben einem Verbündeten an", contentCaption: "Die Gruppenszene veranschaulicht, warum gemeinsamer Serverzugang vor dem Match geprüft werden muss." }),
 
   page({ ...deCommon, path: "/de/region-lock/", englishPath: "/region-lock/", imageIndex: 7, pageType: "article",
     title: "Mistfall Hunter Region Lock: Nordamerika-Regel erklärt",
@@ -857,7 +912,8 @@ const germanPages: LocalizedPageData[] = [
       { question: "Sollte ich eine VPN nutzen?", answer: "Nein. Eine VPN oder ein Regionswechsel ist keine offiziell bestätigte Lösung und kann Konto, Kauf oder Verbindung gefährden." },
     ],
     related: ["/de/server/", "/de/"], sources: [LAUNCH_FAQ, XBOX],
-    contentAlt: "Offizielle Mistfall-Hunter-Landschaft für den Region-Lock-Ratgeber", contentCaption: "Offizielle Umgebungsgrafik aus Weavereach." }),
+    heroAlt: "Gepanzerter Gyldhunter kämpft an der Seite eines Verbündeten", heroCaption: "Die Gruppenszene setzt die Kontoregion-Regel in den Kontext gemeinsamer Partys.",
+    contentImageAlt: "Brücke einer Festungsruine neben dem goldenen Gyldenmist", contentCaption: "Das offizielle Festungsbild ist keine Darstellung von Store- oder Serverregionen." }),
 ];
 
 export const localizedPages = [...spanishPages, ...germanPages];

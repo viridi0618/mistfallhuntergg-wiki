@@ -259,12 +259,13 @@ const rewards: GuidePageData = {
   breadcrumbLabel: "Rewards",
   answer: "Check the reward type before following a claim: redeem codes, Twitch Drops, in-game mail, launch gifts, paid cosmetics, and loadout share codes are different systems.",
   ...common,
+  updated: "2026-08-01",
   informationType: "Official reward status with unconfirmed claims labeled",
   sections: [
     {
       heading: "Do not treat every code as a redeem code",
       paragraphs: [
-        "No confirmed public redeem-code campaign was found in the official sources checked on July 31, 2026. Mistfall Hunter does use loadout share codes, but those import build information rather than granting currency, items, or cosmetics. A store activation key is also not an in-game reward code.",
+        "No confirmed public redeem-code campaign was found in the official sources checked on August 1, 2026. Mistfall Hunter does use loadout share codes, but those import build information rather than granting currency, items, or cosmetics. A store activation key is also not an in-game reward code.",
         "This distinction matters because search results often combine unrelated systems. A valid-looking string is not evidence of an active redemption system. Use the Codes page for the current confirmed answer and never submit account credentials to a third-party code page.",
       ],
     },
@@ -303,7 +304,7 @@ const rewards: GuidePageData = {
     {
       heading: "Recently updated",
       paragraphs: [
-        "Bellring Games announced a launch gift of a Thumbs Up gesture and 500 Soul Coins for players logging in before September 1, 2026 at 00:00 UTC. Because reward windows expire, use the direct official launch-update source and the date printed on each reward page before attempting a claim.",
+        "Bellring Games announced Gesture: Thumbs Up and 500 Soul Coins for players logging in before September 1, 2026 at 00:00 UTC. The gift arrives through in-game mail and is not a redeem code. Because reward windows expire, use the direct official launch-update source and the date printed on each reward page before attempting a claim.",
       ],
     },
     {
@@ -314,7 +315,7 @@ const rewards: GuidePageData = {
     },
   ],
   faqs: [
-    { question: "Are there active Mistfall Hunter codes?", answer: "No confirmed public redeem codes were found in the official sources checked July 31, 2026." },
+    { question: "Are there active Mistfall Hunter codes?", answer: "No confirmed public redeem codes were found in the official sources checked August 1, 2026." },
     { question: "Is a loadout share code a reward code?", answer: "No. It shares build configuration rather than granting an item." },
     { question: "Are Twitch Drops active?", answer: "No current official campaign with verified dates and requirements was found at the last check." },
   ],
