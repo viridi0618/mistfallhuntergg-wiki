@@ -81,7 +81,7 @@ assert.ok(componentSource.includes("onPointerEnter={() => openDesktopFromHover(g
 assert.ok(componentSource.includes("hoverOpenTimerRef") && componentSource.includes("hoverCloseTimerRef"), "Desktop hover intent requires separate opening and closing timers");
 assert.ok(componentSource.includes("}, 80)") && componentSource.includes("}, 220)"), "Desktop hover intent must use short open and forgiving close delays");
 assert.ok(componentSource.includes("return () => {") && componentSource.includes("clearHoverTimers();"), "Hover timers must be cleared during effect cleanup");
-assert.ok(componentSource.includes("clearHoverTimers();\n    closeDesktop") && componentSource.includes("closeAll(false)"), "Clicks, route changes, Class Picker events, and breakpoint changes must clear hover state");
+assert.ok(/clearHoverTimers\(\);\s+closeDesktop/.test(componentSource) && componentSource.includes("closeAll(false)"), "Clicks, route changes, Class Picker events, and breakpoint changes must clear hover state");
 assert.ok(componentSource.includes('<Link className="nav-top-link" href={group.href}') && componentSource.includes("openDesktop(group.id)"), "Hover support must preserve normal Hub links and disclosure-button clicks");
 for (const key of ["ArrowDown", "ArrowUp", "Home", "End", "Escape"]) assert.ok(componentSource.includes(key), `Hover support must preserve the ${key} keyboard behavior`);
 assert.ok(componentSource.includes("group.footerLink?.label ?? `${labels.all} ${group.label}`"), "Mobile Hub links must prefer localized footer labels");
