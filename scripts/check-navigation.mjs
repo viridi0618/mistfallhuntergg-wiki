@@ -76,6 +76,14 @@ for (const parameter of ["locale", "source_path", "menu_id", "item_label", "dest
 assert.ok(componentSource.includes('window.addEventListener("class-picker:open"'), "Navigation must close when the Class Picker opens");
 assert.ok(componentSource.includes('window.matchMedia("(max-width: 820px)")'), "Navigation must observe the desktop/mobile breakpoint");
 assert.ok(componentSource.includes('media.addEventListener("change", handleBreakpointChange)') && componentSource.includes("closeAll(false)"), "Breakpoint changes must clear stale navigation state");
+assert.ok(componentSource.includes('window.matchMedia("(hover: hover) and (pointer: fine)")'), "Desktop hover menus must only run for precise hover-capable pointers");
+assert.ok(componentSource.includes("onPointerEnter={() => openDesktopFromHover(group.id)}") && componentSource.includes("onPointerLeave={() => closeDesktopFromHover(group.id)}"), "The complete desktop navigation group must own pointer enter and leave behavior");
+assert.ok(componentSource.includes("hoverOpenTimerRef") && componentSource.includes("hoverCloseTimerRef"), "Desktop hover intent requires separate opening and closing timers");
+assert.ok(componentSource.includes("}, 80)") && componentSource.includes("}, 220)"), "Desktop hover intent must use short open and forgiving close delays");
+assert.ok(componentSource.includes("return () => {") && componentSource.includes("clearHoverTimers();"), "Hover timers must be cleared during effect cleanup");
+assert.ok(componentSource.includes("clearHoverTimers();\n    closeDesktop") && componentSource.includes("closeAll(false)"), "Clicks, route changes, Class Picker events, and breakpoint changes must clear hover state");
+assert.ok(componentSource.includes('<Link className="nav-top-link" href={group.href}') && componentSource.includes("openDesktop(group.id)"), "Hover support must preserve normal Hub links and disclosure-button clicks");
+for (const key of ["ArrowDown", "ArrowUp", "Home", "End", "Escape"]) assert.ok(componentSource.includes(key), `Hover support must preserve the ${key} keyboard behavior`);
 assert.ok(componentSource.includes("group.footerLink?.label ?? `${labels.all} ${group.label}`"), "Mobile Hub links must prefer localized footer labels");
 assert.ok(pickerLauncherSource.includes('window.addEventListener("site-navigation:open"') && pickerLauncherSource.includes('window.dispatchEvent(new CustomEvent("site-navigation:close"'), "Class Picker must coordinate with site navigation");
 assert.ok(packageJson.scripts.verify.includes("check:navigation"), "npm run verify must include check:navigation");
@@ -121,4 +129,4 @@ for (const href of ["/es/", "/de/"]) {
   }
 }
 
-console.log("Navigation checks passed: shared locale data, 7 English top-level items, valid disclosures, 76 public URLs, and no invented localized routes.");
+console.log("Navigation checks passed: shared locale data, precise-pointer hover intent, responsive state safety, valid disclosures, 76 public URLs, and no invented localized routes.");
