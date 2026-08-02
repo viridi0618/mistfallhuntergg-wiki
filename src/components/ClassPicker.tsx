@@ -48,7 +48,7 @@ function replace(template: string, values: Record<string, string | number>) {
   return Object.entries(values).reduce((result, [key, value]) => result.replace(`{${key}}`, String(value)), template);
 }
 
-export default function ClassPicker({ locale, entryType }: { locale: Locale; entryType: PickerEntryType }) {
+export default function ClassPicker({ locale, entryType, onResultNavigate }: { locale: Locale; entryType: PickerEntryType; onResultNavigate?: () => void }) {
   const t = copy[locale];
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<PickerAnswers>({});
@@ -82,16 +82,28 @@ export default function ClassPicker({ locale, entryType }: { locale: Locale; ent
 
   function choose(questionId: PickerQuestionId, answerId: string) {
     const nextAnswers = { ...answers, [questionId]: answerId };
-    setAnswers(nextAnswers);
+    const isLastQuestion = step === pickerQuestionIds.length - 1;
+    const nextState = createStoredPickerState(isLastQuestion ? step : step + 1, nextAnswers, isLastQuestion);
+    setAnswers(nextState.answers);
     track("class_picker_answer", { source_path: location.pathname, entry_type: entryType, question_id: questionId, answer_id: answerId });
     if (step === 0 && !answers.combat) track("class_picker_start", { source_path: location.pathname, entry_type: entryType });
-    if (step < pickerQuestionIds.length - 1) setStep(step + 1);
+    if (!isLastQuestion) setStep(nextState.step);
     else {
-      const nextResult = scoreClassPicker(nextAnswers);
+      if (!nextState.completed) {
+        setStep(nextState.step);
+        setCompleted(false);
+        return;
+      }
+      const nextResult = scoreClassPicker(nextState.answers);
       setCompleted(true);
       track("class_picker_complete", { source_path: location.pathname, entry_type: entryType, primary_class: nextResult.primary.slug, secondary_class: nextResult.secondary.slug, recommended_route: nextResult.recommendedRoute });
       track("class_picker_result", { source_path: location.pathname, entry_type: entryType, primary_class: nextResult.primary.slug, secondary_class: nextResult.secondary.slug, recommended_route: nextResult.recommendedRoute });
     }
+  }
+
+  function resultNavigate(event: "class_picker_build_click" | "class_picker_class_click" | "class_picker_extract_click", parameters: Record<string, string | number | undefined>) {
+    track(event, { source_path: location.pathname, entry_type: entryType, ...parameters });
+    onResultNavigate?.();
   }
 
   function restart() {
@@ -112,9 +124,9 @@ export default function ClassPicker({ locale, entryType }: { locale: Locale; ent
         return <li key={id}>{replace(t.reasons[id], { answer: t.options[answer as keyof typeof t.options] })}</li>;
       })}</ul>
       <div className="class-picker-actions">
-        <Link href={result.primary.buildPath} onClick={() => track("class_picker_build_click", { source_path: location.pathname, entry_type: entryType, primary_class: result.primary.slug, recommended_route: result.recommendedRoute })}>{replace(t.build, { className: result.primary.name })}</Link>
-        <Link href={result.primary.classPath} onClick={() => track("class_picker_class_click", { source_path: location.pathname, entry_type: entryType, primary_class: result.primary.slug })}>{replace(t.classGuide, { className: result.primary.name })}</Link>
-        <Link href="/how-to-extract/">{t.extract}</Link>
+        <Link href={result.primary.buildPath} onClick={() => resultNavigate("class_picker_build_click", { primary_class: result.primary.slug, recommended_route: result.recommendedRoute })}>{replace(t.build, { className: result.primary.name })}</Link>
+        <Link href={result.primary.classPath} onClick={() => resultNavigate("class_picker_class_click", { primary_class: result.primary.slug })}>{replace(t.classGuide, { className: result.primary.name })}</Link>
+        <Link href="/how-to-extract/" onClick={() => resultNavigate("class_picker_extract_click", { primary_class: result.primary.slug })}>{t.extract}</Link>
       </div>
       <button className="class-picker-restart" type="button" onClick={restart}>{t.restart}</button>
       <p className="class-picker-disclaimer">{t.disclaimer}</p>

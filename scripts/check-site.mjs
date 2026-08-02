@@ -137,6 +137,7 @@ const sourceText = filesUnder(sourceRoot)
   .join("\n");
 const pickerDataSource = fs.readFileSync(path.join(sourceRoot, "data", "class-picker.ts"), "utf8");
 const pickerSource = fs.readFileSync(path.join(sourceRoot, "components", "ClassPicker.tsx"), "utf8");
+const pickerDrawerSource = fs.readFileSync(path.join(sourceRoot, "components", "ClassPickerDrawer.tsx"), "utf8");
 const pickerLauncherSource = fs.readFileSync(path.join(sourceRoot, "components", "ClassPickerLauncher.tsx"), "utf8");
 const pickerCtaSource = fs.readFileSync(path.join(sourceRoot, "components", "PickerCta.tsx"), "utf8");
 const battlePassSource = fs.readFileSync(path.join(sourceRoot, "data", "long-tail.ts"), "utf8");
@@ -149,7 +150,7 @@ if (!sourceText.includes(domain)) errors.push("Production domain is missing from
 for (const eventName of [
   "class_picker_open", "class_picker_start", "class_picker_answer", "class_picker_complete",
   "class_picker_result", "class_picker_build_click", "class_picker_class_click",
-  "class_picker_restart", "class_picker_close",
+  "class_picker_extract_click", "class_picker_restart", "class_picker_close",
 ]) {
   if (!sourceText.includes(eventName)) errors.push(`Class Picker analytics event is missing: ${eventName}.`);
 }
@@ -160,6 +161,9 @@ if (!pickerDataSource.includes("parseStoredPickerState") || !pickerSource.includ
 if (!pickerSource.includes("sessionStorage") || pickerSource.includes("localStorage") || pickerSource.includes("document.cookie")) errors.push("Class Picker persistence must use sessionStorage only.");
 if (!pickerCtaSource.includes('href="/class-picker/"') || !pickerCtaSource.includes("event.button !== 0") || !pickerCtaSource.includes("event.ctrlKey")) errors.push("Class Picker CTA is missing its progressive-enhancement navigation behavior.");
 if (!pickerLauncherSource.includes('window.addEventListener("class-picker:open"') || !pickerLauncherSource.includes("isOpenRef.current")) errors.push("Class Picker launcher is missing its guarded custom-event opening path.");
+if (!pickerSource.includes("onResultNavigate?: () => void") || !pickerDrawerSource.includes("onResultNavigate={onResultNavigate}") || !pickerLauncherSource.includes("onResultNavigate={closeForNavigation}")) errors.push("Class Picker result navigation is not wired to close the drawer.");
+if ((pickerSource.match(/resultNavigate\("class_picker_(?:build|class|extract)_click"/g) || []).length !== 3) errors.push("All three Class Picker result links must track and close before navigation.");
+if (!pickerLauncherSource.includes("closePicker(false)") || !pickerLauncherSource.includes("if (restoreFocus)")) errors.push("Class Picker navigation close must avoid restoring focus to the old result link.");
 if (/set(?:Timeout|Interval)\s*\([^\n]*openPicker/.test(pickerLauncherSource)) errors.push("Class Picker must not auto-open on a timer.");
 if (!articleVideoSource.includes('timeZone: "UTC"') || !articleVideoSource.includes("Number.isNaN") || !articleVideoSource.includes("toISOString().slice(0, 10)")) errors.push("Article video dates are missing UTC-stable formatting with an invalid-date fallback.");
 if (!globalCss.includes("@media (prefers-reduced-motion: reduce)") || !globalCss.includes(".class-picker-drawer { animation: none; }") || !globalCss.includes(".class-picker-progress-bar span { transition: none; }")) errors.push("Class Picker reduced-motion protection is missing.");

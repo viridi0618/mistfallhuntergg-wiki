@@ -106,9 +106,11 @@ export function createStoredPickerState(step: number, answers: PickerAnswers, co
     if (validAnswer(questionId, answer)) safeAnswers[questionId] = answer;
   }
   const hasAllAnswers = pickerQuestionIds.every((questionId) => validAnswer(questionId, safeAnswers[questionId]));
+  const requestedStep = Number.isInteger(step) && step >= 0 && step <= 3 ? step : 0;
+  const firstMissingIndex = pickerQuestionIds.findIndex((questionId) => !validAnswer(questionId, safeAnswers[questionId]));
   return {
     version: PICKER_STORAGE_VERSION,
-    step: Number.isInteger(step) && step >= 0 && step <= 3 ? step : 0,
+    step: firstMissingIndex === -1 ? requestedStep : Math.min(requestedStep, firstMissingIndex),
     answers: safeAnswers,
     completed: completed && hasAllAnswers,
   };

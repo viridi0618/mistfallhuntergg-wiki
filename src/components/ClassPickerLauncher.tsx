@@ -35,16 +35,21 @@ export default function ClassPickerLauncher({ locale = "en" }: { locale?: "en" |
     track("class_picker_open", { source_path: location.pathname, entry_type: source });
   }, []);
 
-  const closePicker = useCallback(() => {
+  const closePicker = useCallback((restoreFocus: boolean) => {
     if (!isOpenRef.current) return;
     isOpenRef.current = false;
     setOpen(false);
     track("class_picker_close", { source_path: location.pathname, entry_type: entryType });
-    window.setTimeout(() => {
-      const target = openerRef.current?.isConnected ? openerRef.current : buttonRef.current;
-      target?.focus();
-    }, 0);
+    if (restoreFocus) {
+      window.setTimeout(() => {
+        const target = openerRef.current?.isConnected ? openerRef.current : buttonRef.current;
+        target?.focus();
+      }, 0);
+    }
   }, [entryType]);
+
+  const dismissPicker = useCallback(() => closePicker(true), [closePicker]);
+  const closeForNavigation = useCallback(() => closePicker(false), [closePicker]);
 
   useEffect(() => {
     function handleOpen(event: Event) {
@@ -59,6 +64,6 @@ export default function ClassPickerLauncher({ locale = "en" }: { locale?: "en" |
   const t = labels[locale];
   return <>
     {!open && <button ref={buttonRef} className="class-picker-launcher" type="button" aria-label={t.aria} onClick={() => openPicker("floating_button")}><span className="picker-launcher-desktop">{t.desktop}</span><span className="picker-launcher-mobile">{t.mobile}</span></button>}
-    {open && <ClassPickerDrawer locale={locale} entryType={entryType} onClose={closePicker} />}
+    {open && <ClassPickerDrawer locale={locale} entryType={entryType} onClose={dismissPicker} onResultNavigate={closeForNavigation} />}
   </>;
 }

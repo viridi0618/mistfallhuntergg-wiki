@@ -54,13 +54,22 @@ assert.deepEqual(parseStoredPickerState(JSON.stringify(complete)), complete);
 const incomplete = createStoredPickerState(1, { combat: "defensive_melee" }, true);
 assert.equal(incomplete.completed, false, "Incomplete answers cannot restore a completed result");
 
+for (const [missingQuestion, expectedStep] of pickerQuestionIds.map((questionId, index) => [questionId, index])) {
+  const answers = { ...validAnswers };
+  delete answers[missingQuestion];
+  const restored = createStoredPickerState(3, answers, true);
+  assert.equal(restored.step, expectedStep, `Missing ${missingQuestion} must restore to question ${expectedStep + 1}`);
+  assert.equal(restored.completed, false, `Missing ${missingQuestion} must not produce a completed result`);
+}
+
 const partiallyInvalid = parseStoredPickerState(JSON.stringify({
   version: 1,
   step: 2,
   answers: { combat: "invalid", mode: "solo", unknown: "ignored" },
   completed: true,
 }));
-assert.deepEqual(partiallyInvalid, { version: 1, step: 2, answers: { mode: "solo" }, completed: false });
+assert.deepEqual(partiallyInvalid, { version: 1, step: 0, answers: { mode: "solo" }, completed: false });
+assert.equal(createStoredPickerState(3, { combat: "defensive_melee", difficulty: "easy", priority: "survival" }, true).step, 1, "Missing mode must restore no later than the second question");
 assert.equal(parseStoredPickerState("not-json"), null, "Invalid JSON must fail safely");
 assert.equal(parseStoredPickerState(JSON.stringify({ version: 2, step: 0, answers: {}, completed: false })), null, "Unknown versions must be ignored");
 assert.equal(parseStoredPickerState(JSON.stringify({ version: 1, step: 4, answers: {}, completed: false })), null, "Out-of-range steps must be ignored");

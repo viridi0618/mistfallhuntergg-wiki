@@ -6,7 +6,7 @@ import type { PickerEntryType } from "./PickerCta";
 
 const closeLabels = { en: "Close class picker", es: "Cerrar selector de clase", de: "Klassenauswahl schließen" } as const;
 
-export default function ClassPickerDrawer({ locale, entryType, onClose }: { locale: "en" | "es" | "de"; entryType: PickerEntryType; onClose: () => void }) {
+export default function ClassPickerDrawer({ locale, entryType, onClose, onResultNavigate }: { locale: "en" | "es" | "de"; entryType: PickerEntryType; onClose: () => void; onResultNavigate: () => void }) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function ClassPickerDrawer({ locale, entryType, onClose }: { loca
   return <div className="class-picker-overlay" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
     <div ref={dialogRef} className="class-picker-drawer" role="dialog" aria-modal="true" aria-labelledby="class-picker-dialog-title">
       <header><h2 id="class-picker-dialog-title">{locale === "es" ? "Selector de clase" : locale === "de" ? "Klassenauswahl" : "Class Picker"}</h2><button ref={closeRef} type="button" onClick={onClose} aria-label={closeLabels[locale]}>× <span>{locale === "es" ? "Cerrar" : locale === "de" ? "Schließen" : "Close"}</span></button></header>
-      <ClassPicker locale={locale} entryType={entryType} />
+      <ClassPicker locale={locale} entryType={entryType} onResultNavigate={onResultNavigate} />
     </div>
   </div>;
 }

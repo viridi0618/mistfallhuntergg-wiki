@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +15,8 @@
     "check:class-picker": "node scripts/check-class-picker.mjs",
     "check:i18n": "node scripts/check-i18n.mjs",
     "check:english-seo": "node scripts/check-english-seo-baseline.mjs",
-    "report:keywords": "node scripts/report-keywords.mjs"
+    "report:keywords": "node scripts/report-keywords.mjs",
+    "verify": "npm run lint && npm run typecheck && npm run build && npm run check:site && npm run check:i18n && npm run check:english-seo && npm run check:class-picker"
   },
   "dependencies": {
     "next": "16.2.12",
