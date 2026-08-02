@@ -39,3 +39,63 @@ Checked: 2026-07-31
 - Embedding status: YouTube oEmbed returned current public metadata and the `youtube-nocookie.com` embed endpoint returned HTTP 200 on 2026-07-31.
 
 No live view counts are stored on the site. Selection is maintained manually in `src/data/videos.ts`.
+
+## Build-page class reveals
+
+Checked: 2026-08-02
+
+These six short class-reveal videos are used only to show movement, range, weapon posture, cast rhythm, and encounter pace. They are not treated as build guides, balance evidence, or sources for hidden values. Each page starts with a local WebP thumbnail and loads a privacy-enhanced YouTube player only after a click.
+
+### Mercenary
+
+- Title: Mistfall Hunter - Official Mercenary Class Reveal Trailer
+- Channel: IGN
+- URL: https://www.youtube.com/watch?v=3c9DRzrK4wk
+- Published: 2026-07-27
+- Duration: 0:54
+- Why selected: shows close-range spacing, shield posture, and the commitment contrast behind heavier pressure.
+
+### Sorcerer
+
+- Title: Mistfall Hunter - Official Sorcerer Class Reveal Trailer
+- Channel: GameTrailers
+- URL: https://www.youtube.com/watch?v=WDVnZAWidnI
+- Published: 2026-08-01
+- Duration: 0:54
+- Why selected: shows cast positioning, ranged area pressure, and the exposure created when melee closes the gap.
+
+### Blackarrow
+
+- Title: Mistfall Hunter - Official Blackarrow Class Reveal Trailer
+- Channel: IGN
+- URL: https://www.youtube.com/watch?v=AkpWrl-vKmc
+- Published: 2026-07-27
+- Duration: 0:53
+- Why selected: shows bow sightlines, prepared shots, repeated pressure, and repositioning.
+
+### Shadowstrix
+
+- Title: Mistfall Hunter - Official Shadowstrix Class Reveal Trailer
+- Channel: GameTrailers
+- URL: https://www.youtube.com/watch?v=Q91biGYvw9w
+- Published: 2026-08-01
+- Duration: 0:53
+- Why selected: shows a stealth-led approach, rapid melee contact, and repositioning after engagement.
+
+### Seer
+
+- Title: Mistfall Hunter - Official Seer Class Reveal Trailer
+- Channel: GameTrailers
+- URL: https://www.youtube.com/watch?v=dhAWr1EYFiA
+- Published: 2026-08-01
+- Duration: 0:54
+- Why selected: shows the class shifting between ranged utility, protection, and close pressure.
+
+### Withered Knight
+
+- Title: Mistfall Hunter - Official Withered Knight Spear & Shield Class Reveal Trailer
+- Channel: GameTrailers
+- URL: https://www.youtube.com/watch?v=M9OmGzU4HwE
+- Published: 2026-08-01
+- Duration: 0:54
+- Why selected: shows Polearm & Shield reach, turning commitment, shield posture, and team-space control after the July 30 tuning.

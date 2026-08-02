@@ -11,6 +11,38 @@ export type GuideTable = {
   rows: string[][];
 };
 
+export type ContentVideo = {
+  id: string;
+  title: string;
+  channel: string;
+  duration: string;
+  published: string;
+  description: string;
+  watchFor: string[];
+  thumbnail: string;
+  thumbnailAlt: string;
+  youtubeUrl: string;
+  placementAfterHeading: string;
+  gameVersion?: string;
+};
+
+export type GuidePathStep = {
+  step: number;
+  label: string;
+  href: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  question: string;
+};
+
+export type BuildHubCard = {
+  name: string;
+  routes: string;
+  bestFor: string;
+  difficulty: string;
+  href: string;
+};
+
 export type GuideSubsection = {
   heading: string;
   paragraphs?: string[];
@@ -66,6 +98,11 @@ export type GuidePageData = {
   heroImageWidth?: number;
   heroImageHeight?: number;
   contentImages?: ContentImage[];
+  contentVideos?: ContentVideo[];
+  guidePath?: GuidePathStep[];
+  buildCards?: BuildHubCard[];
+  pickerCta?: string;
+  tool?: "class-picker";
   breadcrumbLabel?: string;
   categoryPath?: string;
   pageType?: "article" | "category" | "policy" | "about" | "contact";
@@ -86,4 +123,20 @@ export type ClassProfile = {
   patch: string;
   patchChanges?: string[];
   updated?: string;
+  combatRange: "Close" | "Close to mid" | "Mid to long" | "Long";
+  execution: "easy" | "moderate" | "high";
+  soloFit: number;
+  trioFit: number;
+  tendencies: {
+    survival: number;
+    burst: number;
+    sustain: number;
+    control: number;
+    support: number;
+    mobility: number;
+  };
+  startingRoute: string;
+  alternateRoute: string;
+  classPath: string;
+  buildPath: string;
 };
