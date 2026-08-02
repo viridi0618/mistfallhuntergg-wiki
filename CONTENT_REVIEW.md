@@ -106,3 +106,29 @@ Human review focus: role recommendations, launch patch references, and any weapo
 - `/es/codigos/` — the Spanish launch-mail clarification was synchronized on August 1 while the public redeem-code status remains unconfirmed.
 
 Time-sensitive manual review: recheck `/launch-rewards/`, `/codes/`, `/patch-notes/`, `/known-issues/`, and `/es/codigos/` whenever Bellring Games publishes a later reward, code, known-issue, or patch announcement. Recheck the Withered Knight and Sorcerer patch-impact paragraphs after any later class balance or skill-description change.
+
+## August 2 build cluster and long-tail review
+
+### Build pages
+
+- `/builds/mercenary/` — route choice, talent and equipment priorities, solo/trio fit, and combat loop are editorial recommendations. Recheck after Mercenary balance changes.
+- `/builds/sorcerer/` — Elemental/Stardust route guidance is editorial. Recheck Chant Guard and Stardust wording after any skill-description update.
+- `/builds/blackarrow/` — Archer/Hunter route guidance is editorial. Recheck after changes to Mysticfly, special arrows, ailments, or charged-shot flow.
+- `/builds/shadowstrix/` — Daggers/Dual Blades route guidance is editorial. Recheck stealth, wound, and multi-hit assumptions after balance changes.
+- `/builds/seer/` — Catalyst/Mace and solo/trio recommendations are editorial. Recheck support, shield, healing, and close-range mechanics after updates.
+- `/builds/withered-knight/` — Greatsword/Polearm & Shield recommendations are editorial. Recheck Energy, Block, Sigil, turning, and cooldown language after the next class patch.
+
+All six pages deliberately avoid unverified talent-node names, gem or affix names, percentages, cooldown values, DPS rankings, and mandatory-build claims. The embedded class-reveal videos are visual gameplay context, not evidence for balance rankings.
+
+### Time-sensitive or not fully confirmed pages
+
+- `/game-pass/` — subscription tiers, catalog inclusion, cloud availability, platform coverage, and console multiplayer requirements were checked against the official Xbox store on 2026-08-02. Recheck before any later update.
+- `/battle-pass/` — the free Season 1 status, cumulative-login grant, named pass, and activity-based future access framing come from official announcements. Do not infer permanent future pricing, task values, track levels, currency costs, or an expiration date.
+- `/class-picker/` — all results are deterministic editorial playstyle matching. It is not an official tier list, live win-rate model, or meta guarantee.
+
+### Paragraphs recommended for manual review
+
+- Each build page: “Current patch impact,” route comparison, and Solo/Trio table after every class-balance announcement.
+- `/game-pass/`: “Current Game Pass listing” immediately after any Xbox catalog or subscription-tier change.
+- `/battle-pass/`: “Season 1 Battle Pass status” after any new official season or reward-track announcement.
+- `/class-picker/`: the shared class-profile scoring tendencies whenever official roles or weapon routes materially change.

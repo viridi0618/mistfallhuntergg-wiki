@@ -88,6 +88,15 @@ const normalHero: Record<string, string> = {
   "classes/shadowstrix": "steam-10",
   "classes/seer": "site-04",
   "classes/withered-knight": "steam-01",
+  "builds/mercenary": "steam-03",
+  "builds/sorcerer": "steam-05",
+  "builds/blackarrow": "steam-11",
+  "builds/shadowstrix": "steam-10",
+  "builds/seer": "site-04",
+  "builds/withered-knight": "steam-01",
+  "class-picker": "steam-07",
+  "game-pass": "xbox-cover",
+  "battle-pass": "steam-02",
   fov: "site-15",
   codes: "site-05",
   "twitch-drops": "steam-04",
@@ -112,6 +121,15 @@ const explicitContent: Record<string, string[]> = {
   "classes/shadowstrix": ["steam-06", "site-03"],
   "classes/seer": ["steam-05", "steam-06"],
   "classes/withered-knight": ["steam-06", "steam-08"],
+  "builds/mercenary": ["steam-06", "steam-09"],
+  "builds/sorcerer": ["steam-06", "steam-04"],
+  "builds/blackarrow": ["steam-06", "steam-07"],
+  "builds/shadowstrix": ["steam-06", "site-03"],
+  "builds/seer": ["steam-05", "steam-06"],
+  "builds/withered-knight": ["steam-06", "steam-08"],
+  "class-picker": ["steam-06"],
+  "game-pass": ["site-07"],
+  "battle-pass": ["site-05"],
 };
 
 type ExplicitImageAssignment = {
@@ -198,6 +216,8 @@ const categoryByPath: Record<string, { label: string; path: string }> = {
   "best-solo-class": { label: "Classes", path: "classes" },
   "class-tier-list": { label: "Classes", path: "classes" },
   builds: { label: "Builds", path: "builds" },
+  "class-picker": { label: "Guides", path: "guides" },
+  "game-pass": { label: "Guides", path: "guides" },
   gameplay: { label: "Gameplay", path: "gameplay" },
   "solo-mode": { label: "Multiplayer", path: "multiplayer" },
   "pve-only": { label: "Multiplayer", path: "multiplayer" },
@@ -217,12 +237,14 @@ const categoryByPath: Record<string, { label: string; path: string }> = {
   "twitch-drops": { label: "Rewards", path: "rewards" },
   "launch-rewards": { label: "Rewards", path: "rewards" },
   skins: { label: "Rewards", path: "rewards" },
+  "battle-pass": { label: "Rewards", path: "rewards" },
   "known-issues": { label: "Updates", path: "updates" },
   "patch-notes": { label: "Updates", path: "updates" },
 };
 
 for (const slug of ["mercenary", "sorcerer", "blackarrow", "shadowstrix", "seer", "withered-knight"]) {
   categoryByPath[`classes/${slug}`] = { label: "Classes", path: "classes" };
+  categoryByPath[`builds/${slug}`] = { label: "Builds", path: "builds" };
 }
 
 const corePaths = new Set(Object.keys(coreHero));
@@ -1829,7 +1851,7 @@ function sourceEnhancements(path: string) {
   if (path === "how-to-extract") return [OFFICIAL_SITE, KNOWN_ISSUES_OFFICIAL, LAUNCH_UPDATE];
   if (path === "beginner-guide" || path === "gameplay") return [OFFICIAL_SITE, LAUNCH_FAQ];
   if (["solo-mode", "pve-only"].includes(path)) return [OFFICIAL_SITE, COMMUNITY_AMA];
-  if (path === "classes" || path.startsWith("classes/") || ["best-class", "best-solo-class", "class-tier-list", "builds"].includes(path)) return [DEVNOTE_7, COMMUNITY_AMA];
+  if (path === "classes" || path.startsWith("classes/") || path.startsWith("builds/") || ["best-class", "best-solo-class", "class-tier-list", "builds"].includes(path)) return [DEVNOTE_7, COMMUNITY_AMA];
   if (["servers", "region-lock", "crossplay", "play-with-friends"].includes(path)) return [LAUNCH_FAQ, COMMUNITY_AMA];
   if (["fatal-error-fix", "stuttering-fix", "crashing-fix", "best-settings"].includes(path)) return [DEVNOTE_7, KNOWN_ISSUES_OFFICIAL, LAUNCH_UPDATE];
   if (path === "controller-guide") return [KNOWN_ISSUES_OFFICIAL, LAUNCH_UPDATE, LAUNCH_FAQ];
@@ -1859,7 +1881,9 @@ export function enhancePage(page: GuidePageData): GuidePageData {
     category: category?.label ?? page.category,
     breadcrumbLabel: page.breadcrumbLabel ?? page.h1.replace(/^Mistfall Hunter\s+/i, ""),
     categoryPath: isCategory ? "" : category?.path ?? "",
-    pageType: page.path === "about"
+    pageType: page.tool === "class-picker"
+      ? "policy"
+      : page.path === "about"
       ? "about"
       : page.path === "contact"
         ? "contact"

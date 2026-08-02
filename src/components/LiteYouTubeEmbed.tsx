@@ -2,13 +2,21 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import type { FeaturedVideo } from "@/data/videos";
+
+type PlayableVideo = {
+  id: string;
+  title: string;
+  channel: string;
+  duration: string;
+  thumbnail: string;
+  thumbnailAlt: string;
+};
 
 export default function LiteYouTubeEmbed({
   video,
   position,
 }: {
-  video: FeaturedVideo;
+  video: PlayableVideo;
   position: number;
 }) {
   const [playing, setPlaying] = useState(false);
@@ -30,7 +38,7 @@ export default function LiteYouTubeEmbed({
     <div className="lite-video">
       {playing ? (
         <iframe
-          src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0&autoplay=1`}
+          src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0&autoplay=0`}
           title={video.title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen

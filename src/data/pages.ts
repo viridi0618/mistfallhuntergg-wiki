@@ -1,18 +1,22 @@
 import { classGuidePages } from "./classes";
+import { buildGuidePages } from "./builds";
 import { gameplayPages } from "./gameplay";
 import { rewardUpdatePages } from "./rewards-updates";
 import { settingsFixPages } from "./settings-fixes";
 import { commercePolicyPages } from "./site-pages";
 import { categoryPages } from "./category-pages";
+import { longTailPages } from "./long-tail";
 import { enhancePage } from "./page-enhancements";
 
 const basePages = [
   ...categoryPages,
   ...gameplayPages,
   ...classGuidePages,
+  ...buildGuidePages,
   ...settingsFixPages,
   ...rewardUpdatePages,
   ...commercePolicyPages,
+  ...longTailPages,
 ];
 
 export const pages = basePages.map(enhancePage);
