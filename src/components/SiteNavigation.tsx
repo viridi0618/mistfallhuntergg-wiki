@@ -33,6 +33,9 @@ export default function SiteNavigation({ locale, groups }: { locale: NavigationL
   const desktopOpenRef = useRef<string | null>(null);
   const mobileOpenRef = useRef(false);
   const mobileGroupRef = useRef<string | null>(null);
+  const hoverOpenTimerRef = useRef<number | null>(null);
+  const hoverCloseTimerRef = useRef<number | null>(null);
+  const fineHoverRef = useRef(false);
   const [desktopOpen, setDesktopOpen] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
@@ -46,6 +49,17 @@ export default function SiteNavigation({ locale, groups }: { locale: NavigationL
 
   const broadcast = useCallback((name: "site-navigation:open" | "site-navigation:close", deviceType: DeviceType) => {
     window.dispatchEvent(new CustomEvent(name, { detail: { deviceType } }));
+  }, []);
+
+  const clearHoverTimers = useCallback(() => {
+    if (hoverOpenTimerRef.current !== null) {
+      window.clearTimeout(hoverOpenTimerRef.current);
+      hoverOpenTimerRef.current = null;
+    }
+    if (hoverCloseTimerRef.current !== null) {
+      window.clearTimeout(hoverCloseTimerRef.current);
+      hoverCloseTimerRef.current = null;
+    }
   }, []);
 
   const closeDesktop = useCallback((restoreFocus = false, sendEvent = true) => {
@@ -79,6 +93,38 @@ export default function SiteNavigation({ locale, groups }: { locale: NavigationL
       });
     }
   }, [broadcast, closeDesktop, eventParameters]);
+
+  const openDesktopFromHover = useCallback((id: string) => {
+    if (!fineHoverRef.current) return;
+    if (hoverCloseTimerRef.current !== null) {
+      window.clearTimeout(hoverCloseTimerRef.current);
+      hoverCloseTimerRef.current = null;
+    }
+    if (hoverOpenTimerRef.current !== null) window.clearTimeout(hoverOpenTimerRef.current);
+    if (desktopOpenRef.current === id) {
+      hoverOpenTimerRef.current = null;
+      return;
+    }
+    hoverOpenTimerRef.current = window.setTimeout(() => {
+      hoverOpenTimerRef.current = null;
+      if (fineHoverRef.current && desktopOpenRef.current !== id) openDesktop(id);
+    }, 80);
+  }, [openDesktop]);
+
+  const closeDesktopFromHover = useCallback((id: string) => {
+    if (!fineHoverRef.current) return;
+    if (hoverOpenTimerRef.current !== null) {
+      window.clearTimeout(hoverOpenTimerRef.current);
+      hoverOpenTimerRef.current = null;
+    }
+    if (hoverCloseTimerRef.current !== null) window.clearTimeout(hoverCloseTimerRef.current);
+    hoverCloseTimerRef.current = window.setTimeout(() => {
+      hoverCloseTimerRef.current = null;
+      const group = desktopToggleRefs.current[id]?.closest(".desktop-nav-group");
+      if (group?.contains(document.activeElement) || desktopOpenRef.current !== id) return;
+      closeDesktop(false);
+    }, 220);
+  }, [closeDesktop]);
 
   const closeMobileGroup = useCallback((restoreFocus = false) => {
     const current = mobileGroupRef.current;
@@ -123,9 +169,27 @@ export default function SiteNavigation({ locale, groups }: { locale: NavigationL
   }, [closeMobileGroup, eventParameters]);
 
   const closeAll = useCallback((restoreFocus = false, sendEvent = true) => {
+    clearHoverTimers();
     closeDesktop(restoreFocus, sendEvent);
     closeMobile(restoreFocus, sendEvent);
-  }, [closeDesktop, closeMobile]);
+  }, [clearHoverTimers, closeDesktop, closeMobile]);
+
+  useEffect(() => {
+    const media = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+    function handleHoverCapabilityChange() {
+      fineHoverRef.current = media.matches;
+      if (!media.matches) clearHoverTimers();
+    }
+
+    handleHoverCapabilityChange();
+    media.addEventListener("change", handleHoverCapabilityChange);
+    return () => {
+      media.removeEventListener("change", handleHoverCapabilityChange);
+      fineHoverRef.current = false;
+      clearHoverTimers();
+    };
+  }, [clearHoverTimers]);
 
   useEffect(() => {
     closeAll(false);
@@ -185,7 +249,10 @@ export default function SiteNavigation({ locale, groups }: { locale: NavigationL
 
   function selectLink(group: NavGroup, item: NavItem, deviceType: DeviceType, event: MouseEvent<HTMLAnchorElement>) {
     trackLink(group, item, deviceType);
-    if (deviceType === "desktop") closeDesktop(false);
+    if (deviceType === "desktop") {
+      clearHoverTimers();
+      closeDesktop(false);
+    }
     else closeMobile(false);
     // Do not prevent default: modified clicks and JavaScript-free navigation keep normal Link behavior.
     void event;
@@ -247,7 +314,14 @@ export default function SiteNavigation({ locale, groups }: { locale: NavigationL
               className="desktop-nav-group"
               data-active={active || undefined}
               key={group.id}
-              onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) closeDesktop(false); }}
+              onPointerEnter={() => openDesktopFromHover(group.id)}
+              onPointerLeave={() => closeDesktopFromHover(group.id)}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) {
+                  clearHoverTimers();
+                  closeDesktop(false);
+                }
+              }}
             >
               <Link className="nav-top-link" href={group.href} aria-current={exact ? "page" : undefined} onClick={(event) => selectLink(group, groupLink, "desktop", event)}>{group.label}</Link>
               <button
@@ -257,10 +331,14 @@ export default function SiteNavigation({ locale, groups }: { locale: NavigationL
                 aria-label={labels.expand.replace("{label}", group.label)}
                 aria-expanded={desktopOpen === group.id}
                 aria-controls={panelId}
-                onClick={() => openDesktop(group.id)}
+                onClick={() => {
+                  clearHoverTimers();
+                  openDesktop(group.id);
+                }}
                 onKeyDown={(event) => {
                   if (event.key === "ArrowDown" || event.key === "ArrowUp") {
                     event.preventDefault();
+                    clearHoverTimers();
                     openDesktop(group.id, event.key === "ArrowDown" ? "first" : "last");
                   }
                 }}
