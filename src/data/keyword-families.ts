@@ -113,7 +113,7 @@ export const keywordFamilies = {
   },
   "/battle-pass/": {
     primary: "mistfall hunter battle pass",
-    variants: ["season 1 battle pass", "free battle pass", "sleeping dragon covenant", "battle pass access"],
+    variants: ["season 1 battle pass", "free battle pass", "slumbering contract", "battle pass access"],
   },
   "/solo-mode/": {
     primary: "mistfall hunter solo mode",

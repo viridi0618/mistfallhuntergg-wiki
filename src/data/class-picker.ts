@@ -1,4 +1,4 @@
-import { classProfileMap, classProfiles } from "./class-profiles";
+import { classProfileMap, classProfiles } from "./class-profiles.ts";
 
 export type ClassSlug = (typeof classProfiles)[number]["slug"];
 export type PickerQuestionId = "combat" | "mode" | "difficulty" | "priority";
@@ -13,7 +13,17 @@ export const pickerOptions: Record<PickerQuestionId, string[]> = {
   priority: ["survival", "burst", "sustain", "control", "mobility", "support"],
 };
 
-const tiePriority: ClassSlug[] = ["mercenary", "blackarrow", "seer", "sorcerer", "withered-knight", "shadowstrix"];
+export const pickerTiePriority: ClassSlug[] = ["mercenary", "blackarrow", "seer", "sorcerer", "withered-knight", "shadowstrix"];
+
+export const PICKER_STORAGE_VERSION = 1 as const;
+export const PICKER_STORAGE_KEY = "mistfall-class-picker-v1";
+
+export type StoredPickerState = {
+  version: typeof PICKER_STORAGE_VERSION;
+  step: number;
+  answers: PickerAnswers;
+  completed: boolean;
+};
 
 const scores: Record<string, Partial<Record<ClassSlug, number>>> = {
   defensive_melee: { mercenary: 4, "withered-knight": 3, seer: 1 },
@@ -51,7 +61,7 @@ export function scoreClassPicker(answers: PickerAnswers) {
     if (!answer) continue;
     for (const [slug, value] of Object.entries(scores[answer] ?? {})) totals[slug as ClassSlug] += value ?? 0;
   }
-  const ranked = [...classProfiles].sort((a, b) => totals[b.slug] - totals[a.slug] || tiePriority.indexOf(a.slug) - tiePriority.indexOf(b.slug));
+  const ranked = [...classProfiles].sort((a, b) => totals[b.slug] - totals[a.slug] || pickerTiePriority.indexOf(a.slug) - pickerTiePriority.indexOf(b.slug));
   const primary = ranked[0];
   const secondary = ranked[1];
   return {
@@ -60,6 +70,62 @@ export function scoreClassPicker(answers: PickerAnswers) {
     recommendedRoute: routeFor(primary.slug, answers),
     scores: totals,
   };
+}
+
+export function getPickerContributions(answers: PickerAnswers, slug: ClassSlug) {
+  return pickerQuestionIds
+    .map((questionId, questionOrder) => {
+      const answerId = answers[questionId];
+      return {
+        questionId,
+        answerId,
+        score: answerId ? scores[answerId]?.[slug] ?? 0 : 0,
+        questionOrder,
+      };
+    })
+    .filter((item): item is typeof item & { answerId: string } => Boolean(item.answerId) && item.score > 0)
+    .sort((a, b) => b.score - a.score || a.questionOrder - b.questionOrder);
+}
+
+export function getPickerReasonIds(answers: PickerAnswers, slug: ClassSlug) {
+  return getPickerContributions(answers, slug).slice(0, 3).map((item) => item.questionId);
+}
+
+function validAnswer(questionId: PickerQuestionId, value: unknown): value is string {
+  return typeof value === "string" && pickerOptions[questionId].includes(value);
+}
+
+export function createInitialPickerState(): StoredPickerState {
+  return { version: PICKER_STORAGE_VERSION, step: 0, answers: {}, completed: false };
+}
+
+export function createStoredPickerState(step: number, answers: PickerAnswers, completed: boolean): StoredPickerState {
+  const safeAnswers: PickerAnswers = {};
+  for (const questionId of pickerQuestionIds) {
+    const answer = answers[questionId];
+    if (validAnswer(questionId, answer)) safeAnswers[questionId] = answer;
+  }
+  const hasAllAnswers = pickerQuestionIds.every((questionId) => validAnswer(questionId, safeAnswers[questionId]));
+  return {
+    version: PICKER_STORAGE_VERSION,
+    step: Number.isInteger(step) && step >= 0 && step <= 3 ? step : 0,
+    answers: safeAnswers,
+    completed: completed && hasAllAnswers,
+  };
+}
+
+export function parseStoredPickerState(value: string): StoredPickerState | null {
+  try {
+    const parsed = JSON.parse(value) as unknown;
+    if (!parsed || typeof parsed !== "object") return null;
+    const candidate = parsed as Record<string, unknown>;
+    if (candidate.version !== PICKER_STORAGE_VERSION) return null;
+    if (!Number.isInteger(candidate.step) || (candidate.step as number) < 0 || (candidate.step as number) > 3) return null;
+    if (!candidate.answers || typeof candidate.answers !== "object" || Array.isArray(candidate.answers)) return null;
+    return createStoredPickerState(candidate.step as number, candidate.answers as PickerAnswers, candidate.completed === true);
+  } catch {
+    return null;
+  }
 }
 
 export function getPickerProfile(slug: string) {

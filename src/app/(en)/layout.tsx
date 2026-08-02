@@ -57,9 +57,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             strategy="afterInteractive"
           />
         )}
-        <Header />
-        {children}
-        <Footer />
+        <div id="site-content">
+          <Header />
+          {children}
+          <Footer />
+        </div>
         <ClassPickerLauncher locale="en" />
         {gaId && (
           <>

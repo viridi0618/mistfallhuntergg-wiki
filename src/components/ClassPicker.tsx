@@ -2,32 +2,39 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { pickerOptions, pickerQuestionIds, scoreClassPicker, type PickerAnswers, type PickerQuestionId } from "@/data/class-picker";
+import {
+  createStoredPickerState,
+  getPickerReasonIds,
+  parseStoredPickerState,
+  PICKER_STORAGE_KEY,
+  pickerOptions,
+  pickerQuestionIds,
+  scoreClassPicker,
+  type PickerAnswers,
+  type PickerQuestionId,
+  type StoredPickerState,
+} from "@/data/class-picker";
 import type { PickerEntryType } from "./PickerCta";
 
 type Locale = "en" | "es" | "de";
-type StoredState = { step: number; answers: PickerAnswers; completed: boolean };
-
-const storageKey = "mistfall-class-picker-v1";
-
 const copy = {
   en: {
     title: "Find your class", progress: "Question {current} of 4", back: "Back", restart: "Start Over", best: "Your best match", route: "Recommended route", why: "Why it fits", also: "Also consider", build: "Read the {className} Build", classGuide: "View the {className} Class Guide", extract: "Learn How to Extract", disclaimer: "This is a playstyle recommendation, not an official class ranking or guaranteed meta result.",
     questions: { combat: "What combat style do you prefer?", mode: "Which mode will you play most?", difficulty: "How much execution do you want?", priority: "Which ability matters most?" },
     options: { defensive_melee:"Defensive melee",mobile_melee:"Mobile melee",ranged_physical:"Ranged physical",ranged_magic:"Ranged magic",support_control:"Support and control",heavy_pressure:"Heavy pressure",solo:"Mostly Solo",trio:"Mostly Trio",both:"Both Solo and Trio",easy:"Easy to learn",moderate:"Moderate execution",high:"High skill ceiling",survival:"Survival",burst:"Burst damage",sustain:"Sustained pressure",control:"Control",mobility:"Mobility",support:"Team support" },
-    reasons: { combat:"You prefer {answer} combat.",mode:"You mainly play {answer}.",priority:"You value {answer}." },
+    reasons: { combat:"Combat preference: {answer}.",mode:"Main mode: {answer}.",difficulty:"Preferred difficulty: {answer}.",priority:"Priority: {answer}." },
   },
   es: {
     title:"Encuentra tu clase",progress:"Pregunta {current} de 4",back:"Atrás",restart:"Empezar de nuevo",best:"Tu mejor opción",route:"Ruta recomendada",why:"Por qué encaja",also:"Considera también",build:"Leer la build de {className}",classGuide:"Ver la guía de {className}",extract:"Aprender a extraer",disclaimer:"Esta es una recomendación de estilo de juego, no una clasificación oficial ni un resultado meta garantizado.",
     questions:{combat:"¿Qué estilo de combate prefieres?",mode:"¿Qué modo jugarás más?",difficulty:"¿Qué nivel de ejecución buscas?",priority:"¿Qué capacidad valoras más?"},
     options:{defensive_melee:"cuerpo a cuerpo defensivo",mobile_melee:"cuerpo a cuerpo móvil",ranged_physical:"combate físico a distancia",ranged_magic:"magia a distancia",support_control:"apoyo y control",heavy_pressure:"presión pesada",solo:"principalmente Solo",trio:"principalmente Trio",both:"Solo y Trio",easy:"fácil de aprender",moderate:"ejecución moderada",high:"alto techo de habilidad",survival:"supervivencia",burst:"daño explosivo",sustain:"presión sostenida",control:"control",mobility:"movilidad",support:"apoyo al equipo"},
-    reasons:{combat:"Prefieres {answer}.",mode:"Juegas {answer}.",priority:"Valoras {answer}."},
+    reasons:{combat:"Preferencia de combate: {answer}.",mode:"Modo principal: {answer}.",difficulty:"Dificultad preferida: {answer}.",priority:"Prioridad: {answer}."},
   },
   de: {
     title:"Finde deine Klasse",progress:"Frage {current} von 4",back:"Zurück",restart:"Neu starten",best:"Deine beste Wahl",route:"Empfohlener Weg",why:"Warum das passt",also:"Ebenfalls passend",build:"Den {className}-Build lesen",classGuide:"Den {className}-Klassenratgeber öffnen",extract:"Extraktion lernen",disclaimer:"Dies ist eine Spielstil-Empfehlung, keine offizielle Klassenrangliste oder garantierte Meta-Aussage.",
     questions:{combat:"Welchen Kampfstil bevorzugst du?",mode:"Welchen Modus spielst du hauptsächlich?",difficulty:"Wie anspruchsvoll soll die Ausführung sein?",priority:"Welche Fähigkeit ist dir am wichtigsten?"},
     options:{defensive_melee:"defensiver Nahkampf",mobile_melee:"mobiler Nahkampf",ranged_physical:"physischer Fernkampf",ranged_magic:"Fernkampfmagie",support_control:"Unterstützung und Kontrolle",heavy_pressure:"schwerer Druck",solo:"hauptsächlich Solo",trio:"hauptsächlich Trio",both:"Solo und Trio",easy:"leicht zu lernen",moderate:"mittlere Ausführung",high:"hohes Können",survival:"Überleben",burst:"Burst-Schaden",sustain:"anhaltender Druck",control:"Kontrolle",mobility:"Mobilität",support:"Team-Unterstützung"},
-    reasons:{combat:"Du bevorzugst {answer}.",mode:"Du spielst {answer}.",priority:"Dir ist {answer} wichtig."},
+    reasons:{combat:"Kampfpräferenz: {answer}.",mode:"Hauptmodus: {answer}.",difficulty:"Bevorzugter Anspruch: {answer}.",priority:"Priorität: {answer}."},
   },
 } as const;
 
@@ -50,16 +57,19 @@ export default function ClassPicker({ locale, entryType }: { locale: Locale; ent
   const result = useMemo(() => completed ? scoreClassPicker(answers) : null, [answers, completed]);
 
   useEffect(() => {
-    let savedState: StoredState | null = null;
+    let savedState: StoredPickerState | null = null;
     try {
-      const saved = sessionStorage.getItem(storageKey);
-      if (saved) savedState = JSON.parse(saved) as StoredState;
+      const saved = sessionStorage.getItem(PICKER_STORAGE_KEY);
+      if (saved) {
+        savedState = parseStoredPickerState(saved);
+        if (!savedState) sessionStorage.removeItem(PICKER_STORAGE_KEY);
+      }
     } catch { /* Ignore unavailable or invalid session state. */ }
     queueMicrotask(() => {
       if (savedState) {
-        setStep(Math.min(Math.max(savedState.step, 0), 3));
-        setAnswers(savedState.answers ?? {});
-        setCompleted(Boolean(savedState.completed));
+        setStep(savedState.step);
+        setAnswers(savedState.answers);
+        setCompleted(savedState.completed);
       }
       hydrated.current = true;
     });
@@ -67,7 +77,7 @@ export default function ClassPicker({ locale, entryType }: { locale: Locale; ent
 
   useEffect(() => {
     if (!hydrated.current) return;
-    try { sessionStorage.setItem(storageKey, JSON.stringify({ step, answers, completed } satisfies StoredState)); } catch { /* Session storage is optional. */ }
+    try { sessionStorage.setItem(PICKER_STORAGE_KEY, JSON.stringify(createStoredPickerState(step, answers, completed))); } catch { /* Session storage is optional. */ }
   }, [step, answers, completed]);
 
   function choose(questionId: PickerQuestionId, answerId: string) {
@@ -86,12 +96,12 @@ export default function ClassPicker({ locale, entryType }: { locale: Locale; ent
 
   function restart() {
     setStep(0); setAnswers({}); setCompleted(false);
-    try { sessionStorage.removeItem(storageKey); } catch { /* Session storage is optional. */ }
+    try { sessionStorage.removeItem(PICKER_STORAGE_KEY); } catch { /* Session storage is optional. */ }
     track("class_picker_restart", { source_path: location.pathname, entry_type: entryType });
   }
 
   if (result) {
-    const reasonIds: Array<"combat" | "mode" | "priority"> = ["combat", "mode", "priority"];
+    const reasonIds = getPickerReasonIds(answers, result.primary.slug);
     return <div className="class-picker-result" aria-live="polite">
       <p className="class-picker-kicker">{t.best}</p>
       <h2>{result.primary.name}</h2>

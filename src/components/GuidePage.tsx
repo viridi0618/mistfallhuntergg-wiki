@@ -99,6 +99,7 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
     policy: "WebPage",
     about: "AboutPage",
     contact: "ContactPage",
+    webpage: "WebPage",
   }[page.pageType ?? "article"];
   const pageSchema = {
     "@context": "https://schema.org",

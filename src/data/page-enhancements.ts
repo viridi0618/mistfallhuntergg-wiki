@@ -1882,7 +1882,7 @@ export function enhancePage(page: GuidePageData): GuidePageData {
     breadcrumbLabel: page.breadcrumbLabel ?? page.h1.replace(/^Mistfall Hunter\s+/i, ""),
     categoryPath: isCategory ? "" : category?.path ?? "",
     pageType: page.tool === "class-picker"
-      ? "policy"
+      ? "webpage"
       : page.path === "about"
       ? "about"
       : page.path === "contact"

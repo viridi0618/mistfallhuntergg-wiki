@@ -24,8 +24,11 @@ export default function ClassPickerLauncher({ locale = "en" }: { locale?: "en" |
   const [entryType, setEntryType] = useState<PickerEntryType>("floating_button");
   const buttonRef = useRef<HTMLButtonElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
+  const isOpenRef = useRef(false);
 
   const openPicker = useCallback((source: PickerEntryType, trigger?: HTMLElement | null) => {
+    if (isOpenRef.current) return;
+    isOpenRef.current = true;
     openerRef.current = trigger ?? buttonRef.current;
     setEntryType(source);
     setOpen(true);
@@ -33,6 +36,8 @@ export default function ClassPickerLauncher({ locale = "en" }: { locale?: "en" |
   }, []);
 
   const closePicker = useCallback(() => {
+    if (!isOpenRef.current) return;
+    isOpenRef.current = false;
     setOpen(false);
     track("class_picker_close", { source_path: location.pathname, entry_type: entryType });
     window.setTimeout(() => {

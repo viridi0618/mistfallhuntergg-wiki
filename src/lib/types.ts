@@ -105,7 +105,7 @@ export type GuidePageData = {
   tool?: "class-picker";
   breadcrumbLabel?: string;
   categoryPath?: string;
-  pageType?: "article" | "category" | "policy" | "about" | "contact";
+  pageType?: "article" | "category" | "policy" | "about" | "contact" | "webpage";
   warning?: string;
 };
 
