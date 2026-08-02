@@ -1,26 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { primaryNav } from "@/data/pages";
+import { navigationByLocale, type NavigationLocale } from "@/data/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
+import SiteNavigation from "./SiteNavigation";
 
-const localizedNav = {
-  en: primaryNav,
-  es: [
-    { href: "/es/guia-principiantes/", label: "Principiantes" },
-    { href: "/es/clases/", label: "Clases" },
-    { href: "/es/builds/", label: "Builds" },
-    { href: "/es/jugar-solo/", label: "Juego en solitario" },
-    { href: "/es/servidores/", label: "Servidores" },
-  ],
-  de: [
-    { href: "/de/einstellungen/", label: "Einstellungen" },
-    { href: "/de/ruckler-beheben/", label: "Ruckler beheben" },
-    { href: "/de/absturz-beheben/", label: "Abstürze" },
-    { href: "/de/server/", label: "Server" },
-  ],
-} as const;
-
-export default function Header({ locale = "en" }: { locale?: keyof typeof localizedNav }) {
+export default function Header({ locale = "en" }: { locale?: NavigationLocale }) {
   const home = locale === "en" ? "/" : `/${locale}/`;
   return (
     <header className="site-header">
@@ -34,16 +18,8 @@ export default function Header({ locale = "en" }: { locale?: keyof typeof locali
             <small>Guide</small>
           </span>
         </Link>
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          {localizedNav[locale].map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}
-        </nav>
+        <SiteNavigation locale={locale} groups={navigationByLocale[locale]} />
         <LanguageSwitcher />
-        <details className="mobile-menu">
-          <summary aria-label="Open navigation"><span /><span /><span /></summary>
-          <nav aria-label="Mobile navigation">
-            {localizedNav[locale].map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}
-          </nav>
-        </details>
       </div>
     </header>
   );

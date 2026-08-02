@@ -21,6 +21,7 @@ function track(event: string, parameters: Record<string, string>) {
 export default function ClassPickerLauncher({ locale = "en" }: { locale?: "en" | "es" | "de" }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [mobileNavigationOpen, setMobileNavigationOpen] = useState(false);
   const [entryType, setEntryType] = useState<PickerEntryType>("floating_button");
   const buttonRef = useRef<HTMLButtonElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
@@ -28,6 +29,7 @@ export default function ClassPickerLauncher({ locale = "en" }: { locale?: "en" |
 
   const openPicker = useCallback((source: PickerEntryType, trigger?: HTMLElement | null) => {
     if (isOpenRef.current) return;
+    window.dispatchEvent(new CustomEvent("site-navigation:close", { detail: { source: "class-picker" } }));
     isOpenRef.current = true;
     openerRef.current = trigger ?? buttonRef.current;
     setEntryType(source);
@@ -60,10 +62,27 @@ export default function ClassPickerLauncher({ locale = "en" }: { locale?: "en" |
     return () => window.removeEventListener("class-picker:open", handleOpen);
   }, [openPicker]);
 
+  useEffect(() => {
+    function handleNavigationOpen(event: Event) {
+      const detail = (event as CustomEvent<{ deviceType?: "desktop" | "mobile" }>).detail;
+      setMobileNavigationOpen(detail?.deviceType === "mobile");
+      if (isOpenRef.current) closePicker(false);
+    }
+    function handleNavigationClose() {
+      setMobileNavigationOpen(false);
+    }
+    window.addEventListener("site-navigation:open", handleNavigationOpen);
+    window.addEventListener("site-navigation:close", handleNavigationClose);
+    return () => {
+      window.removeEventListener("site-navigation:open", handleNavigationOpen);
+      window.removeEventListener("site-navigation:close", handleNavigationClose);
+    };
+  }, [closePicker]);
+
   if (pathname === "/class-picker/" || pathname === "/class-picker") return null;
   const t = labels[locale];
   return <>
-    {!open && <button ref={buttonRef} className="class-picker-launcher" type="button" aria-label={t.aria} onClick={() => openPicker("floating_button")}><span className="picker-launcher-desktop">{t.desktop}</span><span className="picker-launcher-mobile">{t.mobile}</span></button>}
+    {!open && !mobileNavigationOpen && <button ref={buttonRef} className="class-picker-launcher" type="button" aria-label={t.aria} onClick={() => openPicker("floating_button")}><span className="picker-launcher-desktop">{t.desktop}</span><span className="picker-launcher-mobile">{t.mobile}</span></button>}
     {open && <ClassPickerDrawer locale={locale} entryType={entryType} onClose={dismissPicker} onResultNavigate={closeForNavigation} />}
   </>;
 }

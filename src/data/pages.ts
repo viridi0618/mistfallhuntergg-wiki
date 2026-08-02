@@ -38,14 +38,3 @@ export const categoryLanding: Record<string, string> = {
   Updates: "updates",
   Site: "",
 };
-
-export const primaryNav = [
-  { label: "Guides", href: "/guides/" },
-  { label: "Classes", href: "/classes/" },
-  { label: "Builds", href: "/builds/" },
-  { label: "Gameplay", href: "/gameplay/" },
-  { label: "Multiplayer", href: "/multiplayer/" },
-  { label: "Settings & Fixes", href: "/settings-fixes/" },
-  { label: "Rewards", href: "/rewards/" },
-  { label: "Updates", href: "/updates/" },
-];
