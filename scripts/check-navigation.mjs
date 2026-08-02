@@ -7,6 +7,7 @@ import { isNavigationGroupActive, isNavigationPathCurrent } from "../src/lib/nav
 const root = process.cwd();
 const outRoot = path.join(root, "out");
 const componentSource = fs.readFileSync(path.join(root, "src", "components", "SiteNavigation.tsx"), "utf8");
+const globalStyles = fs.readFileSync(path.join(root, "src", "app", "globals.css"), "utf8");
 const pickerLauncherSource = fs.readFileSync(path.join(root, "src", "components", "ClassPickerLauncher.tsx"), "utf8");
 const pagesSource = fs.readFileSync(path.join(root, "src", "data", "pages.ts"), "utf8");
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
@@ -73,8 +74,15 @@ assert.ok(!componentSource.includes('role="menu"'), "Disclosure navigation must 
 for (const eventName of ["nav_menu_open", "nav_menu_close", "nav_item_click"]) assert.ok(componentSource.includes(eventName), `Missing navigation analytics event: ${eventName}`);
 for (const parameter of ["locale", "source_path", "menu_id", "item_label", "destination_path", "device_type"]) assert.ok(componentSource.includes(parameter), `Missing navigation analytics parameter: ${parameter}`);
 assert.ok(componentSource.includes('window.addEventListener("class-picker:open"'), "Navigation must close when the Class Picker opens");
+assert.ok(componentSource.includes('window.matchMedia("(max-width: 820px)")'), "Navigation must observe the desktop/mobile breakpoint");
+assert.ok(componentSource.includes('media.addEventListener("change", handleBreakpointChange)') && componentSource.includes("closeAll(false)"), "Breakpoint changes must clear stale navigation state");
+assert.ok(componentSource.includes("group.footerLink?.label ?? `${labels.all} ${group.label}`"), "Mobile Hub links must prefer localized footer labels");
 assert.ok(pickerLauncherSource.includes('window.addEventListener("site-navigation:open"') && pickerLauncherSource.includes('window.dispatchEvent(new CustomEvent("site-navigation:close"'), "Class Picker must coordinate with site navigation");
 assert.ok(packageJson.scripts.verify.includes("check:navigation"), "npm run verify must include check:navigation");
+
+const mobileMediaStart = globalStyles.indexOf("@media (max-width: 820px)");
+const bodyLockStart = globalStyles.indexOf('body:has(.mobile-navigation-panel[data-open="true"])');
+assert.ok(mobileMediaStart >= 0 && bodyLockStart > mobileMediaStart, "Mobile navigation body lock must be scoped to the mobile breakpoint");
 
 const sitemap = fs.readFileSync(path.join(outRoot, "sitemap.xml"), "utf8");
 assert.equal((sitemap.match(/<url>/g) ?? []).length, 76, "Sitemap public URL count changed");

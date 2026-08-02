@@ -489,10 +489,6 @@ summary:focus-visible {
   font-weight: 750;
 }
 
-body:has(.mobile-navigation-panel[data-open="true"]) {
-  overflow: hidden;
-}
-
 .language-switcher {
   display: inline-flex;
   padding: 3px;
@@ -2268,6 +2264,10 @@ tbody tr:nth-child(even) td {
 }
 
 @media (max-width: 820px) {
+  body:has(.mobile-navigation-panel[data-open="true"]) {
+    overflow: hidden;
+  }
+
   .desktop-nav {
     display: none;
   }

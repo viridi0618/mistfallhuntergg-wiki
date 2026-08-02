@@ -132,6 +132,17 @@ export default function SiteNavigation({ locale, groups }: { locale: NavigationL
   }, [pathname, closeAll]);
 
   useEffect(() => {
+    const media = window.matchMedia("(max-width: 820px)");
+
+    function handleBreakpointChange() {
+      closeAll(false);
+    }
+
+    media.addEventListener("change", handleBreakpointChange);
+    return () => media.removeEventListener("change", handleBreakpointChange);
+  }, [closeAll]);
+
+  useEffect(() => {
     function outside(event: PointerEvent) {
       if (rootRef.current?.contains(event.target as Node)) return;
       closeAll(false);
@@ -280,6 +291,7 @@ export default function SiteNavigation({ locale, groups }: { locale: NavigationL
           <nav aria-label={labels.mobile}>
             {groups.map((group) => {
               const items = navItems(group).filter((item) => !isNavigationPathCurrent(item.href, group.href));
+              const allLabel = group.footerLink?.label ?? `${labels.all} ${group.label}`;
               const hasPanel = items.length > 0;
               const active = isNavigationGroupActive(pathname, group);
               const exact = isNavigationPathCurrent(pathname, group.href);
@@ -295,7 +307,7 @@ export default function SiteNavigation({ locale, groups }: { locale: NavigationL
                     <button ref={(node) => { mobileGroupToggleRefs.current[group.id] = node; }} type="button" aria-label={labels.expand.replace("{label}", group.label)} aria-expanded={mobileGroup === group.id} aria-controls={panelId} onClick={() => toggleMobileGroup(group.id)}><span aria-hidden="true">⌄</span></button>
                   </div>
                   <div id={panelId} className="mobile-nav-group-panel" hidden={mobileGroup !== group.id} onKeyDown={(event) => panelKeydown(event, group.id, "mobile") }>
-                    <Link className="mobile-nav-all" href={group.href} prefetch={false} aria-current={exact ? "page" : undefined} onClick={(event) => selectLink(group, { label: `${labels.all} ${group.label}`, href: group.href }, "mobile", event)}>{labels.all} {group.label}</Link>
+                    <Link className="mobile-nav-all" href={group.href} prefetch={false} aria-current={exact ? "page" : undefined} onClick={(event) => selectLink(group, { label: allLabel, href: group.href }, "mobile", event)}>{allLabel}</Link>
                     {items.map((item) => <Link key={`${group.id}-${item.href}-${item.label}`} href={item.href} prefetch={false} data-emphasis={item.emphasis} aria-current={isNavigationPathCurrent(pathname, item.href) ? "page" : undefined} onClick={(event) => selectLink(group, item, "mobile", event)}><span>{item.label}</span>{item.description && <small>{item.description}</small>}</Link>)}
                   </div>
                 </div>
