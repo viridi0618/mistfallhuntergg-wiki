@@ -11,7 +11,10 @@ const expectedRoutes = [
   "classes", "best-class", "best-solo-class", "class-tier-list",
   "classes/mercenary", "classes/sorcerer", "classes/blackarrow",
   "classes/shadowstrix", "classes/seer", "classes/withered-knight",
-  "builds", "solo-mode", "pve-only", "gameplay", "crossplay", "servers",
+  "builds", "builds/mercenary", "builds/sorcerer", "builds/blackarrow",
+  "builds/shadowstrix", "builds/seer", "builds/withered-knight",
+  "class-picker", "game-pass", "battle-pass",
+  "solo-mode", "pve-only", "gameplay", "crossplay", "servers",
   "region-lock", "play-with-friends", "fov", "best-settings",
   "controller-guide", "fatal-error-fix", "stuttering-fix", "crashing-fix",
   "connection-fix", "codes", "twitch-drops", "launch-rewards", "skins",
@@ -44,7 +47,13 @@ const classRoutes = new Set([
   "classes/mercenary", "classes/sorcerer", "classes/blackarrow",
   "classes/shadowstrix", "classes/seer", "classes/withered-knight",
 ]);
-const excludedOutlineIds = new Set(["page-faq", "page-related", "page-sources"]);
+const buildRoutes = new Set([
+  "builds/mercenary", "builds/sorcerer", "builds/blackarrow",
+  "builds/shadowstrix", "builds/seer", "builds/withered-knight",
+]);
+const excludedOutlineIds = new Set([
+  "guide-path-title", "build-class-grid-title", "page-faq", "page-related", "page-sources",
+]);
 
 function classBlock(html, tag, className) {
   return html.match(new RegExp(`<${tag}\\b[^>]*class="[^"]*\\b${className}\\b[^"]*"[^>]*>[\\s\\S]*?<\\/${tag}>`))?.[0] ?? "";
@@ -109,6 +118,15 @@ const sourceText = filesUnder(sourceRoot)
 const errors = [];
 
 if (!sourceText.includes(domain)) errors.push("Production domain is missing from source.");
+for (const eventName of [
+  "class_picker_open", "class_picker_start", "class_picker_answer", "class_picker_complete",
+  "class_picker_result", "class_picker_build_click", "class_picker_class_click",
+  "class_picker_restart", "class_picker_close",
+]) {
+  if (!sourceText.includes(eventName)) errors.push(`Class Picker analytics event is missing: ${eventName}.`);
+}
+if (!sourceText.includes('dynamic(() => import("./ClassPickerDrawer"), { ssr: false })')) errors.push("Class Picker drawer is not lazy-loaded.");
+if (!sourceText.includes('mistfall-class-picker-v1')) errors.push("Class Picker session progress key is missing.");
 if (!fs.existsSync(path.join(root, "public", "mistfall-hunter-gyldenmist.jpg"))) errors.push("Local hero image is missing.");
 if (!fs.existsSync(path.join(root, "public", "og.png"))) errors.push("Social preview image is missing.");
 if (!fs.existsSync(path.join(root, "CONTENT_REVIEW.md"))) errors.push("CONTENT_REVIEW.md is missing.");
@@ -191,6 +209,12 @@ if (fs.existsSync(outRoot)) {
     if (classRoutes.has(route) && contentFigureCount < 2) {
       errors.push(`Class page /${route} needs at least two content figures; found ${contentFigureCount}.`);
     }
+    if (buildRoutes.has(route)) {
+      if (contentFigureCount < 2) errors.push(`Build page /${route} needs at least two content figures; found ${contentFigureCount}.`);
+      if ((html.match(/class="article-video"/g) || []).length !== 1) errors.push(`Build page /${route} must render exactly one article video.`);
+      if (html.includes("<iframe")) errors.push(`Build page /${route} must not render a YouTube iframe before a click.`);
+      if (!html.includes("Watch on YouTube")) errors.push(`Build page /${route} is missing its external YouTube fallback link.`);
+    }
     const figures = [...html.matchAll(/<figure\b[\s\S]*?<\/figure>/g)].map((match) => match[0]);
     for (const figure of figures) {
       const caption = figure.match(/<figcaption\b[^>]*>([\s\S]*?)<\/figcaption>/)?.[1]
@@ -243,6 +267,12 @@ if (fs.existsSync(outRoot)) {
         errors.push(`Non-article schema on /${route} must not include Article time fields.`);
       }
     }
+    if (route === "class-picker") {
+      if (!html.includes('class="class-picker-inline"')) errors.push("Standalone Class Picker is missing its inline tool.");
+      if (html.includes('class="class-picker-launcher"')) errors.push("Standalone Class Picker must not duplicate the global launcher.");
+      if (!html.includes('"@type":"WebPage"')) errors.push("Standalone Class Picker must use WebPage schema.");
+      if (html.includes('"@type":"FAQPage"')) errors.push("Standalone Class Picker must not emit FAQ schema without visible FAQ content.");
+    }
   }
   const outputText = filesUnder(outRoot)
     .filter((file) => /\.(html|xml|txt)$/.test(file))
@@ -256,6 +286,11 @@ if (fs.existsSync(outRoot)) {
     errors.push("sitemap.xml is missing one or more public pages.");
   }
   const homeHtml = fs.readFileSync(path.join(outRoot, "index.html"), "utf8");
+  const esHomeHtml = fs.readFileSync(path.join(outRoot, "es", "index.html"), "utf8");
+  const deHomeHtml = fs.readFileSync(path.join(outRoot, "de", "index.html"), "utf8");
+  if (!homeHtml.includes("Open the Mistfall Hunter Class Picker")) errors.push("English global Class Picker launcher is missing.");
+  if (!esHomeHtml.includes("Abrir el selector de clase de Mistfall Hunter")) errors.push("Spanish global Class Picker launcher is missing.");
+  if (!deHomeHtml.includes("Mistfall Hunter Klassenauswahl öffnen")) errors.push("German global Class Picker launcher is missing.");
   if ((homeHtml.match(/<article class="video-card/g) || []).length !== 3) errors.push("Home must render exactly three featured video cards.");
   if (homeHtml.includes("<iframe")) errors.push("Home must not render YouTube iframes before a click.");
   if (!homeHtml.includes("See Mistfall Hunter in Action")) errors.push("Featured video section is missing.");
