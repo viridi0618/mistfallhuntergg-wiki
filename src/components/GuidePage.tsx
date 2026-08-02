@@ -4,10 +4,15 @@ import FAQ from "./FAQ";
 import GuideCard from "./GuideCard";
 import JsonLd from "./JsonLd";
 import ArticleOutline from "./ArticleOutline";
+import ArticleVideo from "./ArticleVideo";
+import GuidePath from "./GuidePath";
+import BuildClassGrid from "./BuildClassGrid";
+import PickerCta from "./PickerCta";
+import ClassPickerInline from "./ClassPickerInline";
 import { absoluteUrl } from "@/lib/site-config";
 import { getPage } from "@/data/pages";
 import { buildArticleOutline, outlineIsVisible, type OutlineItem } from "@/lib/article-outline";
-import type { ContentImage, GuidePageData, GuideSection, GuideSubsection } from "@/lib/types";
+import type { ContentImage, ContentVideo, GuidePageData, GuideSection, GuideSubsection } from "@/lib/types";
 
 function Table({ headers, rows }: { headers: string[]; rows: string[][] }) {
   return (
@@ -41,10 +46,12 @@ function ArticleSection({
   section,
   outlineItem,
   images,
+  videos,
 }: {
   section: GuideSection;
   outlineItem: OutlineItem;
   images: ContentImage[];
+  videos: ContentVideo[];
 }) {
   return (
     <section>
@@ -57,6 +64,7 @@ function ArticleSection({
         <ArticleSubsection key={outlineItem.children?.[index]?.id ?? subsection.heading} subsection={subsection} id={outlineItem.children?.[index]?.id ?? `subsection-${index + 1}`} />
       ))}
       {images.map((image) => <ContentFigure key={image.src} image={image} />)}
+      {videos.map((video) => <ArticleVideo key={video.id} video={video} />)}
     </section>
   );
 }
@@ -91,6 +99,7 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
     policy: "WebPage",
     about: "AboutPage",
     contact: "ContactPage",
+    webpage: "WebPage",
   }[page.pageType ?? "article"];
   const pageSchema = {
     "@context": "https://schema.org",
@@ -176,6 +185,11 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
             <div><dt>Information type</dt><dd>{page.informationType}</dd></div>
           </dl>
 
+          {page.pickerCta && <PickerCta label={page.pickerCta} entryType={page.path === "guides" ? "guides_hub" : page.path === "classes" ? "classes_hub" : page.path === "builds" ? "builds_hub" : "build_page"} />}
+          {page.tool === "class-picker" && <ClassPickerInline />}
+          {page.guidePath && <GuidePath steps={page.guidePath} />}
+          {page.buildCards && <BuildClassGrid cards={page.buildCards} />}
+
           {showOutline && (
             <details className="on-this-page mobile-article-outline">
               <summary>On this page</summary>
@@ -194,6 +208,7 @@ export default function GuidePage({ page }: { page: GuidePageData }) {
               section={section}
               outlineItem={outline.items[index]}
               images={(page.contentImages ?? []).filter((image) => image.placementAfterHeading === section.heading)}
+              videos={(page.contentVideos ?? []).filter((video) => video.placementAfterHeading === section.heading)}
             />
           ))}
 

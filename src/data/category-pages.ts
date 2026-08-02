@@ -32,6 +32,15 @@ const guides: GuidePageData = {
   answer: "Start with the beginner guide, learn extraction before risking valuable gear, then move into class, build, multiplayer, and troubleshooting sections as each question appears.",
   ...common,
   informationType: "Editorial guide index based on official mechanics",
+  pickerCta: "Choose your class before selecting a build.",
+  guidePath: [
+    { step: 1, label: "Beginner Guide", href: "/beginner-guide/", question: "What should I carry, practice, and avoid in my first runs?" },
+    { step: 2, label: "How to Extract", href: "/how-to-extract/", question: "What starts a return and what can interrupt it?" },
+    { step: 3, label: "Choose a Class", href: "/classes/", question: "Which combat range and battlefield role fit me?" },
+    { step: 4, label: "Pick a Build", href: "/builds/", question: "How do I turn that role into a solo or trio plan?" },
+    { step: 5, label: "Rewards", href: "/rewards/", secondaryLabel: "Known Issues", secondaryHref: "/known-issues/", question: "What can I claim, and what should I verify before troubleshooting?" },
+    { step: 6, label: "Current Patch Notes", href: "/patch-notes/", question: "Which official changes affect the advice I just read?" },
+  ],
   sections: [
     {
       heading: "What this guide library solves",
@@ -39,20 +48,6 @@ const guides: GuidePageData = {
         "Mistfall Hunter combines deliberate action combat with extraction risk. That means a player can understand attacks and still lose progress by bringing the wrong kit, staying too long, or beginning the return process without enough healing and information. This hub arranges the site around decisions you can make before, during, and after a hunt.",
         "Official material confirms the basic loop: descend into the Gyldenmist, fight Corroded creatures and rival Gyldhunters, collect spoils, find a Returner Woodling, obtain a Soul of Return, and escape. Our guides add conservative planning around that loop without inventing spawn coordinates, drop rates, or guaranteed safe routes.",
       ],
-    },
-    {
-      heading: "Recommended reading order for a new player",
-      table: {
-        headers: ["Step", "Read", "Question it answers"],
-        rows: [
-          ["1", "Beginner Guide", "What should I carry, practice, and avoid in my first five runs?"],
-          ["2", "How to Extract", "What starts a return and what can interrupt it?"],
-          ["3", "Classes", "Which weapon rhythm and battlefield role fit me?"],
-          ["4", "Builds", "How do I turn a role into a coherent beginner, solo, or trio setup?"],
-          ["5", "Gameplay", "How do combat, loot, pressure, and extraction connect?"],
-          ["6", "Multiplayer", "Can I group with these friends and this account region?"],
-        ],
-      },
     },
     {
       heading: "The three questions to ask during every run",

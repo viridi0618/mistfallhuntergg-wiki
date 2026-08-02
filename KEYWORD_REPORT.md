@@ -7,7 +7,7 @@ Exact-density status: below 0.5% = Low; 0.5–1.3% = Natural; 1.3–1.8% = Revie
 | Language | URL | Primary keyword | Visible words | Exact count | Exact density | Family count | Family density | Status |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
 | EN | / | mistfall hunter guide | 2961 | 2 | 0.07% | 7 | 0.24% | Low |
-| EN | /guides/ | mistfall hunter guides | 788 | 0 | 0.00% | 8 | 1.02% | Low |
+| EN | /guides/ | mistfall hunter guides | 793 | 0 | 0.00% | 6 | 0.76% | Low |
 | EN | /multiplayer/ | mistfall hunter multiplayer | 718 | 0 | 0.00% | 5 | 0.70% | Low |
 | EN | /settings-fixes/ | mistfall hunter settings and fixes | 732 | 0 | 0.00% | 2 | 0.27% | Low |
 | EN | /rewards/ | mistfall hunter rewards | 731 | 0 | 0.00% | 9 | 1.23% | Low |
@@ -15,17 +15,26 @@ Exact-density status: below 0.5% = Low; 0.5–1.3% = Natural; 1.3–1.8% = Revie
 | EN | /beginner-guide/ | mistfall hunter beginner guide | 1671 | 0 | 0.00% | 6 | 0.36% | Low |
 | EN | /how-to-extract/ | how to extract in mistfall hunter | 1363 | 0 | 0.00% | 35 | 2.57% | Low |
 | EN | /character-creation/ | mistfall hunter character creation | 417 | 0 | 0.00% | 0 | 0.00% | Low |
-| EN | /classes/ | mistfall hunter classes | 752 | 3 | 0.40% | 3 | 0.40% | Low |
+| EN | /classes/ | mistfall hunter classes | 758 | 3 | 0.40% | 3 | 0.40% | Low |
 | EN | /best-class/ | mistfall hunter best class | 1386 | 0 | 0.00% | 11 | 0.79% | Low |
 | EN | /best-solo-class/ | mistfall hunter best solo class | 780 | 0 | 0.00% | 6 | 0.77% | Low |
 | EN | /class-tier-list/ | mistfall hunter class tier list | 1362 | 2 | 0.15% | 8 | 0.59% | Low |
-| EN | /classes/mercenary/ | mistfall hunter mercenary | 1257 | 0 | 0.00% | 1 | 0.08% | Low |
-| EN | /classes/sorcerer/ | mistfall hunter sorcerer | 1336 | 0 | 0.00% | 4 | 0.30% | Low |
-| EN | /classes/blackarrow/ | mistfall hunter blackarrow | 1231 | 0 | 0.00% | 1 | 0.08% | Low |
-| EN | /classes/shadowstrix/ | mistfall hunter shadowstrix | 1201 | 0 | 0.00% | 7 | 0.58% | Low |
-| EN | /classes/seer/ | mistfall hunter seer | 1230 | 0 | 0.00% | 1 | 0.08% | Low |
-| EN | /classes/withered-knight/ | mistfall hunter withered knight | 1340 | 0 | 0.00% | 14 | 1.04% | Low |
-| EN | /builds/ | mistfall hunter builds | 1615 | 2 | 0.12% | 2 | 0.12% | Low |
+| EN | /classes/mercenary/ | mistfall hunter mercenary | 1281 | 1 | 0.08% | 3 | 0.23% | Low |
+| EN | /classes/sorcerer/ | mistfall hunter sorcerer | 1351 | 1 | 0.07% | 6 | 0.44% | Low |
+| EN | /classes/blackarrow/ | mistfall hunter blackarrow | 1241 | 1 | 0.08% | 3 | 0.24% | Low |
+| EN | /classes/shadowstrix/ | mistfall hunter shadowstrix | 1225 | 1 | 0.08% | 10 | 0.82% | Low |
+| EN | /classes/seer/ | mistfall hunter seer | 1254 | 1 | 0.08% | 3 | 0.24% | Low |
+| EN | /classes/withered-knight/ | mistfall hunter withered knight | 1365 | 1 | 0.07% | 17 | 1.25% | Low |
+| EN | /builds/ | mistfall hunter builds | 1776 | 2 | 0.11% | 8 | 0.45% | Low |
+| EN | /builds/mercenary/ | mistfall hunter mercenary build | 996 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /builds/sorcerer/ | mistfall hunter sorcerer build | 1011 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /builds/blackarrow/ | mistfall hunter blackarrow build | 1023 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /builds/shadowstrix/ | mistfall hunter shadowstrix build | 1013 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /builds/seer/ | mistfall hunter seer build | 1052 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /builds/withered-knight/ | mistfall hunter withered knight build | 1049 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /class-picker/ | mistfall hunter class picker | 239 | 0 | 0.00% | 0 | 0.00% | Low |
+| EN | /game-pass/ | mistfall hunter game pass | 474 | 0 | 0.00% | 6 | 1.27% | Low |
+| EN | /battle-pass/ | mistfall hunter battle pass | 487 | 0 | 0.00% | 7 | 1.44% | Low |
 | EN | /solo-mode/ | mistfall hunter solo mode | 919 | 0 | 0.00% | 5 | 0.54% | Low |
 | EN | /pve-only/ | mistfall hunter pve only | 860 | 0 | 0.00% | 8 | 0.93% | Low |
 | EN | /gameplay/ | mistfall hunter gameplay guide | 1192 | 0 | 0.00% | 1 | 0.08% | Low |
@@ -73,11 +82,11 @@ Exact-density status: below 0.5% = Low; 0.5–1.3% = Natural; 1.3–1.8% = Revie
 
 | Language | URL | Primary keyword | Visible words | Exact count | Exact density | Family count | Family density | Status |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| EN | /battle-pass/ | mistfall hunter battle pass | 487 | 0 | 0.00% | 7 | 1.44% | Low |
 | EN | /beginner-guide/ | mistfall hunter beginner guide | 1671 | 0 | 0.00% | 6 | 0.36% | Low |
 | EN | /best-class/ | mistfall hunter best class | 1386 | 0 | 0.00% | 11 | 0.79% | Low |
 | EN | /best-settings/ | mistfall hunter best settings | 796 | 0 | 0.00% | 4 | 0.50% | Low |
 | EN | /best-solo-class/ | mistfall hunter best solo class | 780 | 0 | 0.00% | 6 | 0.77% | Low |
-| EN | /character-creation/ | mistfall hunter character creation | 417 | 0 | 0.00% | 0 | 0.00% | Low |
 
 ## Highest five exact densities
 
@@ -86,11 +95,11 @@ Exact-density status: below 0.5% = Low; 0.5–1.3% = Natural; 1.3–1.8% = Revie
 | EN | /codes/ | mistfall hunter codes | 513 | 3 | 0.58% | 4 | 0.78% | Natural |
 | EN | /platforms/ | mistfall hunter platforms | 357 | 2 | 0.56% | 7 | 1.96% | Natural |
 | DE | /de/server/ | mistfall hunter server | 461 | 2 | 0.43% | 2 | 0.43% | Low |
-| EN | /classes/ | mistfall hunter classes | 752 | 3 | 0.40% | 3 | 0.40% | Low |
+| EN | /classes/ | mistfall hunter classes | 758 | 3 | 0.40% | 3 | 0.40% | Low |
 | ES | /es/servidores/ | servidores de mistfall hunter | 612 | 2 | 0.33% | 2 | 0.33% | Low |
 
 ## Review queues
 
 - Suspected exact-match stuffing: None.
 - Do not add more keyword repetitions without a manual readability review: `/codes/`, `/platforms/`
-- Could add specific semantic terms later if they fit a useful sentence: `/character-creation/`, `/connection-fix/`, `/fatal-error-fix/`, `/play-with-friends/`, `/skins/`, `/twitch-drops/`, `/classes/mercenary/`, `/classes/blackarrow/`, `/classes/seer/`, `/gameplay/`
+- Could add specific semantic terms later if they fit a useful sentence: `/builds/blackarrow/`, `/builds/mercenary/`, `/builds/seer/`, `/builds/shadowstrix/`, `/builds/sorcerer/`, `/builds/withered-knight/`, `/character-creation/`, `/class-picker/`, `/connection-fix/`, `/fatal-error-fix/`

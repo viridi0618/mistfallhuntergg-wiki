@@ -79,6 +79,42 @@ export const keywordFamilies = {
     primary: "mistfall hunter builds",
     variants: ["build guide", "beginner builds", "solo builds", "trio builds"],
   },
+  "/builds/mercenary/": {
+    primary: "mistfall hunter mercenary build",
+    variants: ["sword and shield build", "hammer build", "mercenary solo build", "mercenary trio build"],
+  },
+  "/builds/sorcerer/": {
+    primary: "mistfall hunter sorcerer build",
+    variants: ["elemental build", "stardust build", "sorcerer solo build", "sorcerer trio build"],
+  },
+  "/builds/blackarrow/": {
+    primary: "mistfall hunter blackarrow build",
+    variants: ["archer build", "hunter build", "blackarrow solo build", "blackarrow trio build"],
+  },
+  "/builds/shadowstrix/": {
+    primary: "mistfall hunter shadowstrix build",
+    variants: ["daggers build", "dual blades build", "shadowstrix solo build", "shadowstrix trio build"],
+  },
+  "/builds/seer/": {
+    primary: "mistfall hunter seer build",
+    variants: ["catalyst build", "mace build", "seer solo build", "seer trio build"],
+  },
+  "/builds/withered-knight/": {
+    primary: "mistfall hunter withered knight build",
+    variants: ["greatsword build", "polearm and shield build", "withered knight solo build", "withered knight trio build"],
+  },
+  "/class-picker/": {
+    primary: "mistfall hunter class picker",
+    variants: ["which class should I play", "best class for playstyle", "solo class picker", "trio class picker"],
+  },
+  "/game-pass/": {
+    primary: "mistfall hunter game pass",
+    variants: ["is mistfall hunter on game pass", "game pass ultimate", "pc game pass", "xbox cloud gaming"],
+  },
+  "/battle-pass/": {
+    primary: "mistfall hunter battle pass",
+    variants: ["season 1 battle pass", "free battle pass", "slumbering contract", "battle pass access"],
+  },
   "/solo-mode/": {
     primary: "mistfall hunter solo mode",
     variants: ["solo guide", "solo queue", "solo route", "solo extraction"],

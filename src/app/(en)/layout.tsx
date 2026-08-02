@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ClassPickerLauncher from "@/components/ClassPickerLauncher";
 import { siteConfig } from "@/lib/site-config";
 import "../globals.css";
 
@@ -56,9 +57,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             strategy="afterInteractive"
           />
         )}
-        <Header />
-        {children}
-        <Footer />
+        <div id="site-content">
+          <Header />
+          {children}
+          <Footer />
+        </div>
+        <ClassPickerLauncher locale="en" />
         {gaId && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />

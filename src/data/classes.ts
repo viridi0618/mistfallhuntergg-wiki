@@ -1,4 +1,5 @@
 import type { ClassProfile, GuidePageData } from "@/lib/types";
+import { classProfiles } from "./class-profiles";
 import { GAMESRADAR, LAUNCH_UPDATE, OFFICIAL_SITE, STEAM, STEAM_NEWS } from "./sources";
 
 const checked = "2026-07-31";
@@ -6,104 +7,7 @@ const launchChecked = "2026-08-01";
 const classSourceNote =
   "Bellring Games describes two weapon stances and several archetypes for each launch class. Balance changed immediately around launch, so this page avoids fixed damage numbers and treats recommendations as version-sensitive.";
 
-const profiles: ClassProfile[] = [
-  {
-    slug: "mercenary",
-    name: "Mercenary",
-    role: "durable melee frontliner",
-    weapons: "Sword & Shield; Hammer",
-    strengths: ["Reliable blocking and parry options", "Wide Hammer pressure in PvE", "Clear frontline role in trios"],
-    weaknesses: ["Must commit at close range", "Charged attacks require prediction", "Can struggle to catch mobile ranged targets"],
-    solo: "A forgiving starting point if you value defense, readable attacks, and steady PvE clears over fast disengages.",
-    team: "Creates space, interrupts pushes, and gives ranged teammates a stable frontline.",
-    difficulty: "Beginner-friendly to learn; advanced parry and charge timing still matter.",
-    setup: "Start with Sword & Shield for a balanced route. Move toward Hammer after you are comfortable reading wind-ups and spacing.",
-    patch: "Launch tuning slightly improved Sword & Shield parry feel and raised parts of Hammer and shield-focused PvE performance.",
-  },
-  {
-    slug: "sorcerer",
-    name: "Sorcerer",
-    role: "ranged damage and crowd control",
-    weapons: "Staff at launch; a second weapon has been discussed but not fully detailed",
-    strengths: ["Elemental reactions", "Long-range area pressure", "Stardust burst and control"],
-    weaknesses: ["Casting windows can be punished", "Positioning is critical", "Less comfortable when cornered"],
-    solo: "Strong when you control sightlines, but mistakes are harder to recover from once a melee opponent closes distance.",
-    team: "Excellent follow-up damage and control behind a frontline.",
-    difficulty: "Moderate. Aiming, spacing, and knowing when it is safe to chant are central.",
-    setup: "Use Elemental for repeatable reaction pressure or Stardust when your group can protect longer cast windows.",
-    patch: "The July 30 update corrected Chant Guard's description as well as Flameblade range presentation and Sorcerer tutorial prompts. The description correction documents the intended effect; it is not an extra hidden buff.",
-    patchChanges: [
-      "Chant Guard increases Chanting Speed for Stardust spells.",
-      "While chanting a Stardust spell, the first attack received does not interrupt chanting.",
-      "The interruption protection has a cooldown; the official announcement does not provide its duration.",
-      "Stardust Torrent's casting phase also benefits from Chant Guard.",
-      "The update also listed the Flameblade visual-range mismatch and incorrect tutorial key prompts as fixed.",
-    ],
-    updated: launchChecked,
-  },
-  {
-    slug: "blackarrow",
-    name: "Blackarrow",
-    role: "precision ranged pressure",
-    weapons: "Bow; the second weapon is planned for a future season",
-    strengths: ["Safe ranged scouting", "Charged-arrow burst", "Ailments, control, and sustained pressure"],
-    weaknesses: ["Aim-dependent", "Vulnerable when trapped", "Launch balance reduced some overperforming solo tools"],
-    solo: "One of the clearest solo choices for players who can aim and maintain distance, but it is not an automatic win.",
-    team: "Provides ranged focus fire and status pressure while allies occupy the frontline.",
-    difficulty: "Moderate to high because missed shots and poor routes are costly.",
-    setup: "Choose Archer for charged-shot rhythm and Mysticfly detonation, or Hunter for frequent hits, ailments, and duration pressure.",
-    patch: "Official launch notes reduced parts of Mysticfly scaling and adjusted special arrows after strong solo data.",
-  },
-  {
-    slug: "shadowstrix",
-    name: "Shadowstrix",
-    role: "mobile melee ambusher",
-    weapons: "Daggers; Dual Blades",
-    strengths: ["Stealth-led initiations", "High mobility", "Burst or sustained multi-hit routes"],
-    weaknesses: ["Low margin for failed engagements", "Crowd-control chains were reduced at launch", "Requires matchup knowledge"],
-    solo: "Powerful for experienced players who can choose fights and leave bad positions before they collapse.",
-    team: "Threatens the backline and can coordinate sudden focus attacks.",
-    difficulty: "High. Stealth cycles, target selection, and escape planning all matter.",
-    setup: "Daggers support burst or repeated Shadow Veil play. Dual Blades support wound detonation or damage stacking.",
-    patch: "Launch tuning reduced excess mobility and chain-control potential while improving some hit detection.",
-  },
-  {
-    slug: "seer",
-    name: "Seer",
-    role: "flexible support, control, and close-range pressure",
-    weapons: "Catalyst; Mace",
-    strengths: ["Healing and shielding routes", "Control and team buffs", "Mace mobility and durable Zeal options"],
-    weaknesses: ["Damage depends heavily on route", "Support value is less visible in solo", "Mace escape power was tuned down at launch"],
-    solo: "Playable alone, especially through offensive Catalyst or Mace routes, but support investment pays more in a coordinated trio.",
-    team: "The most direct support choice, with peel, protection, and control.",
-    difficulty: "Moderate. Resource management and timing matter more than raw combo speed.",
-    setup: "Catalyst can lean offensive or supportive. Mace can emphasize speed and repeated strikes or Super Armor and damage reduction.",
-    patch: "Official notes raised parts of Catalyst damage and reduced long-distance escape power for Mace.",
-  },
-  {
-    slug: "withered-knight",
-    name: "Withered Knight",
-    role: "heavy melee control and formation breaking",
-    weapons: "Greatsword; Polearm & Shield",
-    strengths: ["Long melee reach", "Withering Sigil detonation", "Parry, pulls, and remote ally rescue options"],
-    weaknesses: ["Slow commitments", "Polearm aim and turn limits take practice", "Missed attacks leave large punish windows"],
-    solo: "Strong reach and control help, but the class is less forgiving when a fast opponent baits a heavy commitment.",
-    team: "Can pull targets, disrupt formations, rescue a downed ally at range, or hold space with the shield route.",
-    difficulty: "Moderate with Greatsword; higher with Polearm & Shield.",
-    setup: "Use Greatsword for Consecutive Break or Delayed Detonation. Use Polearm & Shield for reach, protection, and team utility.",
-    patch: "The July 30 changes improve Polearm & Shield resource flow, Tier-1 Charged Dash turning, and parts of its attack performance. They do not by themselves establish a new overall class ranking.",
-    patchChanges: [
-      "Charged Dash drains slightly less Energy during the shield-raising charge phase.",
-      "Tier-1 Charged Dash has slightly improved turning performance.",
-      "The thrust hits in the first and third Basic Attack sequences deal slightly more damage.",
-      "Spear Barrage has a slightly higher damage multiplier.",
-      "Rainbow Piercer costs slightly less Energy.",
-      "Rainbow Piercer has a slightly shorter cooldown.",
-      "Block costs less Energy.",
-    ],
-    updated: launchChecked,
-  },
-];
+const profiles = classProfiles;
 
 function classPage(profile: ClassProfile): GuidePageData {
   const keyword = `mistfall hunter ${profile.name.toLowerCase()}`;
@@ -178,7 +82,7 @@ function classPage(profile: ClassProfile): GuidePageData {
       { question: `What weapons does ${profile.name} use?`, answer: profile.weapons },
       { question: `What is a safe ${profile.name} build?`, answer: profile.setup },
     ],
-    related: ["classes", "best-class", "best-solo-class", "class-tier-list", "builds"],
+    related: [`builds/${profile.slug}`, "classes", "best-class", "best-solo-class", "class-tier-list", "builds"],
     sources: profile.updated === launchChecked ? [LAUNCH_UPDATE, OFFICIAL_SITE] : [STEAM_NEWS, OFFICIAL_SITE],
   };
 }
@@ -199,6 +103,7 @@ const classesHub: GuidePageData = {
   version: "Launch / Season 1",
   platforms: "PC, PS5, Xbox Series X|S",
   informationType: "Official class overview",
+  pickerCta: "Not sure which class fits you? Try the Class Picker.",
   sections: [
     {
       heading: "All Mistfall Hunter classes at a glance",
@@ -431,6 +336,14 @@ const builds: GuidePageData = {
   platforms: "PC, PS5, Xbox Series X|S",
   informationType: "Official mechanics with community-style recommendations",
   warning: "Community-recommended directions — not official builds.",
+  pickerCta: "Find a build by playstyle with the Class Picker.",
+  buildCards: profiles.map((profile) => ({
+    name: profile.name,
+    routes: `${profile.startingRoute} / ${profile.alternateRoute}`,
+    bestFor: profile.soloFit >= profile.trioFit ? "Solo and flexible play" : "Trio and coordinated play",
+    difficulty: profile.difficulty,
+    href: profile.buildPath,
+  })),
   sections: [
     {
       heading: "Mistfall Hunter builds for every class",
@@ -488,7 +401,7 @@ const builds: GuidePageData = {
     { question: "What is the best build?", answer: "No single setup is best for every mode, patch, equipment budget, and player." },
     { question: "Are these official builds?", answer: "No. They organize official mechanics into editorial learning recommendations." },
   ],
-  related: ["classes", ...profiles.map((profile) => `classes/${profile.slug}`)],
+  related: ["classes", ...profiles.map((profile) => `builds/${profile.slug}`), ...profiles.map((profile) => `classes/${profile.slug}`)],
   sources: [STEAM_NEWS, STEAM],
 };
 
