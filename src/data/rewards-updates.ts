@@ -102,14 +102,14 @@ const twitch: GuidePageData = {
       heading: "Previous Official Campaign",
       paragraphs: [
         "The official Twitch Drops page lists a completed campaign that ran June 14 through June 22, before the July 30 launch. The rewards below are the official table from that window and are presented as historical, not active.",
-        "Claiming required linking your game account with Twitch, claiming from Twitch within the campaign's time limit after being notified, and restarting the game if you were already logged in when the reward was delivered.",
+        "Claiming required linking your game account with Twitch, claiming from Twitch within 24 hours of receiving the notification, and restarting the game if you were already logged in when the reward was delivered.",
       ],
       table: {
         headers: ["Watch time", "Reward", "Claim note"],
         rows: [
-          ["15 minutes", "Healing Elixir x5 and Gyldenblod x200", "Linked Twitch and game account required"],
-          ["30 minutes", "Excellent Weapon Selection Chest", "Claim on Twitch within the campaign time limit"],
-          ["60 minutes", "Returner Woodling - Head", "Once per account"],
+          ["15 minutes", "Healing Elixir x5 and Gyldenblod x200", "Link Twitch and game account; claim within 24 hours"],
+          ["30 minutes", "Excellent Weapon Selection Chest", "Claim on Twitch within 24 hours of the notification"],
+          ["60 minutes", "Returner Woodling - Head", "Once per account; claim within 24 hours"],
         ],
       },
       note: "Official launch-era campaign, now ended. If a reward is missing 72 hours after a successful claim, contact official support with the campaign, claim time, platform, and account region.",
@@ -148,7 +148,7 @@ const twitch: GuidePageData = {
   ],
   faqs: [
     { question: "Are Twitch Drops active now?", answer: "No new active official campaign with verified August 2026 dates and rewards was announced in the sources checked on August 5, 2026. The last official campaign ended on June 22." },
-    { question: "What was the last official Twitch Drops campaign?", answer: "The official campaign ran June 14 through June 22 and offered Healing Elixir x5 and Gyldenblod x200 at 15 minutes, an Excellent Weapon Selection Chest at 30 minutes, and the Returner Woodling - Head cosmetic at 60 minutes, once per account." },
+    { question: "What was the last official Twitch Drops campaign?", answer: "The official campaign ran June 14 through June 22 and offered Healing Elixir x5 and Gyldenblod x200 at 15 minutes, an Excellent Weapon Selection Chest at 30 minutes, and the Returner Woodling - Head cosmetic at 60 minutes, once per account. Rewards had to be claimed on Twitch within 24 hours of the notification." },
     { question: "Does watching the launch stream grant a reward?", answer: "The official stream announcement did not confirm a Drops reward table." },
     { question: "Where should I link accounts?", answer: "Only through an official game or Twitch route." },
   ],

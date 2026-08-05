@@ -13,7 +13,7 @@ const expectedRoutes = [
   "classes/shadowstrix", "classes/seer", "classes/withered-knight",
   "builds", "builds/mercenary", "builds/sorcerer", "builds/blackarrow",
   "builds/shadowstrix", "builds/seer", "builds/withered-knight",
-  "class-picker", "game-pass", "battle-pass",
+  "class-picker", "game-pass", "battle-pass", "weapons",
   "solo-mode", "pve-only", "gameplay", "crossplay", "servers",
   "region-lock", "play-with-friends", "fov", "best-settings",
   "controller-guide", "fatal-error-fix", "stuttering-fix", "crashing-fix",
@@ -29,7 +29,7 @@ const expectedRoutes = [
 ];
 const domain = "https://mistfallhuntergg.wiki";
 const siteRoutes = new Set(["about", "editorial-policy", "privacy-policy", "disclaimer", "contact"]);
-const categoryRoutes = new Set(["guides", "multiplayer", "settings-fixes", "rewards", "updates", "classes", "builds", "gameplay"]);
+const categoryRoutes = new Set(["guides", "multiplayer", "settings-fixes", "rewards", "updates", "classes", "builds", "gameplay", "weapons"]);
 const compactImageRoutes = new Set([
   "best-settings", "fov", "controller-guide", "fatal-error-fix", "stuttering-fix",
   "crashing-fix", "connection-fix", "servers", "region-lock", "crossplay",

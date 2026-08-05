@@ -1,6 +1,6 @@
 import type { ClassProfile, GuidePageData } from "@/lib/types";
 import { classProfiles } from "./class-profiles";
-import { GAMESRADAR, LAUNCH_UPDATE, OFFICIAL_SITE, STEAM, STEAM_NEWS } from "./sources";
+import { DEVNOTE_6, GAMESRADAR, LAUNCH_UPDATE, OFFICIAL_SITE, STEAM, STEAM_NEWS } from "./sources";
 
 const checked = "2026-07-31";
 const launchChecked = "2026-08-01";
@@ -404,7 +404,7 @@ const builds: GuidePageData = {
     { question: "Are these official builds?", answer: "No. They organize official mechanics into editorial learning recommendations." },
   ],
   related: ["classes", "weapons", ...profiles.map((profile) => `builds/${profile.slug}`), ...profiles.map((profile) => `classes/${profile.slug}`)],
-  sources: [STEAM_NEWS, STEAM],
+  sources: [STEAM_NEWS, STEAM, DEVNOTE_6],
 };
 
 export const classGuidePages: GuidePageData[] = [
