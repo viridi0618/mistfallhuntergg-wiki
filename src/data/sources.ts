@@ -60,6 +60,12 @@ export const XBOX: GuideSource = {
   level: "Official",
 };
 
+export const TWITCH_DROPS: GuideSource = {
+  label: "Official Mistfall Hunter Twitch Drops page",
+  url: "https://www.twitch.tv/drops",
+  level: "Official",
+};
+
 export const GAMESRADAR: GuideSource = {
   label: "GamesRadar hands-on impressions",
   url: "https://www.gamesradar.com/games/action-rpg/steam-next-fests-top-demo-mistfall-hunter-is-basically-dark-souls-but-pvp-extraction/",

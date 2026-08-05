@@ -140,7 +140,7 @@ const classesHub: GuidePageData = {
     { question: "Which class is best?", answer: "There is no official best class. Mode, patch, player execution, and equipment all change the answer." },
     { question: "Can I change builds?", answer: "Yes. Skills, talents, weapons, and affix gems support multiple directions within a class." },
   ],
-  related: ["best-class", "best-solo-class", "class-tier-list", "builds", ...profiles.map((profile) => `classes/${profile.slug}`)],
+  related: ["best-class", "best-solo-class", "class-tier-list", "builds", "weapons", ...profiles.map((profile) => `classes/${profile.slug}`)],
   sources: [STEAM_NEWS, OFFICIAL_SITE],
 };
 
@@ -385,6 +385,8 @@ const builds: GuidePageData = {
       paragraphs: [
         "Official developer notes describe gear with limited inherent affixes and a large role for socketed Affix Gems. That makes the build a relationship between weapon stance, talents, skills, sockets, and the equipment you can realistically replace.",
         "Do not judge an affix in isolation. Prefer effects that reinforce your primary actions and can be used consistently in the intended mode. A rare effect that only triggers in an unlikely situation may contribute less than a reliable defensive or resource option.",
+        "The Loadout System supports saving multiple equipment configurations, and a Loadout Share Code can import a complete equipment and Affix Gem setup. Share codes reproduce configuration data only; they are not reward codes and do not grant items, currency, or cosmetics.",
+        "Build recommendations are version-sensitive. Official class mechanics are separated from editorial recommendations, and exact loadouts should be rechecked after balance updates.",
       ],
     },
     {
@@ -401,7 +403,7 @@ const builds: GuidePageData = {
     { question: "What is the best build?", answer: "No single setup is best for every mode, patch, equipment budget, and player." },
     { question: "Are these official builds?", answer: "No. They organize official mechanics into editorial learning recommendations." },
   ],
-  related: ["classes", ...profiles.map((profile) => `builds/${profile.slug}`), ...profiles.map((profile) => `classes/${profile.slug}`)],
+  related: ["classes", "weapons", ...profiles.map((profile) => `builds/${profile.slug}`), ...profiles.map((profile) => `classes/${profile.slug}`)],
   sources: [STEAM_NEWS, STEAM],
 };
 
