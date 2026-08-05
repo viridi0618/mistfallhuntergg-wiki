@@ -330,7 +330,7 @@ const builds: GuidePageData = {
   description: "Choose Mistfall Hunter builds by mode, weapon, skills, talents, gear risk, and evidence. Includes a launch direction for all six classes without fake stats.",
   h1: "Mistfall Hunter Builds",
   answer: "A useful build starts with mode and weapon role, then aligns skills, talents, gear, and affix gems around one repeatable plan. Launch balance is moving, so these are directions rather than guaranteed best loadouts.",
-  updated: checked,
+  updated: "2026-08-05",
   published: "2026-07-31",
   version: "Launch / Season 1",
   platforms: "PC, PS5, Xbox Series X|S",

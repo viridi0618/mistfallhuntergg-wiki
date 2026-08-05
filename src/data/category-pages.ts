@@ -101,6 +101,7 @@ const multiplayer: GuidePageData = {
   breadcrumbLabel: "Multiplayer",
   answer: "Mistfall Hunter supports solo play and three-player squads with cross-platform matchmaking, but account-region restrictions can still prevent otherwise compatible friends from sharing a server.",
   ...common,
+  updated: "2026-08-05",
   informationType: "Official multiplayer facts with conservative troubleshooting",
   sections: [
     {
