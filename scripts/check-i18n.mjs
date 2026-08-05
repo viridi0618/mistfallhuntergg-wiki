@@ -77,7 +77,7 @@ for (const { locale, route, group } of localized) {
   const unexpected = Object.keys(alternates).filter((lang) => ![...Object.keys(group), "x-default"].includes(lang));
   if (unexpected.length) errors.push(`${route} has fake hreflang entries: ${unexpected.join(", ")}.`);
   if (!html.includes('class="language-switcher"')) errors.push(`${route} is missing the language switcher.`);
-  const expectedOg = ["/es/", "/de/", "/es/clases/", "/es/builds/", "/es/armas/"].includes(route) ? "website" : "article";
+  const expectedOg = ["/es/", "/de/", "/es/clases/", "/es/builds/", "/es/armas/", "/es/recompensas/"].includes(route) ? "website" : "article";
   if (tagAttr(html, /<meta\b[^>]*property="og:type"[^>]*>/i, "content") !== expectedOg) errors.push(`${route} has wrong og:type.`);
   if (!html.includes(`\"inLanguage\":\"${locale}\"`)) errors.push(`${route} JSON-LD is missing inLanguage=${locale}.`);
 

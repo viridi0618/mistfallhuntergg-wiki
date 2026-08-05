@@ -35,6 +35,7 @@ const required = {
   classes: ["/classes/", "/class-picker/", "/classes/mercenary/", "/classes/sorcerer/", "/classes/blackarrow/", "/classes/shadowstrix/", "/classes/seer/", "/classes/withered-knight/"],
   builds: ["/builds/", "/builds/mercenary/", "/builds/sorcerer/", "/builds/blackarrow/", "/builds/shadowstrix/", "/builds/seer/", "/builds/withered-knight/"],
   rewards: ["/rewards/", "/codes/", "/skins/", "/battle-pass/", "/launch-rewards/", "/twitch-drops/"],
+  gameplay: ["/gameplay/", "/weapons/"],
 };
 
 for (const [id, hrefs] of Object.entries(required)) {
@@ -63,8 +64,23 @@ assert.equal(navigationByLocale.de.flatMap((group) => [...groupHrefs(group)]).so
 assert.equal(isNavigationGroupActive("/builds/sorcerer/", navigationByLocale.en.find((group) => group.id === "builds")), true);
 assert.equal(isNavigationGroupActive("/classes/seer/", navigationByLocale.en.find((group) => group.id === "classes")), true);
 assert.equal(isNavigationGroupActive("/codes/", navigationByLocale.en.find((group) => group.id === "rewards")), true);
+assert.equal(isNavigationGroupActive("/weapons/", navigationByLocale.en.find((group) => group.id === "gameplay")), true);
 assert.equal(isNavigationGroupActive("/patch-notes/", navigationByLocale.en.find((group) => group.id === "updates")), true);
 assert.equal(isNavigationPathCurrent("/builds/mercenary", "/builds/mercenary/"), true);
+
+const esRequired = {
+  gameplay: ["/es/armas/"],
+  recompensas: ["/es/recompensas/", "/es/codigos/"],
+};
+for (const [id, hrefs] of Object.entries(esRequired)) {
+  const group = navigationByLocale.es.find((candidate) => candidate.id === id);
+  assert.ok(group, `Missing Spanish ${id} navigation group`);
+  const actual = groupHrefs(group);
+  for (const href of hrefs) assert.ok(actual.has(href), `Missing ${href} from Spanish ${id} navigation`);
+}
+assert.equal(isNavigationGroupActive("/es/armas/", navigationByLocale.es.find((group) => group.id === "gameplay")), true);
+assert.equal(isNavigationGroupActive("/es/recompensas/", navigationByLocale.es.find((group) => group.id === "recompensas")), true);
+assert.equal(isNavigationGroupActive("/es/codigos/", navigationByLocale.es.find((group) => group.id === "recompensas")), true);
 
 assert.ok(componentSource.includes("groups.map"), "Desktop and mobile navigation must render from the shared groups prop");
 assert.ok(!pagesSource.includes("primaryNav"), "Legacy duplicate primary navigation data must be removed");

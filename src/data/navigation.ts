@@ -86,6 +86,7 @@ export const englishNavigation: NavGroup[] = [
         label: "Modes",
         items: [
           { label: "Gameplay Overview", href: "/gameplay/" },
+          { label: "Weapons", href: "/weapons/" },
           { label: "Solo Mode", href: "/solo-mode/" },
           { label: "PvE Only", href: "/pve-only/" },
           { label: "Multiplayer", href: "/multiplayer/" },
@@ -102,7 +103,7 @@ export const englishNavigation: NavGroup[] = [
     ],
     footerLink: { label: "View gameplay guides", href: "/gameplay/" },
     layout: "grouped",
-    activePaths: ["/gameplay/", "/solo-mode/", "/pve-only/", "/multiplayer/", "/crossplay/", "/servers/", "/region-lock/", "/play-with-friends/"],
+    activePaths: ["/gameplay/", "/weapons/", "/solo-mode/", "/pve-only/", "/multiplayer/", "/crossplay/", "/servers/", "/region-lock/", "/play-with-friends/"],
   },
   {
     id: "settings-fixes",

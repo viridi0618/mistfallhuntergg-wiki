@@ -130,11 +130,15 @@ function filesUnder(directory) {
   try {
     entries = fs.readdirSync(directory, { withFileTypes: true });
   } catch {
-    return [];
+    throw new Error(`Cannot read directory: ${directory}`);
   }
   return entries.flatMap((entry) => {
     const full = path.join(directory, entry.name);
-    return entry.isDirectory() ? filesUnder(full) : [full];
+    if (entry.isDirectory()) {
+      if (entry.name.startsWith("__next")) return [];
+      return filesUnder(full);
+    }
+    return [full];
   });
 }
 

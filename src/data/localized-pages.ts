@@ -19,8 +19,6 @@ type PageSpec = Omit<LocalizedPageData, "updated" | "published" | "heroImage" | 
   contentCaption: string;
   updated?: string;
   published?: string;
-  category?: string;
-  keyword?: string;
 };
 
 function page(spec: PageSpec): LocalizedPageData {
@@ -264,7 +262,7 @@ const esCommon = {
 };
 
 const spanishPages: LocalizedPageData[] = [
-  page({ ...esCommon, path: "/es/", englishPath: "/", imageIndex: 0, pageType: "website",
+  page({ ...esCommon, path: "/es/", englishPath: "/", imageIndex: 0, pageType: "website", updated: "2026-08-05",
     title: "Guía de Mistfall Hunter en español: clases, builds y ayuda",
     description: "Guía de Mistfall Hunter en español con consejos para principiantes, clases, builds, extracción, juego solo, servidores, códigos y respuestas verificadas.",
     h1: "Guía de Mistfall Hunter en español", eyebrow: "Guía independiente • fuentes oficiales • actualización de lanzamiento",
@@ -288,6 +286,8 @@ const spanishPages: LocalizedPageData[] = [
         ["Salir con el botín", "Cómo extraer", "Returner Woodling y Soul of Return"],
         ["Elegir personaje", "Clases y mejor clase", "Roles, alcance y dificultad"],
         ["Problemas de acceso", "Servidores y bloqueo regional", "Hechos oficiales y límites de cuenta"],
+        ["Elegir armas", "Armas", "Familias y estilos por clase"],
+        ["Recompensas y códigos", "Recompensas", "Drops, regalos y códigos"],
       ] } },
     ],
     faqs: [
@@ -694,7 +694,7 @@ const spanishPages: LocalizedPageData[] = [
     heroAlt: "Puente de una fortaleza en ruinas junto a la Gyldenmist dorada", heroCaption: "El arte oficial no representa un código ni una pantalla de canje.",
     contentImageAlt: "Tres Gyldhunters combatiendo criaturas Corroded en una caverna", contentCaption: "La escena de juego acompaña la distinción entre recompensas y cadenas de canje." }),
 
-  page({ ...esCommon, path: "/es/recompensas/", englishPath: "/rewards/", imageIndex: 0, pageType: "article", category: "Recompensas", keyword: "recompensas mistfall hunter", updated: "2026-08-05", published: "2026-08-05",
+  page({ ...esCommon, path: "/es/recompensas/", englishPath: "/rewards/", imageIndex: 0, pageType: "collection", updated: "2026-08-05", published: "2026-08-05",
     title: "Recompensas de Mistfall Hunter: Drops, regalos y códigos",
     description: "Consulta las recompensas de Mistfall Hunter: códigos, Twitch Drops, regalos de lanzamiento, Pase de batalla y reglas de reclamación verificadas.",
     h1: "Recompensas de Mistfall Hunter", eyebrow: "Estado verificado",
@@ -713,7 +713,7 @@ const spanishPages: LocalizedPageData[] = [
         ["Share Codes de builds", "Disponibles como herramienta de configuración", "Importan equipamiento y gemas; no conceden objetos"],
       ] } },
       { heading: "Códigos de canje y códigos para compartir builds", paragraphs: [
-        "Un código de canje entrega una recompensa cuando el desarrollador publica un texto válido, una vigencia, una recompensa y un método de introducción.",
+        "Un código de canje entrega una recompensa cuando el desarrollador publica un texto válido, una vigencia, una recompensa y un método oficial de canje.",
         "Un código para compartir una configuración, o Loadout Share Code, cumple otra función. Importa una combinación de equipamiento y gemas de afijo en el sistema de Loadout. No entrega moneda, cosméticos, armas ni recompensas.",
         "No introduzcas un Share Code en una supuesta página de recompensas ni compartas contraseñas, códigos de seguridad o tokens de sesión con terceros.",
       ] },
@@ -728,7 +728,7 @@ const spanishPages: LocalizedPageData[] = [
       { heading: "Cómo reclamar correctamente un Twitch Drop", paragraphs: [
         "Vincula la cuenta del juego y la cuenta de Twitch únicamente mediante las rutas oficiales. Durante una campaña activa, mira un canal que tenga Drops habilitados para Mistfall Hunter y completa el tiempo requerido.",
         "Cuando Twitch envíe la notificación, reclama la recompensa en un máximo de 24 horas. Después, inicia sesión en el juego. Si ya estabas conectado, cierra la sesión y vuelve a entrar.",
-        "Si la recompensa sigue sin aparecer 72 horas después de reclamarla, contacta con el soporte oficial e incluye la campaña, la hora de reclamación, la plataforma y la región de la cuenta. No compartas información privada.",
+        "Si la recompensa sigue sin aparecer 72 horas después de reclamarla, contacta con el equipo mediante el Discord oficial e incluye la campaña, la hora de reclamación, la plataforma y la región de la cuenta. No compartas información privada.",
       ] },
       { heading: "Recompensas de lanzamiento y Pase de batalla", paragraphs: [
         "Las recompensas de lanzamiento no son códigos públicos. Se conceden mediante condiciones como el inicio de sesión, la participación previa, la edición comprada o el correo dentro del juego.",
@@ -746,14 +746,14 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿Los códigos para compartir builds dan recompensas?", answer: "No. Importan una configuración de equipamiento y gemas de afijo, pero no conceden objetos, monedas ni cosméticos." },
       { question: "¿Están activos los Twitch Drops?", answer: "No se ha confirmado una nueva campaña activa para agosto. La campaña oficial más reciente terminó el 22 de junio." },
       { question: "¿Cuánto tiempo tengo para reclamar un Twitch Drop?", answer: "La campaña oficial indicó que debía reclamarse en Twitch dentro de las 24 horas posteriores a la notificación." },
-      { question: "¿Qué hago si no recibo el Drop?", answer: "Vuelve a iniciar sesión y espera el periodo oficial de entrega. Si sigue sin aparecer 72 horas después de reclamarlo, contacta con el soporte oficial." },
+      { question: "¿Qué hago si no recibo el Drop?", answer: "Vuelve a iniciar sesión y espera el periodo oficial de entrega. Si sigue sin aparecer 72 horas después de reclamarlo, contacta con el equipo mediante el Discord oficial." },
     ],
     related: ["/es/codigos/", "/es/armas/", "/es/builds/", "/es/clases/"],
     sources: [TWITCH_DROPS, LAUNCH_UPDATE, LAUNCH_ANNOUNCEMENT, LAUNCH_FAQ, DEVNOTE_6, STEAM],
     heroAlt: "Puente de una fortaleza en ruinas junto a la Gyldenmist dorada", heroCaption: "El arte oficial no representa un código ni una pantalla de canje.",
     contentImageAlt: "Tres Gyldhunters combatiendo criaturas Corroded en una caverna", contentCaption: "La escena de juego acompaña la distinción entre recompensas y cadenas de canje." }),
 
-  page({ ...esCommon, path: "/es/armas/", englishPath: "/weapons/", imageIndex: 3, pageType: "collection", category: "Jugabilidad", keyword: "armas mistfall hunter", updated: "2026-08-05", published: "2026-08-05",
+  page({ ...esCommon, path: "/es/armas/", englishPath: "/weapons/", imageIndex: 3, pageType: "collection", updated: "2026-08-05", published: "2026-08-05",
     title: "Armas de Mistfall Hunter: lista por clase y sistemas",
     description: "Consulta todas las armas confirmadas de Mistfall Hunter por clase, sus estilos oficiales, armas sagradas, gemas de afijo y códigos de build.",
     h1: "Armas de Mistfall Hunter", eyebrow: "Guía de armas",
@@ -806,7 +806,7 @@ const spanishPages: LocalizedPageData[] = [
       { heading: "Información todavía no confirmada", paragraphs: [
         "El nombre y la fecha concreta de la segunda arma de Blackarrow no se han anunciado; solo existe una ventana amplia de futura temporada.",
         "La segunda arma de Sorcerer está en desarrollo, pero no tiene nombre final ni fecha de lanzamiento confirmados.",
-        "Tampoco se publican tasas exactas de drop, precios de mercado, estadísticas numéricas o cantidades totales de armas basadas en bases de datos de terceros. Una base de datos puede contar variantes de calidad y valores como registros separados, lo que no equivale al número de armas distintas.",
+        "Tampoco se publica la probabilidad exacta de obtención, precios de mercado, estadísticas numéricas o cantidades totales de armas basadas en bases de datos de terceros. Una base de datos puede contar variantes de calidad y valores como registros separados, lo que no equivale al número de armas distintas.",
       ] },
     ],
     faqs: [

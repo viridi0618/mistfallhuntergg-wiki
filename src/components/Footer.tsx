@@ -4,7 +4,7 @@ import Link from "next/link";
 const columns = [
   {
     title: "Popular Guides",
-    links: [["Guides Hub", "/guides/"], ["Beginner Guide", "/beginner-guide/"], ["How to Extract", "/how-to-extract/"], ["Gameplay", "/gameplay/"]],
+    links: [["Guides Hub", "/guides/"], ["Beginner Guide", "/beginner-guide/"], ["Weapons", "/weapons/"], ["Builds", "/builds/"]],
   },
   {
     title: "Classes",

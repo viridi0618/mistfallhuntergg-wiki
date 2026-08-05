@@ -26,6 +26,7 @@ const featured = [
   "best-class",
   "best-solo-class",
   "builds",
+  "weapons",
   "solo-mode",
   "crossplay",
   "servers",
@@ -213,7 +214,7 @@ export default function Home() {
           <h2>How to choose a launch build</h2>
           <p>A useful build begins with a job. Decide whether you are clearing PvE efficiently, surviving solo, creating PvP burst, supporting a trio, or maximizing extraction consistency. Then align weapon stance, active skills, talents, equipment, and Affix Gems around that job.</p>
           <p>Official developer notes describe a Loadout System with saved configurations and share codes. A share code can import equipment and gem choices, but it does not prove that a setup is best for your patch, mode, budget, or skill level. Treat every imported setup as a hypothesis. Test it with replaceable gear, check whether it has a defensive response and a disengagement plan, and update it after balance notes.</p>
-          <p>Our <Link href="/builds/">Mistfall Hunter builds hub</Link> gives one beginner, solo, and trio direction for each class. Every recommendation is labeled with mode, difficulty, game version, check date, and evidence type. Specific class pages explain why the direction works instead of presenting an unexplained list of equipment.</p>
+          <p>Our <Link href="/builds/">Mistfall Hunter builds hub</Link> gives one beginner, solo, and trio direction for each class. Every recommendation is labeled with mode, difficulty, game version, check date, and evidence type. Specific class pages explain why the direction works instead of presenting an unexplained list of equipment. Start with the <Link href="/weapons/">weapons guide</Link> when you want to compare every confirmed launch weapon family before choosing a build direction.</p>
         </section>
 
         <figure className="home-figure">
