@@ -191,13 +191,25 @@ export const spanishNavigation: NavGroup[] = [
     panelLabel: "Juego y conexión",
     items: [
       { label: "Juego en solitario", href: "/es/jugar-solo/" },
+      { label: "Armas", href: "/es/armas/" },
       { label: "Servidores", href: "/es/servidores/" },
       { label: "Bloqueo regional", href: "/es/bloqueo-regional/" },
     ],
     footerLink: { label: "Ver juego en solitario", href: "/es/jugar-solo/" },
-    activePaths: ["/es/jugar-solo/", "/es/servidores/", "/es/bloqueo-regional/"],
+    activePaths: ["/es/jugar-solo/", "/es/armas/", "/es/servidores/", "/es/bloqueo-regional/"],
   },
-  { id: "codes", label: "Códigos", href: "/es/codigos/", activePaths: ["/es/codigos/"] },
+  {
+    id: "recompensas",
+    label: "Recompensas",
+    href: "/es/recompensas/",
+    panelLabel: "Códigos y recompensas",
+    items: [
+      { label: "Recompensas", href: "/es/recompensas/" },
+      { label: "Códigos", href: "/es/codigos/" },
+    ],
+    footerLink: { label: "Ver recompensas", href: "/es/recompensas/" },
+    activePaths: ["/es/recompensas/", "/es/codigos/"],
+  },
 ];
 
 export const germanNavigation: NavGroup[] = [

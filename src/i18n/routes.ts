@@ -15,6 +15,8 @@ export const routeTranslations: RouteTranslations[] = [
   { en: "/servers/", es: "/es/servidores/", de: "/de/server/" },
   { en: "/region-lock/", es: "/es/bloqueo-regional/", de: "/de/region-lock/" },
   { en: "/codes/", es: "/es/codigos/" },
+  { en: "/rewards/", es: "/es/recompensas/" },
+  { en: "/weapons/", es: "/es/armas/" },
   { en: "/best-settings/", de: "/de/einstellungen/" },
   { en: "/stuttering-fix/", de: "/de/ruckler-beheben/" },
   { en: "/crashing-fix/", de: "/de/absturz-beheben/" },

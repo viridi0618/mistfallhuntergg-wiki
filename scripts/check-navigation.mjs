@@ -68,6 +68,20 @@ assert.equal(isNavigationGroupActive("/weapons/", navigationByLocale.en.find((gr
 assert.equal(isNavigationGroupActive("/patch-notes/", navigationByLocale.en.find((group) => group.id === "updates")), true);
 assert.equal(isNavigationPathCurrent("/builds/mercenary", "/builds/mercenary/"), true);
 
+const esRequired = {
+  gameplay: ["/es/armas/"],
+  recompensas: ["/es/recompensas/", "/es/codigos/"],
+};
+for (const [id, hrefs] of Object.entries(esRequired)) {
+  const group = navigationByLocale.es.find((candidate) => candidate.id === id);
+  assert.ok(group, `Missing Spanish ${id} navigation group`);
+  const actual = groupHrefs(group);
+  for (const href of hrefs) assert.ok(actual.has(href), `Missing ${href} from Spanish ${id} navigation`);
+}
+assert.equal(isNavigationGroupActive("/es/armas/", navigationByLocale.es.find((group) => group.id === "gameplay")), true);
+assert.equal(isNavigationGroupActive("/es/recompensas/", navigationByLocale.es.find((group) => group.id === "recompensas")), true);
+assert.equal(isNavigationGroupActive("/es/codigos/", navigationByLocale.es.find((group) => group.id === "recompensas")), true);
+
 assert.ok(componentSource.includes("groups.map"), "Desktop and mobile navigation must render from the shared groups prop");
 assert.ok(!pagesSource.includes("primaryNav"), "Legacy duplicate primary navigation data must be removed");
 assert.ok(componentSource.includes('aria-expanded={desktopOpen === group.id}') && componentSource.includes('aria-controls={panelId}'), "Desktop disclosures need aria-expanded and aria-controls");
@@ -95,7 +109,7 @@ const bodyLockStart = globalStyles.indexOf('body:has(.mobile-navigation-panel[da
 assert.ok(mobileMediaStart >= 0 && bodyLockStart > mobileMediaStart, "Mobile navigation body lock must be scoped to the mobile breakpoint");
 
 const sitemap = fs.readFileSync(path.join(outRoot, "sitemap.xml"), "utf8");
-assert.equal((sitemap.match(/<url>/g) ?? []).length, 77, "Sitemap public URL count changed");
+assert.equal((sitemap.match(/<url>/g) ?? []).length, 79, "Sitemap public URL count changed");
 
 for (const href of ["/", "/codes/", "/classes/", "/classes/mercenary/", "/builds/", "/builds/mercenary/", "/rewards/"]) {
   const header = headerHtml(href);
@@ -131,4 +145,4 @@ for (const href of ["/es/", "/de/"]) {
   }
 }
 
-console.log("Navigation checks passed: shared locale data, precise-pointer hover intent, responsive state safety, valid disclosures, 77 public URLs, and no invented localized routes.");
+console.log("Navigation checks passed: shared locale data, precise-pointer hover intent, responsive state safety, valid disclosures, 79 public URLs, and no invented localized routes.");

@@ -1,8 +1,8 @@
 import type { GuideSection } from "@/lib/types";
 import type { LocalizedPageData } from "@/lib/localized-types";
 import {
-  COMMUNITY_AMA, DEVNOTE_7, KNOWN_ISSUES_OFFICIAL, LAUNCH_FAQ, LAUNCH_UPDATE,
-  OFFICIAL_SITE, STEAM, STEAM_NEWS, XBOX,
+  COMMUNITY_AMA, DEVNOTE_6, DEVNOTE_7, KNOWN_ISSUES_OFFICIAL, LAUNCH_ANNOUNCEMENT, LAUNCH_FAQ, LAUNCH_UPDATE,
+  OFFICIAL_SITE, STEAM, STEAM_NEWS, TWITCH_DROPS, XBOX,
 } from "./sources.ts";
 
 const UPDATED = "2026-08-01";
@@ -17,6 +17,8 @@ type PageSpec = Omit<LocalizedPageData, "updated" | "published" | "heroImage" | 
   heroCaption: string;
   contentImageAlt: string;
   contentCaption: string;
+  updated?: string;
+  published?: string;
 };
 
 function page(spec: PageSpec): LocalizedPageData {
@@ -35,8 +37,8 @@ function page(spec: PageSpec): LocalizedPageData {
   return {
     ...spec,
     sections,
-    updated: UPDATED,
-    published: PUBLISHED,
+    updated: spec.updated ?? UPDATED,
+    published: spec.published ?? PUBLISHED,
     heroImage: `/images/official/${heroKey}.webp`,
     heroImageAlt: spec.heroAlt,
     heroImageCaption: spec.heroCaption,
@@ -260,7 +262,7 @@ const esCommon = {
 };
 
 const spanishPages: LocalizedPageData[] = [
-  page({ ...esCommon, path: "/es/", englishPath: "/", imageIndex: 0, pageType: "website",
+  page({ ...esCommon, path: "/es/", englishPath: "/", imageIndex: 0, pageType: "website", updated: "2026-08-05",
     title: "Guía de Mistfall Hunter en español: clases, builds y ayuda",
     description: "Guía de Mistfall Hunter en español con consejos para principiantes, clases, builds, extracción, juego solo, servidores, códigos y respuestas verificadas.",
     h1: "Guía de Mistfall Hunter en español", eyebrow: "Guía independiente • fuentes oficiales • actualización de lanzamiento",
@@ -284,6 +286,8 @@ const spanishPages: LocalizedPageData[] = [
         ["Salir con el botín", "Cómo extraer", "Returner Woodling y Soul of Return"],
         ["Elegir personaje", "Clases y mejor clase", "Roles, alcance y dificultad"],
         ["Problemas de acceso", "Servidores y bloqueo regional", "Hechos oficiales y límites de cuenta"],
+        ["Elegir armas", "Armas", "Familias y estilos por clase"],
+        ["Recompensas y códigos", "Recompensas", "Drops, regalos y códigos"],
       ] } },
     ],
     faqs: [
@@ -291,7 +295,7 @@ const spanishPages: LocalizedPageData[] = [
       { question: "¿Existe una mejor clase oficial?", answer: "No. Bellring Games no publica una tier list oficial; las recomendaciones de este sitio son editoriales y dependen del modo y la versión." },
       { question: "¿Hay códigos activos?", answer: "No encontramos códigos públicos de canje confirmados en las fuentes oficiales revisadas el 31 de julio de 2026." },
     ],
-    related: ["/es/guia-principiantes/", "/es/como-extraer/", "/es/clases/", "/es/builds/"],
+    related: ["/es/guia-principiantes/", "/es/como-extraer/", "/es/clases/", "/es/builds/", "/es/armas/", "/es/recompensas/"],
     sources: [OFFICIAL_SITE, STEAM, LAUNCH_FAQ],
     heroAlt: "Puente de una fortaleza en ruinas junto a la Gyldenmist dorada", heroCaption: "La fortaleza de Weavereach presenta el mundo que recorren las guías en español.",
     contentImageAlt: "Tres Gyldhunters combatiendo criaturas Corroded en una caverna", contentCaption: "El combate de escuadrón ilustra el ciclo PvPvE explicado en esta introducción." }),
@@ -689,6 +693,133 @@ const spanishPages: LocalizedPageData[] = [
     related: ["/es/", "/es/builds/", "/es/guia-principiantes/"], sources: [OFFICIAL_SITE, STEAM_NEWS, LAUNCH_UPDATE, LAUNCH_FAQ],
     heroAlt: "Puente de una fortaleza en ruinas junto a la Gyldenmist dorada", heroCaption: "El arte oficial no representa un código ni una pantalla de canje.",
     contentImageAlt: "Tres Gyldhunters combatiendo criaturas Corroded en una caverna", contentCaption: "La escena de juego acompaña la distinción entre recompensas y cadenas de canje." }),
+
+  page({ ...esCommon, path: "/es/recompensas/", englishPath: "/rewards/", imageIndex: 0, pageType: "collection", updated: "2026-08-05", published: "2026-08-05",
+    title: "Recompensas de Mistfall Hunter: Drops, regalos y códigos",
+    description: "Consulta las recompensas de Mistfall Hunter: códigos, Twitch Drops, regalos de lanzamiento, Pase de batalla y reglas de reclamación verificadas.",
+    h1: "Recompensas de Mistfall Hunter", eyebrow: "Estado verificado",
+    answer: "Actualmente no hay códigos públicos de canje de Mistfall Hunter confirmados en las fuentes oficiales revisadas el 5 de agosto de 2026. La campaña oficial más reciente de Twitch Drops se celebró del 14 al 22 de junio y ya terminó. Las recompensas de lanzamiento, el Pase de batalla, los regalos por elegibilidad y los códigos para compartir builds son sistemas diferentes y no deben presentarse como códigos activos.",
+    informationType: "Estado oficial de recompensas con límites verificados",
+    warning: "Esta página separa los códigos de canje, Twitch Drops, regalos de lanzamiento, recompensas por inicio de sesión y códigos para compartir configuraciones. Una recompensa antigua o un Share Code no es un código de canje activo.",
+    sections: [
+      { heading: "Estado actual de las recompensas", paragraphs: [
+        "El estado debe comprobarse por mecanismo. Una publicación oficial puede anunciar una recompensa sin publicar un código que el jugador deba escribir.",
+        "A fecha del 5 de agosto de 2026, no se encontró ningún código público de canje activo en las fuentes oficiales revisadas. La campaña de Twitch Drops publicada en la web oficial terminó el 22 de junio. Las recompensas de lanzamiento y del Pase de batalla siguen sus propias condiciones dentro del juego.",
+      ], table: { headers: ["Tipo", "Estado", "Cómo se obtiene"], rows: [
+        ["Códigos de canje", "No hay códigos públicos confirmados", "Solo mediante un código publicado oficialmente"],
+        ["Twitch Drops", "La última campaña terminó el 22 de junio", "Vincular cuentas, ver streams elegibles y reclamar en Twitch"],
+        ["Recompensas de lanzamiento", "Dependen de la elegibilidad y del periodo indicado", "Inicio de sesión o correo dentro del juego"],
+        ["Pase de batalla de la Temporada 1", "Desbloqueo gratuito descrito oficialmente", "Siete días acumulados de inicio de sesión"],
+        ["Share Codes de builds", "Disponibles como herramienta de configuración", "Importan equipamiento y gemas; no conceden objetos"],
+      ] } },
+      { heading: "Códigos de canje y códigos para compartir builds", paragraphs: [
+        "Un código de canje entrega una recompensa cuando el desarrollador publica un texto válido, una vigencia, una recompensa y un método oficial de canje.",
+        "Un código para compartir una configuración, o Loadout Share Code, cumple otra función. Importa una combinación de equipamiento y gemas de afijo en el sistema de Loadout. No entrega moneda, cosméticos, armas ni recompensas.",
+        "No introduzcas un Share Code en una supuesta página de recompensas ni compartas contraseñas, códigos de seguridad o tokens de sesión con terceros.",
+      ] },
+      { heading: "Última campaña oficial de Twitch Drops", paragraphs: [
+        "La última campaña oficial publicada se celebró del 14 al 22 de junio, en horario del Pacífico. La campaña ya terminó y sus recompensas se muestran aquí únicamente como historial.",
+        "El cofre de selección permitía elegir un arma de calidad Excellent para cualquier clase. El cosmético Returner Woodling – Head estaba limitado a una obtención por cuenta.",
+      ], table: { headers: ["Tiempo de visualización", "Recompensa", "Condición"], rows: [
+        ["15 minutos", "Healing Elixir ×5 y Gyldenblod ×200", "Vincular la cuenta del juego con Twitch"],
+        ["30 minutos", "Excellent Weapon Selection Chest", "Reclamar en Twitch dentro de las 24 horas posteriores a la notificación"],
+        ["60 minutos", "Returner Woodling – Head", "Una vez por cuenta y reclamación dentro de 24 horas"],
+      ] } },
+      { heading: "Cómo reclamar correctamente un Twitch Drop", paragraphs: [
+        "Vincula la cuenta del juego y la cuenta de Twitch únicamente mediante las rutas oficiales. Durante una campaña activa, mira un canal que tenga Drops habilitados para Mistfall Hunter y completa el tiempo requerido.",
+        "Cuando Twitch envíe la notificación, reclama la recompensa en un máximo de 24 horas. Después, inicia sesión en el juego. Si ya estabas conectado, cierra la sesión y vuelve a entrar.",
+        "Si la recompensa sigue sin aparecer 72 horas después de reclamarla, contacta con el equipo mediante el Discord oficial e incluye la campaña, la hora de reclamación, la plataforma y la región de la cuenta. No compartas información privada.",
+      ] },
+      { heading: "Recompensas de lanzamiento y Pase de batalla", paragraphs: [
+        "Las recompensas de lanzamiento no son códigos públicos. Se conceden mediante condiciones como el inicio de sesión, la participación previa, la edición comprada o el correo dentro del juego.",
+        "La Temporada 1 utiliza el Pase de batalla “Slumbering Contract”. El anuncio oficial explica que puede desbloquearse gratuitamente después de siete días acumulados de inicio de sesión. El atuendo “Slumbering Servant” forma parte de las recompensas del Pase y se obtiene mediante la actividad normal y los tokens correspondientes.",
+        "La Deluxe Edition incluye recompensas cosméticas exclusivas y Fate Coins. Antes de comprar o actualizar una edición, comprueba la descripción actual de la tienda, porque el contenido comercial y los precios pueden variar por región.",
+      ] },
+      { heading: "Qué no está confirmado", paragraphs: [
+        "No se presentan como activas campañas antiguas, recompensas de pruebas cerradas ni regalos enviados durante una beta.",
+        "Tampoco se publican códigos procedentes de páginas de terceros, vídeos, comentarios o generadores de códigos sin una confirmación oficial.",
+        "La ausencia de un código hoy no demuestra que nunca vaya a existir uno. Esta página debe actualizarse cuando Bellring Games publique un código, una campaña o un nuevo periodo de elegibilidad con detalles verificables.",
+      ] },
+    ],
+    faqs: [
+      { question: "¿Hay códigos activos de Mistfall Hunter?", answer: "No se encontró ningún código público de canje confirmado en las fuentes oficiales revisadas el 5 de agosto de 2026." },
+      { question: "¿Los códigos para compartir builds dan recompensas?", answer: "No. Importan una configuración de equipamiento y gemas de afijo, pero no conceden objetos, monedas ni cosméticos." },
+      { question: "¿Están activos los Twitch Drops?", answer: "No se ha confirmado una nueva campaña activa para agosto. La campaña oficial más reciente terminó el 22 de junio." },
+      { question: "¿Cuánto tiempo tengo para reclamar un Twitch Drop?", answer: "La campaña oficial indicó que debía reclamarse en Twitch dentro de las 24 horas posteriores a la notificación." },
+      { question: "¿Qué hago si no recibo el Drop?", answer: "Vuelve a iniciar sesión y espera el periodo oficial de entrega. Si sigue sin aparecer 72 horas después de reclamarlo, contacta con el equipo mediante el Discord oficial." },
+    ],
+    related: ["/es/codigos/", "/es/armas/", "/es/builds/", "/es/clases/"],
+    sources: [TWITCH_DROPS, LAUNCH_UPDATE, LAUNCH_ANNOUNCEMENT, LAUNCH_FAQ, DEVNOTE_6, STEAM],
+    heroAlt: "Puente de una fortaleza en ruinas junto a la Gyldenmist dorada", heroCaption: "El arte oficial no representa un código ni una pantalla de canje.",
+    contentImageAlt: "Tres Gyldhunters combatiendo criaturas Corroded en una caverna", contentCaption: "La escena de juego acompaña la distinción entre recompensas y cadenas de canje." }),
+
+  page({ ...esCommon, path: "/es/armas/", englishPath: "/weapons/", imageIndex: 3, pageType: "collection", updated: "2026-08-05", published: "2026-08-05",
+    title: "Armas de Mistfall Hunter: lista por clase y sistemas",
+    description: "Consulta todas las armas confirmadas de Mistfall Hunter por clase, sus estilos oficiales, armas sagradas, gemas de afijo y códigos de build.",
+    h1: "Armas de Mistfall Hunter", eyebrow: "Guía de armas",
+    answer: "Cada clase de Mistfall Hunter tiene familias de armas confirmadas que determinan sus habilidades, talentos y ritmo de combate. Blackarrow utiliza Bow y tiene una segunda arma prevista para una futura temporada, aunque su nombre y fecha concreta no se han anunciado. Sorcerer utiliza Staff y tiene una segunda arma en desarrollo, pero su nombre final y su fecha de lanzamiento siguen sin confirmarse. El sistema también incluye Holy Weapons, gemas de afijo, configuraciones guardadas y códigos para compartir builds.",
+    informationType: "Información oficial de armas con explicación editorial",
+    warning: "Esta página reúne mecánicas y contenido de lanzamiento confirmados. No publica tasas de obtención, precios de mercado, cifras de daño ni una clasificación absoluta de mejores armas sin respaldo oficial.",
+    sections: [
+      { heading: "Cómo las armas definen una build", paragraphs: [
+        "La elección de arma está vinculada a la dirección de habilidades de cada clase. Una build coherente combina el tipo de arma, los talentos, las habilidades activas, el equipamiento y las gemas de afijo alrededor de una misma función.",
+        "El material oficial también describe cambios entre armas o rutas de combate durante una pelea. La elección no es solo una estadística permanente: determina alcance, defensa, control, recursos y forma de entrar o salir de un enfrentamiento.",
+        "El sistema de Loadout permite guardar varias configuraciones para cambiar entre planes de combate o exploración.",
+      ] },
+      { heading: "Armas por clase", subsections: [
+        { heading: "Mercenary", paragraphs: ["Armas confirmadas:", "Sword & Shield combina ofensiva con bloqueo y parry. Hammer utiliza ataques cargados y presión de control o aturdimiento. Ninguna de las dos rutas se presenta aquí como la mejor opción universal."], bullets: ["Sword & Shield (espada y escudo)", "Hammer (martillo)"] },
+        { heading: "Blackarrow", paragraphs: ["Arma confirmada:", "La rama Archer utiliza disparos completamente cargados, recuperación de energía e interacción de ráfaga con Mysticfly Arrow. La rama Hunter utiliza flechas de estados alterados, daño prolongado, control y ataques básicos que pueden extender la duración de los debuffs. Bellring Games ha confirmado que Blackarrow recibirá una segunda arma en una futura temporada, pero no ha anunciado su nombre ni una fecha concreta."], bullets: ["Bow (arco)"] },
+        { heading: "Sorcerer", paragraphs: ["Arma confirmada:", "Elemental utiliza reacciones de Fire, Thunder e Ice para causar daño y controlar espacios. Stardust se orienta al daño y control de área. Stardust Arcana puede omitir parte del proceso de canalización descrito para algunas acciones. La segunda arma de Sorcerer está confirmada como contenido en desarrollo, pero su nombre final y su fecha de lanzamiento no se han anunciado."], bullets: ["Staff (bastón)"] },
+        { heading: "Shadowstrix", paragraphs: ["Armas confirmadas:", "Daggers favorece el daño explosivo al romper el sigilo y el ciclo de ocultación de Shadow Veil. Dual Blades utiliza acumulación de heridas, múltiples impactos y una posterior ventana de daño explosivo."], bullets: ["Daggers (dagas)", "Dual Blades (hojas dobles)"] },
+        { heading: "Seer", paragraphs: ["Armas confirmadas:", "Catalyst puede seguir una dirección ofensiva con orbes mejorados o una dirección de apoyo con curación, escudos, mejoras y control. Mace puede utilizar presión de alta frecuencia y Speed Boost, o una ruta centrada en Super Armor y reducción de daño."], bullets: ["Catalyst (catalizador)", "Mace (maza)"] },
+        { heading: "Withered Knight", paragraphs: ["Armas confirmadas:", "Greatsword utiliza Consecutive Break, Delayed Detonation y la interacción de acumulaciones de Wither o sigilos. Polearm & Shield es contenido oficial de lanzamiento. Introduce seis habilidades nuevas, admite direcciones de DPS y apoyo, y permite rescatar a distancia a un compañero derribado."], bullets: ["Greatsword (mandoble)", "Polearm & Shield (arma de asta y escudo)"] },
+      ] },
+      { heading: "Resumen de estilos oficiales", table: { headers: ["Clase", "Arma o rama", "Dirección descrita"], rows: [
+        ["Mercenary", "Sword & Shield", "Ataque con espada, bloqueo y parry"],
+        ["Mercenary", "Hammer", "Ataques cargados, control y aturdimiento"],
+        ["Blackarrow", "Bow – Archer", "Disparos cargados, energía y ráfaga"],
+        ["Blackarrow", "Bow – Hunter", "Estados alterados, daño prolongado y control"],
+        ["Sorcerer", "Staff – Elemental", "Fire, Thunder, Ice y control"],
+        ["Sorcerer", "Staff – Stardust", "Daño y control de área"],
+        ["Shadowstrix", "Daggers", "Ráfaga desde sigilo"],
+        ["Shadowstrix", "Dual Blades", "Heridas, múltiples impactos y acumulación"],
+        ["Seer", "Catalyst", "Presión ofensiva o apoyo"],
+        ["Seer", "Mace", "Velocidad, Super Armor y reducción de daño"],
+        ["Withered Knight", "Greatsword", "Alcance, Wither y detonaciones"],
+        ["Withered Knight", "Polearm & Shield", "DPS, apoyo, control de formación y rescate"],
+      ] }, note: "La tabla organiza información oficial para facilitar la comparación. No es una tier list y no afirma que una ruta sea superior en todos los modos, parches o niveles de equipamiento." },
+      { heading: "Holy Weapons", paragraphs: [
+        "Las Holy Weapons, o armas sagradas, forman parte del contenido oficial de lanzamiento. Incluyen afijos exclusivos que pueden cambiar la forma en que funciona un arma, en lugar de limitarse a aumentar una cifra.",
+        "El material oficial las describe como recompensas de los jefes del mapa, con diferentes jefes vinculados a diferentes armas sagradas.",
+        "No se ha publicado una tasa de obtención oficial suficientemente precisa para esta guía, por lo que no se inventan porcentajes ni rutas garantizadas.",
+      ] },
+      { heading: "Gemas de afijo y ranuras", paragraphs: [
+        "El equipamiento puede incluir una cantidad limitada de afijos propios, mientras que gran parte de la personalización de una build procede de las gemas de afijo insertadas en las ranuras.",
+        "Las gemas tienen restricciones de nivel y tipo. El material oficial ha descrito gemas capaces de incluir hasta dos afijos.",
+        "Una combinación rara no es automáticamente útil. Los afijos deben reforzar acciones que la build pueda repetir dentro del modo para el que fue creada.",
+      ] },
+      { heading: "Loadouts y códigos para compartir builds", paragraphs: [
+        "El sistema de Loadout permite guardar varias configuraciones completas de equipamiento y gemas.",
+        "Un código para compartir una configuración puede importar el equipamiento y las gemas de afijo de otra build. Sirve para copiar la estructura de la configuración, no para recibir los objetos gratuitamente.",
+        "Estos códigos no son códigos de canje y no conceden monedas, armas, cosméticos ni recompensas.",
+      ] },
+      { heading: "Información todavía no confirmada", paragraphs: [
+        "El nombre y la fecha concreta de la segunda arma de Blackarrow no se han anunciado; solo existe una ventana amplia de futura temporada.",
+        "La segunda arma de Sorcerer está en desarrollo, pero no tiene nombre final ni fecha de lanzamiento confirmados.",
+        "Tampoco se publica la probabilidad exacta de obtención, precios de mercado, estadísticas numéricas o cantidades totales de armas basadas en bases de datos de terceros. Una base de datos puede contar variantes de calidad y valores como registros separados, lo que no equivale al número de armas distintas.",
+      ] },
+    ],
+    faqs: [
+      { question: "¿Qué armas tiene cada clase?", answer: "Mercenary tiene Sword & Shield y Hammer; Blackarrow tiene Bow; Sorcerer tiene Staff; Shadowstrix tiene Daggers y Dual Blades; Seer tiene Catalyst y Mace; Withered Knight tiene Greatsword y Polearm & Shield." },
+      { question: "¿Blackarrow tendrá una segunda arma?", answer: "Sí. Está confirmada para una futura temporada, pero no se ha anunciado su nombre ni una fecha concreta." },
+      { question: "¿Cuál será la segunda arma de Sorcerer?", answer: "Está confirmada como contenido en desarrollo, pero su nombre final y su fecha de lanzamiento no están confirmados." },
+      { question: "¿Hay Holy Weapons en el juego?", answer: "Sí. Son contenido oficial de lanzamiento, tienen afijos exclusivos y se describen como recompensas de diferentes jefes del mapa." },
+      { question: "¿Un Share Code entrega el equipamiento?", answer: "No. Importa la estructura de una configuración; no entrega gratuitamente los objetos, monedas o cosméticos." },
+    ],
+    related: ["/es/builds/", "/es/clases/", "/es/recompensas/", "/es/guia-principiantes/", "/es/como-extraer/"],
+    sources: [OFFICIAL_SITE, DEVNOTE_6, DEVNOTE_7, COMMUNITY_AMA, LAUNCH_UPDATE, LAUNCH_ANNOUNCEMENT, STEAM],
+    heroAlt: "Las seis clases de Mistfall Hunter reunidas en arte promocional", heroCaption: "La galería oficial presenta las seis clases disponibles en el lanzamiento.",
+    contentImageAlt: "Interfaz de talentos de Mistfall Hunter con nodos conectados", contentCaption: "Los talentos amplían la identidad de cada clase después de elegirla." }),
 ];
 
 const deCommon = {
