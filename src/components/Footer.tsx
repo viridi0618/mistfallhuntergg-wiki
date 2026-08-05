@@ -74,8 +74,8 @@ export default function Footer({ locale = "en" }: { locale?: keyof typeof locali
         <a href="https://artificin.com?utm_source=badge&utm_medium=referral&utm_campaign=featured_badge" target="_blank" rel="noopener">
           <img src="https://artificin.com/badges/Artificin-badge.png" alt="Featured on Artificin" loading="lazy" width="175" height="50" />
         </a>
-        <a href="https://startupfa.me/s/mistfall-hunter-guide?utm_source=mistfallhuntergg.wiki" target="_blank">
-          <img src="https://startupfa.me/badges/featured/default-small-rounded.webp" alt="MistfallHunterGuide - Featured on Startup Fame" loading="lazy" width="240" height="37" />
+        <a href="https://fazier.com/launches/mistfallhuntergg.wiki" target="_blank">
+          <img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=light" width="120" alt="Fazier badge" />
         </a>
         <a href="https://findly.tools/mistfallhunter?utm_source=mistfallhunter" target="_blank" rel="noopener noreferrer">
           <img src="https://findly.tools/badges/findly-tools-badge-light.svg" alt="Featured on Findly.tools" loading="lazy" width="175" height="55" />
