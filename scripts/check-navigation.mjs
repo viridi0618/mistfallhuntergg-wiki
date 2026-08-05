@@ -35,6 +35,7 @@ const required = {
   classes: ["/classes/", "/class-picker/", "/classes/mercenary/", "/classes/sorcerer/", "/classes/blackarrow/", "/classes/shadowstrix/", "/classes/seer/", "/classes/withered-knight/"],
   builds: ["/builds/", "/builds/mercenary/", "/builds/sorcerer/", "/builds/blackarrow/", "/builds/shadowstrix/", "/builds/seer/", "/builds/withered-knight/"],
   rewards: ["/rewards/", "/codes/", "/skins/", "/battle-pass/", "/launch-rewards/", "/twitch-drops/"],
+  gameplay: ["/gameplay/", "/weapons/"],
 };
 
 for (const [id, hrefs] of Object.entries(required)) {
@@ -63,6 +64,7 @@ assert.equal(navigationByLocale.de.flatMap((group) => [...groupHrefs(group)]).so
 assert.equal(isNavigationGroupActive("/builds/sorcerer/", navigationByLocale.en.find((group) => group.id === "builds")), true);
 assert.equal(isNavigationGroupActive("/classes/seer/", navigationByLocale.en.find((group) => group.id === "classes")), true);
 assert.equal(isNavigationGroupActive("/codes/", navigationByLocale.en.find((group) => group.id === "rewards")), true);
+assert.equal(isNavigationGroupActive("/weapons/", navigationByLocale.en.find((group) => group.id === "gameplay")), true);
 assert.equal(isNavigationGroupActive("/patch-notes/", navigationByLocale.en.find((group) => group.id === "updates")), true);
 assert.equal(isNavigationPathCurrent("/builds/mercenary", "/builds/mercenary/"), true);
 
@@ -93,7 +95,7 @@ const bodyLockStart = globalStyles.indexOf('body:has(.mobile-navigation-panel[da
 assert.ok(mobileMediaStart >= 0 && bodyLockStart > mobileMediaStart, "Mobile navigation body lock must be scoped to the mobile breakpoint");
 
 const sitemap = fs.readFileSync(path.join(outRoot, "sitemap.xml"), "utf8");
-assert.equal((sitemap.match(/<url>/g) ?? []).length, 76, "Sitemap public URL count changed");
+assert.equal((sitemap.match(/<url>/g) ?? []).length, 77, "Sitemap public URL count changed");
 
 for (const href of ["/", "/codes/", "/classes/", "/classes/mercenary/", "/builds/", "/builds/mercenary/", "/rewards/"]) {
   const header = headerHtml(href);
@@ -129,4 +131,4 @@ for (const href of ["/es/", "/de/"]) {
   }
 }
 
-console.log("Navigation checks passed: shared locale data, precise-pointer hover intent, responsive state safety, valid disclosures, 76 public URLs, and no invented localized routes.");
+console.log("Navigation checks passed: shared locale data, precise-pointer hover intent, responsive state safety, valid disclosures, 77 public URLs, and no invented localized routes.");
