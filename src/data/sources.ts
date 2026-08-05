@@ -30,6 +30,12 @@ export const DEVNOTE_7: GuideSource = {
   level: "Official",
 };
 
+export const DEVNOTE_6: GuideSource = {
+  label: "DevNote #6: June Next Fest playtest, loadout system, and class weapon plans",
+  url: "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1835236783566456",
+  level: "Official",
+};
+
 export const LAUNCH_ANNOUNCEMENT: GuideSource = {
   label: "Official Launch Announcement",
   url: "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1838407329259454",
@@ -57,6 +63,12 @@ export const COMMUNITY_AMA: GuideSource = {
 export const XBOX: GuideSource = {
   label: "Mistfall Hunter on Xbox",
   url: "https://www.xbox.com/en-US/games/store/mistfall-hunter/9p8x6tvw9zw8",
+  level: "Official",
+};
+
+export const TWITCH_DROPS: GuideSource = {
+  label: "Official Mistfall Hunter Twitch Drops page",
+  url: "https://mistfallhunter.com/twitchdrop",
   level: "Official",
 };
 

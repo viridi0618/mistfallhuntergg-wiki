@@ -128,6 +128,7 @@ const multiplayer: GuidePageData = {
       heading: "Solo, trio, and the missing duo queue",
       paragraphs: [
         "Solo is officially supported, and official descriptions promote squads of three. In the community AMA, Bellring Games said a permanent Duo matchmaking queue was not planned in the short term because it would complicate balance and divide the matchmaking pool. That answer can change, so the Updates hub is the correct place to recheck it.",
+        "The official team said it adjusts balance separately from Solo and Trio combat data, and that Bots will remain part of matchmaking long term while their AI is improved. That keeps Solo and Trio as distinct balance contexts rather than one shared rulebook.",
         "Solo and trio also reward different decisions. A solo player must preserve a personal disengagement tool and avoid being pinned between PvE and another group. A trio can divide scouting, frontline, support, and extraction security, but three players also create more noise and more opportunities to split.",
       ],
     },

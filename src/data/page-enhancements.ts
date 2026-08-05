@@ -95,6 +95,7 @@ const normalHero: Record<string, string> = {
   "builds/seer": "site-04",
   "builds/withered-knight": "steam-01",
   "class-picker": "steam-07",
+  weapons: "steam-03",
   "game-pass": "xbox-cover",
   "battle-pass": "steam-02",
   fov: "site-15",
@@ -202,6 +203,7 @@ const explicitHeroCaptions: Record<string, string> = {
   review: "An official combat image used to frame the guide's source-aware launch assessment.",
   "solo-mode": "An official solo traversal scene relevant to route and disengagement planning.",
   "pve-only": "An official large-enemy encounter that confirms PvE content, not a separate PvE-only queue.",
+  weapons: "Official combat art used alongside the hub that explains each class's launch weapon families.",
 };
 
 const categoryByPath: Record<string, { label: string; path: string }> = {

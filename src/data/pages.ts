@@ -1,6 +1,7 @@
 import { classGuidePages } from "./classes";
 import { buildGuidePages } from "./builds";
 import { gameplayPages } from "./gameplay";
+import { weaponPages } from "./weapons";
 import { rewardUpdatePages } from "./rewards-updates";
 import { settingsFixPages } from "./settings-fixes";
 import { commercePolicyPages } from "./site-pages";
@@ -17,6 +18,7 @@ const basePages = [
   ...rewardUpdatePages,
   ...commercePolicyPages,
   ...longTailPages,
+  ...weaponPages,
 ];
 
 export const pages = basePages.map(enhancePage);

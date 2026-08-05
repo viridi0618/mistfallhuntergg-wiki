@@ -1,5 +1,5 @@
 import type { GuidePageData } from "@/lib/types";
-import { LAUNCH_UPDATE, KNOWN_ISSUES_OFFICIAL, OFFICIAL_SITE, STEAM, STEAM_NEWS } from "./sources";
+import { LAUNCH_UPDATE, KNOWN_ISSUES_OFFICIAL, OFFICIAL_SITE, STEAM, STEAM_NEWS, TWITCH_DROPS } from "./sources";
 
 const checked = "2026-07-31";
 const launchChecked = "2026-08-01";
@@ -86,16 +86,33 @@ const twitch: GuidePageData = {
   title: "Mistfall Hunter Twitch Drops: Campaign Status",
   description: "Check Mistfall Hunter Twitch Drops status, how to verify a campaign, link accounts safely, claim rewards, and separate Drops from livestream reveals.",
   h1: "Mistfall Hunter Twitch Drops",
-  answer: "No currently active official Twitch Drops campaign with verified dates and rewards was found in the official sources checked on July 31, 2026. An official Twitch livestream mention does not itself confirm Drops.",
+  answer: "No new active Twitch Drops campaign with verified August 2026 dates and rewards has been announced in the official sources reviewed on August 5, 2026. The most recent official campaign ran June 14 through June 22 and has ended; an official Twitch livestream mention does not by itself confirm new Drops.",
   ...common,
+  updated: "2026-08-05",
   informationType: "Official-source campaign verification",
   sections: [
     {
       heading: "Current Twitch Drops status",
       paragraphs: [
-        "Bellring Games promoted an official pre-launch Twitch livestream with a named creator and gameplay reveals. The announcement did not publish a verified Drops reward table, watch-time requirement, or campaign window.",
-        "Without those elements, this page will not claim an active campaign. A live channel category or player account-linking report is not enough to prove launch rewards.",
+        "No new active campaign with verified August dates and rewards has been announced in the official sources reviewed. Bellring Games promoted an official pre-launch Twitch livestream with a named creator and gameplay reveals, but that announcement did not publish a verified Drops reward table, watch-time requirement, or campaign window.",
+        "Without those elements, this page will not claim an active campaign. A live channel category or player account-linking report is not enough to prove launch rewards. The previous official campaign listed on the Twitch Drops page is the June 14 – June 22 window described below, which has ended.",
       ],
+    },
+    {
+      heading: "Previous Official Campaign",
+      paragraphs: [
+        "The official Twitch Drops page lists a completed campaign that ran June 14 through June 22, before the July 30 launch. The rewards below are the official table from that window and are presented as historical, not active.",
+        "Claiming required linking your game account with Twitch, claiming from Twitch within 24 hours of receiving the notification, and restarting the game if you were already logged in when the reward was delivered.",
+      ],
+      table: {
+        headers: ["Watch time", "Reward", "Claim note"],
+        rows: [
+          ["15 minutes", "Healing Elixir x5 and Gyldenblod x200", "Link Twitch and game account; claim within 24 hours"],
+          ["30 minutes", "Excellent Weapon Selection Chest", "Claim on Twitch within 24 hours of the notification"],
+          ["60 minutes", "Returner Woodling - Head", "Once per account; claim within 24 hours"],
+        ],
+      },
+      note: "Official launch-era campaign, now ended. If a reward is missing 72 hours after a successful claim, contact official support with the campaign, claim time, platform, and account region.",
     },
     {
       heading: "How to verify a real campaign",
@@ -130,12 +147,13 @@ const twitch: GuidePageData = {
     },
   ],
   faqs: [
-    { question: "Are Twitch Drops active now?", answer: "No active official campaign was verified in the sources checked on July 31, 2026." },
+    { question: "Are Twitch Drops active now?", answer: "No new active official campaign with verified August 2026 dates and rewards was announced in the sources checked on August 5, 2026. The last official campaign ended on June 22." },
+    { question: "What was the last official Twitch Drops campaign?", answer: "The official campaign ran June 14 through June 22 and offered Healing Elixir x5 and Gyldenblod x200 at 15 minutes, an Excellent Weapon Selection Chest at 30 minutes, and the Returner Woodling - Head cosmetic at 60 minutes, once per account. Rewards had to be claimed on Twitch within 24 hours of the notification." },
     { question: "Does watching the launch stream grant a reward?", answer: "The official stream announcement did not confirm a Drops reward table." },
     { question: "Where should I link accounts?", answer: "Only through an official game or Twitch route." },
   ],
-  related: ["codes", "launch-rewards", "skins", "known-issues"],
-  sources: [STEAM_NEWS, OFFICIAL_SITE],
+  related: ["codes", "rewards", "launch-rewards", "skins", "known-issues"],
+  sources: [STEAM_NEWS, OFFICIAL_SITE, TWITCH_DROPS],
 };
 
 const launchRewards: GuidePageData = {
