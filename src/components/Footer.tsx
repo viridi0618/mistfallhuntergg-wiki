@@ -31,8 +31,8 @@ const localized = {
     columns: [
       { title: "Guías", links: [["Inicio", "/es/"], ["Principiantes", "/es/guia-principiantes/"], ["Cómo extraer", "/es/como-extraer/"]] },
       { title: "Clases", links: [["Todas las clases", "/es/clases/"], ["Mejor clase", "/es/mejor-clase/"], ["Tier list", "/es/tier-list-clases/"]] },
-      { title: "Juego", links: [["Builds", "/es/builds/"], ["Jugar solo", "/es/jugar-solo/"], ["Servidores", "/es/servidores/"]] },
-      { title: "Ayuda", links: [["Bloqueo regional", "/es/bloqueo-regional/"], ["Códigos", "/es/codigos/"], ["English site", "/"]] },
+      { title: "Juego", links: [["Builds", "/es/builds/"], ["Armas", "/es/armas/"], ["Jugar solo", "/es/jugar-solo/"], ["Servidores", "/es/servidores/"]] },
+      { title: "Ayuda", links: [["Bloqueo regional", "/es/bloqueo-regional/"], ["Recompensas", "/es/recompensas/"], ["Códigos", "/es/codigos/"], ["English site", "/"]] },
     ],
     description: "Guías independientes en español sobre clases, builds, extracción y ayuda de Mistfall Hunter.",
     legal: "Mistfall Hunter Guide es un sitio independiente creado por fans y no está afiliado con Bellring Games ni con el equipo oficial de Mistfall Hunter.",

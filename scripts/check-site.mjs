@@ -24,6 +24,7 @@ const expectedRoutes = [
   "es", "es/guia-principiantes", "es/como-extraer", "es/clases",
   "es/mejor-clase", "es/mejor-clase-solo", "es/tier-list-clases", "es/builds",
   "es/jugar-solo", "es/servidores", "es/bloqueo-regional", "es/codigos",
+  "es/recompensas", "es/armas",
   "de", "de/einstellungen", "de/ruckler-beheben", "de/absturz-beheben",
   "de/server", "de/region-lock",
 ];
@@ -125,7 +126,13 @@ function inspectArticleOutline(html, route, errors) {
 }
 
 function filesUnder(directory) {
-  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+  let entries;
+  try {
+    entries = fs.readdirSync(directory, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  return entries.flatMap((entry) => {
     const full = path.join(directory, entry.name);
     return entry.isDirectory() ? filesUnder(full) : [full];
   });

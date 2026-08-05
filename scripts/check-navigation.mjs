@@ -93,7 +93,7 @@ const bodyLockStart = globalStyles.indexOf('body:has(.mobile-navigation-panel[da
 assert.ok(mobileMediaStart >= 0 && bodyLockStart > mobileMediaStart, "Mobile navigation body lock must be scoped to the mobile breakpoint");
 
 const sitemap = fs.readFileSync(path.join(outRoot, "sitemap.xml"), "utf8");
-assert.equal((sitemap.match(/<url>/g) ?? []).length, 76, "Sitemap public URL count changed");
+assert.equal((sitemap.match(/<url>/g) ?? []).length, 79, "Sitemap public URL count changed");
 
 for (const href of ["/", "/codes/", "/classes/", "/classes/mercenary/", "/builds/", "/builds/mercenary/", "/rewards/"]) {
   const header = headerHtml(href);
@@ -129,4 +129,4 @@ for (const href of ["/es/", "/de/"]) {
   }
 }
 
-console.log("Navigation checks passed: shared locale data, precise-pointer hover intent, responsive state safety, valid disclosures, 76 public URLs, and no invented localized routes.");
+console.log("Navigation checks passed: shared locale data, precise-pointer hover intent, responsive state safety, valid disclosures, 79 public URLs, and no invented localized routes.");
