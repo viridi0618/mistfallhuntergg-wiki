@@ -8,6 +8,7 @@ import {
   LAUNCH_UPDATE,
   OFFICIAL_SITE,
   STEAM,
+  STEAM_NEWS,
   XBOX,
 } from "./sources";
 
@@ -256,7 +257,7 @@ const rewards: GuidePageData = {
   breadcrumbLabel: "Rewards",
   answer: "Check the reward type before following a claim: redeem codes, Twitch Drops, in-game mail, launch gifts, paid cosmetics, and loadout share codes are different systems.",
   ...common,
-  updated: "2026-08-01",
+  updated: "2026-08-07",
   informationType: "Official reward status with unconfirmed claims labeled",
   sections: [
     {
@@ -273,7 +274,8 @@ const rewards: GuidePageData = {
         rows: [
           ["Public redeem codes", "No confirmed active public codes found", "Official site and announcements"],
           ["Twitch Drops", "No verified active campaign found at last check", "Official Twitch campaign announcement"],
-          ["Launch in-game mail", "Official July 30 launch gift announced", "Official launch update and in-game mail"],
+          ["Launch in-game mail", "Multiple official launch reward waves are active or recently announced", "Launch Rewards and official Steam announcements"],
+          ["Cipher items", "Ashen Cipher and Abyssal Cipher were officially distributed in the August 1 reward wave", "Launch Rewards and Cipher List"],
           ["Playtest carryover cosmetic", "Eligibility tied to the same account", "Official playtest conclusion notice"],
           ["Season 1 Battle Pass", "Officially described as free after cumulative login requirements", "DevNote #7"],
           ["Deluxe cosmetics", "Paid edition content", "Official launch FAQ or storefront"],
@@ -301,7 +303,7 @@ const rewards: GuidePageData = {
     {
       heading: "Recently updated",
       paragraphs: [
-        "Bellring Games announced Gesture: Thumbs Up and 500 Soul Coins for players logging in before September 1, 2026 at 00:00 UTC. The gift arrives through in-game mail and is not a redeem code. Because reward windows expire, use the direct official launch-update source and the date printed on each reward page before attempting a claim.",
+        "Bellring Games has now announced three launch-era mail reward waves. The July 30 gift includes Gesture: Thumbs Up and 500 Soul Coins; the August 1 wave includes a three-day Pip's Rare Pouch Voucher, 500 Soul Coins, Ashen Cipher, and Abyssal Cipher; and the August 5 one-million-player reward wave includes Standing Pose: Spellcasting, Moonlight Nectar x5, a Pro Combat Bag, and an Advanced Combat Bag. Check Launch Rewards for the separate claim deadlines.",
       ],
     },
     {
@@ -316,7 +318,7 @@ const rewards: GuidePageData = {
     { question: "Is a loadout share code a reward code?", answer: "No. It shares build configuration rather than granting an item." },
     { question: "Are Twitch Drops active?", answer: "No current official campaign with verified dates and requirements was found at the last check." },
   ],
-  related: ["codes", "twitch-drops", "launch-rewards", "skins", "price", "updates"],
+  related: ["codes", "twitch-drops", "launch-rewards", "skins", "price", "updates", "cipher-list"],
   sources: [LAUNCH_UPDATE, DEVNOTE_7, LAUNCH_FAQ, LAUNCH_ANNOUNCEMENT],
 };
 
@@ -329,10 +331,33 @@ const updates: GuidePageData = {
   description: "Track Mistfall Hunter updates through official patch notes, known issues, fixed problems, launch balance changes, and careful version checks.",
   h1: "Mistfall Hunter Updates",
   breadcrumbLabel: "Updates",
-  answer: "Use Known Issues to identify acknowledged problems and Patch Notes to confirm what changed; a listed fix should not be described as guaranteed on every platform until the correct client update is installed.",
+  answer: "The latest official Mistfall Hunter client update was scheduled for August 6, 2026 at 09:00 UTC. Bellring Games also published its Season 1 roadmap on August 5, confirming Brandrgarde Solo Mode for Normal and Cataclysm difficulties in September while stuttering and latency remain under investigation.",
   ...common,
+  updated: "2026-08-07",
   informationType: "Official update index",
   sections: [
+    {
+      heading: "Latest official status",
+      table: {
+        headers: ["Topic", "Current status"],
+        rows: [
+          ["Latest client update", "August 6 live update."],
+          ["Einherjar", "Dried Flower Knots now drop and Mist Lord challenges are opening through Einherjar Mode."],
+          ["Class changes", "Blackarrow Steel Arrow and Withered Knight Energy Costs changed; several class-specific bugs were also fixed."],
+          ["Stuttering", "Bellring Games said it is actively investigating recent reports."],
+          ["Latency", "Bellring Games said it is actively investigating recent reports."],
+          ["Brandrgarde Solo Mode", "Normal and Cataclysm Solo Mode are planned for the middle of Season 1 in September."],
+          ["Full changes", "Use Patch Notes for shipped changes and Known Issues for current problem status."],
+        ],
+      },
+    },
+    {
+      heading: "Season 1 roadmap",
+      paragraphs: [
+        "Bellring Games divided the current Season 1 roadmap into three phases. Phase I brings the Einherjar Mist Lord challenge, Season Tasks, and the Soul Harvest seasonal activity. Phase II fully unlocks the Season Tasks, adds Brandrgarde Solo Mode, and introduces the Underlord Speed Challenge. Phase III adds the Golden Woodling and the Ancestor Tree random match event.",
+        "The roadmap also teases Season 2 with a new Blackarrow weapon, Javelin, a new seasonal theme and exclusive gameplay, a season-specific progression system, and additional seasonal content. These are roadmap plans rather than currently playable features, so they should remain separated from shipped patch notes.",
+      ],
+    },
     {
       heading: "Known issue, fix, and workaround are different",
       paragraphs: [
@@ -368,13 +393,13 @@ const updates: GuidePageData = {
       heading: "Balance notes and guide recommendations",
       paragraphs: [
         "The launch period included adjustments for all six classes and an immediate change to Withered Knight's Polearm & Shield. A skill, crowd-control, movement, or energy change can alter the safest build direction without creating a permanent best class.",
-        "Tier and build pages therefore state their evaluation dimensions and last-check date. They do not convert official qualitative notes into fabricated DPS values, win rates, or extraction statistics.",
+        "The August 6 update directly affected Blackarrow and Withered Knight balance while also correcting class-specific behavior for Mercenary and Sorcerer. Build and class guides should therefore be rechecked only where the official note changes a skill, Energy Cost, movement behavior, or reliable execution of an existing route.",
       ],
     },
     {
       heading: "Recently updated",
       paragraphs: [
-        "This hub currently covers the official launch announcement, launch FAQ, DevNote #7, launch known issues, and the July 30 launch rewards/update post. It does not provide live server status. For a current outage, check the newest official communication rather than assuming an older known issue applies.",
+        "This hub now covers the August 5 Season 1 roadmap and the August 6 live update in addition to the launch material. Bellring Games is still investigating recently reported stuttering and latency issues, so those symptoms should not be described as fully resolved. Use Patch Notes for shipped changes and Known Issues for the latest confirmed issue status.",
       ],
     },
     {
@@ -390,7 +415,7 @@ const updates: GuidePageData = {
     { question: "Does this page show live server status?", answer: "No. It points readers to current official communication instead of claiming real-time status." },
   ],
   related: ["known-issues", "patch-notes", "settings-fixes", "class-tier-list", "builds"],
-  sources: [KNOWN_ISSUES_OFFICIAL, LAUNCH_UPDATE, DEVNOTE_7, LAUNCH_ANNOUNCEMENT],
+  sources: [KNOWN_ISSUES_OFFICIAL, LAUNCH_UPDATE, DEVNOTE_7, LAUNCH_ANNOUNCEMENT, STEAM_NEWS],
 };
 
 export const categoryPages: GuidePageData[] = [guides, multiplayer, settingsFixes, rewards, updates];

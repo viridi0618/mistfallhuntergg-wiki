@@ -2,7 +2,6 @@ import type { GuidePageData } from "@/lib/types";
 import { LAUNCH_UPDATE, KNOWN_ISSUES_OFFICIAL, OFFICIAL_SITE, STEAM, STEAM_NEWS, TWITCH_DROPS } from "./sources";
 
 const checked = "2026-07-31";
-const launchChecked = "2026-08-01";
 const common = {
   updated: checked,
   published: "2026-07-31",
@@ -20,7 +19,7 @@ const codes: GuidePageData = {
   h1: "Mistfall Hunter Codes",
   answer: "There are currently no confirmed public Mistfall Hunter redeem codes in the official sources checked on August 1, 2026. The launch gift of Gesture: Thumbs Up and 500 Soul Coins arrives through in-game mail and is not a redeem code.",
   ...common,
-  updated: launchChecked,
+  updated: "2026-08-07",
   informationType: "Official-source verification",
   sections: [
     {
@@ -67,14 +66,22 @@ const codes: GuidePageData = {
         "Giveaway activation keys, beta access, Deluxe entitlements, Twitch Drops, and event mail are separate systems. Their existence does not prove a public redeem code.",
       ],
     },
+    {
+      heading: "Ciphers are not redeem codes",
+      paragraphs: [
+        "Bellring Games included Ashen Cipher and Abyssal Cipher in the official August 1 launch reward mail. These are in-game Cipher items, not public redeem-code strings.",
+        "Do not treat the word “Cipher” as evidence that Mistfall Hunter has launched a public code-redemption campaign. Use the Cipher List for NPC clue matching and this page only for public redeem-code status.",
+      ],
+    },
   ],
   faqs: [
     { question: "Are there active Mistfall Hunter codes?", answer: "No confirmed public redeem codes were found in the official sources checked on August 1, 2026." },
     { question: "Is the 500 Soul Coins launch gift a code?", answer: "No. It is an eligibility-based in-game mail reward." },
     { question: "Is a build share code a reward code?", answer: "No. It imports a loadout configuration." },
+    { question: "Are Ashen Cipher and Abyssal Cipher redeem codes?", answer: "No. They are in-game Cipher items and do not establish a public redeem-code system." },
     { question: "Where will verified codes come from?", answer: "Official Bellring Games announcements, the game client, or other official channels." },
   ],
-  related: ["twitch-drops", "launch-rewards", "skins", "patch-notes"],
+  related: ["twitch-drops", "launch-rewards", "skins", "patch-notes", "cipher-list"],
   sources: [LAUNCH_UPDATE, STEAM],
 };
 
@@ -164,11 +171,26 @@ const launchRewards: GuidePageData = {
   title: "Mistfall Hunter Launch Rewards & Eligibility",
   description: "Mistfall Hunter launch rewards explained: playtest carry-over items, the free Season 1 Battle Pass unlock, Deluxe bonuses, eligibility, and claim cautions.",
   h1: "Mistfall Hunter Launch Rewards",
-  answer: "Official launch rewards include the Gesture: Thumbs Up and 500 Soul Coins mail gift for eligible logins before September 1, 2026 at 00:00 UTC, qualifying playtest carry-over cosmetics, the free Season 1 Battle Pass unlock after seven cumulative logins, and paid Deluxe Edition benefits.",
+  answer: "Current official launch-era mail rewards include the July 30 launch gift, the August 1 second reward wave, and the August 5 one-million-player reward wave. Each has its own eligibility deadline, and none of these mail rewards requires a public redeem code.",
   ...common,
-  updated: launchChecked,
+  updated: "2026-08-07",
   informationType: "Official reward eligibility",
   sections: [
+    {
+      heading: "Current launch mail rewards",
+      table: {
+        headers: ["Announced", "Reward", "Claim deadline"],
+        rows: [
+          ["July 30", "Gesture: Thumbs Up + 500 Soul Coins", "September 1, 2026 at 00:00 UTC"],
+          ["August 1 — Second Wave", "Pip's Rare Pouch Voucher (3 Days) x1, Soul Coin x500, Ashen Cipher x1, Abyssal Cipher x1", "September 1, 2026 at 00:00 UTC"],
+          ["August 5 — Wave 3", "Standing Pose: Spellcasting, Moonlight Nectar x5, Pro Combat Bag x1, Advanced Combat Bag x1", "August 12, 2026 at 12:00 UTC"],
+        ],
+      },
+      paragraphs: [
+        "These rewards are delivered through in-game mail to eligible accounts. They are separate from public redeem codes, Twitch Drops, build share codes, and paid Deluxe Edition benefits.",
+        "The August 1 reward wave is also direct official evidence that Ashen Cipher and Abyssal Cipher are present in the launch version.",
+      ],
+    },
     {
       heading: "Confirmed launch reward categories",
       table: {
@@ -221,8 +243,10 @@ const launchRewards: GuidePageData = {
     { question: "Do I need a redeem code for the 500 Soul Coins?", answer: "No. The official launch gift is delivered through in-game mail and is not a public redeem code." },
     { question: "Do beta rewards carry over?", answer: "Certain officially announced cosmetics do, when the same eligible account is used." },
     { question: "Are Deluxe rewards free launch rewards?", answer: "No. They are paid edition entitlements." },
+    { question: "What is the deadline for the August 5 reward wave?", answer: "Log in before August 12, 2026 at 12:00 UTC to claim the Wave 3 mail rewards." },
+    { question: "Are Ashen Cipher and Abyssal Cipher redeem codes?", answer: "No. They are in-game Cipher items included in the August 1 mail reward wave." },
   ],
-  related: ["skins", "codes", "twitch-drops", "patch-notes"],
+  related: ["skins", "codes", "twitch-drops", "patch-notes", "cipher-list"],
   sources: [LAUNCH_UPDATE, STEAM_NEWS, STEAM],
 };
 
@@ -298,13 +322,46 @@ const knownIssues: GuidePageData = {
   title: "Mistfall Hunter Known Issues & Current Status",
   description: "Mistfall Hunter known issues summarized from official launch posts, including controller, UI, extraction, reconnect, console, and fixed items.",
   h1: "Mistfall Hunter Known Issues",
-  answer: "Bellring Games listed launch issues and then marked the named cases fixed in the July 30 update. Install the current platform update first, reproduce the exact issue, and remember that a similar symptom may have a different cause; if it persists, report the platform, client version, and reproduction steps.",
+  answer: "As of August 7, 2026, Bellring Games says it is still investigating recently reported stuttering and latency issues. The August 6 update listed fixes for several other problems, including PS/Xbox friends-list crashes, gem-affix match crashes, Hallowgrove Gyldenmist behavior, Soul Tree trapping, and multiplayer downed-state issues.",
   ...common,
-  updated: launchChecked,
+  updated: "2026-08-07",
   informationType: "Official issue and fix summary",
   sections: [
     {
-      heading: "Known issues and first-update status",
+      heading: "Issues still being investigated",
+      table: {
+        headers: ["Issue", "Current official status", "What this page should claim"],
+        rows: [
+          ["Stuttering", "Actively being investigated as of August 5.", "Do not claim a universal fix or that the August 6 update resolved all stuttering."],
+          ["Latency", "Actively being investigated as of August 5.", "Do not claim a universal network fix or current outage without newer official evidence."],
+        ],
+      },
+      paragraphs: [
+        "These are the two current problems Bellring Games explicitly said it was still investigating in the August 5 roadmap announcement. A newer client or local troubleshooting step may improve an individual case, but that does not establish an official global resolution.",
+      ],
+    },
+    {
+      heading: "Listed fixed in the August 6 update",
+      table: {
+        headers: ["Issue area", "Official status"],
+        rows: [
+          ["PS/Xbox friends list retrieval crash", "Listed fixed August 6"],
+          ["Gem-affix match crash", "Listed fixed August 6"],
+          ["Hallowgrove Gyldenmist dealing no damage", "Listed fixed August 6"],
+          ["Soul Tree model trapping players", "Listed fixed August 6"],
+          ["Brandrgarde Mine Pit dodge location", "Listed fixed August 6"],
+          ["Execution interruption locking actions", "Listed fixed August 6"],
+          ["Multiplayer Soul Separation Pill downed state", "Listed fixed August 6"],
+          ["Spectator-mode exit/loading issues", "Listed fixed August 6"],
+          ["Fate Chart Selection Chest display", "Listed fixed August 6"],
+          ["Gyldening progress display", "Listed fixed August 6"],
+          ["Contract/Fate Chart weekly refresh time", "Listed fixed August 6"],
+          ["Rival equipment incorrectly appearing bound", "Listed fixed August 6"],
+        ],
+      },
+    },
+    {
+      heading: "Previously fixed — July 30 launch issues",
       table: {
         headers: ["Category", "Issue summary", "Platforms", "Official status", "Workaround / action"],
         rows: [
@@ -366,12 +423,13 @@ const knownIssues: GuidePageData = {
     },
   ],
   faqs: [
-    { question: "Were launch known issues fixed?", answer: "The first update lists fixes for the published launch issues; install it and report any remaining reproduction." },
-    { question: "Is stuttering fully resolved?", answer: "The developer reported improvements but said results vary by hardware." },
-    { question: "Where can I report a bug?", answer: "Use in-game customer support or official community channels." },
+    { question: "Is Mistfall Hunter stuttering fixed?", answer: "Not as a blanket official claim. Bellring Games said on August 5 that it was still actively investigating recently reported stuttering." },
+    { question: "Is Mistfall Hunter latency fixed?", answer: "No complete official resolution is confirmed here. Bellring Games said recent latency reports were still under investigation on August 5." },
+    { question: "Was the PS5 and Xbox friends-list crash fixed?", answer: "The August 6 update lists the PS/Xbox friends-list retrieval crash as fixed. Install the current client and report a new reproduction if it still occurs." },
+    { question: "Where can I report a bug?", answer: "Use in-game customer support or the official Mistfall Hunter community channels." },
   ],
   related: ["patch-notes", "fatal-error-fix", "stuttering-fix", "crashing-fix", "controller-guide"],
-  sources: [KNOWN_ISSUES_OFFICIAL, LAUNCH_UPDATE, STEAM],
+  sources: [KNOWN_ISSUES_OFFICIAL, LAUNCH_UPDATE, STEAM, STEAM_NEWS],
 };
 
 const patchNotes: GuidePageData = {
@@ -382,13 +440,58 @@ const patchNotes: GuidePageData = {
   title: "Mistfall Hunter Patch Notes: Launch Updates and Fixes",
   description: "Mistfall Hunter patch notes summarized with dates, major fixes, class balance, performance changes, console fixes, and affected guide pages.",
   h1: "Mistfall Hunter Patch Notes",
-  answer: "The first launch update was scheduled for July 30, 2026 at 16:00 UTC and addressed the published known-issue list plus class balance changes. This page summarizes official notes instead of copying them.",
+  answer: "The latest official Mistfall Hunter client update was scheduled for August 6, 2026 at 09:00 UTC. It enabled Dried Flower Knot drops and Einherjar Mist Lord challenges, adjusted Blackarrow and Withered Knight, and fixed several crash, multiplayer, Hallowgrove, Soul Tree, Fate Chart, and interface issues.",
   ...common,
-  updated: launchChecked,
+  updated: "2026-08-07",
   informationType: "Official patch summary",
   sections: [
     {
-      heading: "July 30, 2026 launch update summary",
+      heading: "August 6, 2026 live update",
+      paragraphs: [
+        "Bellring Games scheduled a no-downtime client update for August 6 at 09:00 UTC. Players still needed to update the game through their platform store after the update became available.",
+      ],
+      table: {
+        headers: ["Area", "August 6 change"],
+        rows: [
+          ["Einherjar", "Dried Flower Knots began dropping, opening the current path to Mist Lord challenges in Einherjar Mode."],
+          ["Blackarrow — Steel Arrow", "Uncharged shots no longer apply the previous impact effect, and the impact of fully charged shots was slightly reduced."],
+          ["Blackarrow — movement", "Fixed abnormal displacement when jumping after a side dodge."],
+          ["Blackarrow — aiming", "Fixed an incorrect collision prompt when aiming at Stealthed units."],
+          ["Withered Knight — Sprinting Slash", "Energy Cost was slightly reduced."],
+          ["Withered Knight — Withering Mark", "Energy Cost was slightly reduced."],
+          ["Withered Knight — skill reliability", "Fixed cases where certain skills could catch on obstacles and launch the character upward."],
+          ["Withered Knight — Inspect interaction", "Fixed certain skills being interrupted early by the Inspect action."],
+          ["Withered Knight — Thorn Guide", "Fixed Thorn Guide being able to drag Richie the Merchant."],
+          ["Mercenary", "Fixed a Sword & Shield issue that could trigger auto-block under specific circumstances."],
+          ["Sorcerer", "Fixed a Stardust issue that could prevent use of a charged Meteor Charm under specific circumstances."],
+        ],
+      },
+    },
+    {
+      heading: "Critical fixes in the August 6 update",
+      table: {
+        headers: ["Issue", "Official August 6 status"],
+        rows: [
+          ["PS/Xbox friends list crash", "Listed fixed. The friends list could fail to retrieve friend information and crash the game."],
+          ["Hallowgrove Gyldenmist", "Listed fixed. Gyldenmist could incorrectly deal no damage under specific circumstances."],
+          ["Stackable items", "Listed fixed. Some stackable items could stack incorrectly."],
+          ["Gem affixes", "Listed fixed. Gem affixes could occasionally cause a crash during matches."],
+          ["Brandrgarde Cataclysm", "Listed fixed. Allowed Combat Bags could display incorrectly."],
+          ["Contracts / Fate Chart", "Listed fixed. Weekly task refresh times could be incorrect."],
+          ["Looted rival equipment", "Listed fixed. Equipment taken from defeated Gyldhunters could incorrectly appear bound."],
+          ["Contract page", "A display issue was listed fixed."],
+        ],
+      },
+    },
+    {
+      heading: "Other player-facing fixes",
+      paragraphs: [
+        "The same update also addressed several lower-frequency but player-facing problems. These included players becoming trapped by the Soul Tree model, a Brandrgarde Mine Pit location where dodging could leave a player stuck, execution interruptions that could lock all actions, multiplayer Soul Separation Pill cases that prevented the correct downed state, Spectator mode exit and loading-screen problems, Fate Chart Selection Chests failing to show their contents, and Gyldening progress-bar display issues.",
+        "Bellring Games also shipped additional cosmetic, audio, localization, task-text, controller-looting, settlement-screen, and interface corrections. This digest focuses on changes that materially affect gameplay, progression, stability, or existing guides rather than reproducing the full official post.",
+      ],
+    },
+    {
+      heading: "Previous update — July 30, 2026",
       table: {
         headers: ["Area", "Official change", "Pages affected"],
         rows: [
@@ -442,12 +545,13 @@ const patchNotes: GuidePageData = {
     },
   ],
   faqs: [
-    { question: "Where are the full official patch notes?", answer: "Use the official Steam announcements linked below." },
-    { question: "Did the first patch fix controller issues?", answer: "It listed fixes for several controller-specific launch issues." },
-    { question: "Do old builds still work?", answer: "They may function, but balance changes can alter their relative value." },
+    { question: "What is the latest Mistfall Hunter patch?", answer: "The latest official client update covered here is the August 6, 2026 live update, which enabled Dried Flower Knot drops and Einherjar Mist Lord challenges, adjusted Blackarrow and Withered Knight, and fixed multiple stability and gameplay issues." },
+    { question: "Did the August 6 update fix stuttering and latency?", answer: "Bellring Games said on August 5 that it was still actively investigating recently reported stuttering and latency issues. The August 6 patch should not be described as a complete fix for either problem." },
+    { question: "Did the August 6 patch change class balance?", answer: "Yes. Steel Arrow and two Withered Knight Energy Costs were adjusted. The same patch also fixed class-specific issues affecting Blackarrow, Withered Knight, Mercenary, and Sorcerer." },
+    { question: "Where are the full official patch notes?", answer: "Use the official Mistfall Hunter Steam announcements linked in the Sources section." },
   ],
   related: ["known-issues", "classes", "builds", "stuttering-fix", "crashing-fix"],
-  sources: [LAUNCH_UPDATE, KNOWN_ISSUES_OFFICIAL, STEAM],
+  sources: [LAUNCH_UPDATE, KNOWN_ISSUES_OFFICIAL, STEAM, STEAM_NEWS],
 };
 
 export const rewardUpdatePages: GuidePageData[] = [

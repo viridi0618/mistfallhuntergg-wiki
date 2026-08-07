@@ -1,6 +1,6 @@
 # Content Review
 
-Last review: 2026-08-01
+Last review: 2026-08-07
 
 ## Pages using public player or review context
 
@@ -8,6 +8,7 @@ Last review: 2026-08-01
 - `/fatal-error-fix/` — references a June Steam discussion only as an example of one beta shader-compilation error. The page explicitly says this is not proof of every launch fatal-error cause.
 - `/class-tier-list/` — rankings are editorial and informed by current public gameplay context rather than official performance data.
 - `/best-class/` and `/best-solo-class/` — recommendations are editorial role matching, not official rankings.
+- `/cipher-list/` — clue-to-NPC mappings are community-tested rather than an official Bellring Games answer key. Recheck High/Medium confidence labels when new independent confirmations appear, and keep conflicting mappings omitted.
 
 ## Pages containing information not fully confirmed by official sources
 
@@ -16,6 +17,7 @@ Last review: 2026-08-01
 - `/twitch-drops/` — no current official campaign with verified dates, requirements, and rewards was found.
 - `/pve-only/` — no complete official PvE-only progression mode is confirmed.
 - `/servers/` and `/region-lock/` — no live server status is claimed; any account behavior outside the published North American rule remains unconfirmed until an official update.
+- `/cipher-list/` — Cipher item availability is officially confirmed, but the complete clue-to-NPC mapping table is not. Community mappings must remain labeled by confidence and must not be presented as official data.
 
 ## Build and tier pages
 
@@ -132,3 +134,12 @@ All six pages deliberately avoid unverified talent-node names, gem or affix name
 - `/game-pass/`: “Current Game Pass listing” immediately after any Xbox catalog or subscription-tier change.
 - `/battle-pass/`: “Season 1 Battle Pass status” after any new official season or reward-track announcement.
 - `/class-picker/`: the shared class-profile scoring tendencies whenever official roles or weapon routes materially change.
+
+## August 7 P0/P1 content refresh
+
+- `/patch-notes/` — now includes the August 6 live update; recheck after the next official client update.
+- `/known-issues/` — stuttering and latency remain under investigation as of the reviewed August 5 announcement; do not mark them fixed without newer official evidence.
+- `/launch-rewards/` and `/rewards/` — recheck reward waves and claim deadlines after newer official reward announcements.
+- `/builds/mercenary/`, `/builds/sorcerer/`, `/builds/blackarrow/`, and `/builds/withered-knight/` — August 6 patch context reviewed; recheck after the next relevant class-balance update.
+- `/play-with-friends/` — August 6 PS/Xbox friends-list fix added; recheck if Bellring Games reports a recurrence.
+- `/cipher-list/` — recheck community mappings and confidence labels; conflicting mappings remain excluded.

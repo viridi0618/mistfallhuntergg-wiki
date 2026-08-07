@@ -1,7 +1,7 @@
 {
   "generatedFromCommit": "99b675af3d22cbf0774592ca3a3518bb7f60ebdc",
   "generatedAt": "2026-08-01T09:02:17.774Z",
-  "publicPageCount": 49,
+  "publicPageCount": 50,
   "pages": [
     {
       "path": "/",
@@ -834,6 +834,23 @@
       "ogType": "website",
       "schemaTypes": [
         "ContactPage"
+      ]
+    },
+    {
+      "path": "/cipher-list/",
+      "title": "Mistfall Hunter Cipher List: Clues & Correct NPCs",
+      "description": "Use this Mistfall Hunter cipher list to match clue words with the correct NPC, including community-tested mappings for Pip, Dramm, Sigrid, Merimo, Cazarro, Soekja, and Dew.",
+      "h1": "Mistfall Hunter Cipher List",
+      "canonical": "https://mistfallhuntergg.wiki/cipher-list/",
+      "robots": {
+        "index": true,
+        "follow": true
+      },
+      "ogTitle": "Mistfall Hunter Cipher List: Clues & Correct NPCs",
+      "ogDescription": "Use this Mistfall Hunter cipher list to match clue words with the correct NPC, including community-tested mappings for Pip, Dramm, Sigrid, Merimo, Cazarro, Soekja, and Dew.",
+      "ogType": "article",
+      "schemaTypes": [
+        "Article"
       ]
     }
   ]

@@ -704,14 +704,17 @@ const deepeningSections: Record<string, GuideSection[]> = {
   ],
   "known-issues": [
     {
-      heading: "Launch issue status table",
+      heading: "Current issue status at a glance",
       table: {
-        headers: ["Issue area", "Official launch status", "Player action"],
+        headers: ["Issue area", "Current status", "Player action"],
         rows: [
-          ["Tutorial prompts and Flameblade presentation", "Acknowledged, then included in the launch update set", "Update and retest the same step"],
-          ["Extra Soul of Return consumption", "Acknowledged, then included in the launch update set", "Confirm the installed version before reporting"],
-          ["Inventory splitting and controller navigation", "Acknowledged in the launch list", "Use the current input path and update"],
-          ["Console reconnect and PS5 deck display", "Acknowledged with platform context", "Restart as directed and confirm the platform build"],
+          ["Stuttering", "Still under official investigation", "Keep the client current and record a repeatable hardware/scenario test"],
+          ["Latency", "Still under official investigation", "Separate region, party, and local-network symptoms before changing settings"],
+          ["PS/Xbox friends list crash", "Listed fixed August 6", "Update and retest before applying older workarounds"],
+          ["Gem-affix match crash", "Listed fixed August 6", "Update and report a new reproduction if it persists"],
+          ["Hallowgrove Gyldenmist anomaly", "Listed fixed August 6", "Update and report the exact location/scenario if reproduced"],
+          ["Soul Tree trapping", "Listed fixed August 6", "Update before treating an older report as current"],
+          ["July 30 launch issue set", "Previously listed fixed", "Keep only for historical troubleshooting context"],
         ],
       },
     },
