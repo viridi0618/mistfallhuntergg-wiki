@@ -1,5 +1,5 @@
 import type { GuidePageData } from "@/lib/types";
-import { OFFICIAL_SITE, STEAM_NEWS } from "./sources";
+import { CIPHER_COMMUNITY_THREAD, OFFICIAL_SITE, STEAM_NEWS } from "./sources";
 
 const cipherList: GuidePageData = {
   path: "cipher-list",
@@ -76,7 +76,7 @@ const cipherList: GuidePageData = {
     { question: "Are Ashen Cipher and Abyssal Cipher real launch items?", answer: "Yes. Bellring Games included one of each in the official second wave of launch rewards announced on August 1." },
   ],
   related: ["rewards", "launch-rewards", "codes", "patch-notes", "guides"],
-  sources: [STEAM_NEWS, OFFICIAL_SITE],
+  sources: [STEAM_NEWS, CIPHER_COMMUNITY_THREAD, OFFICIAL_SITE],
 };
 
 export const cipherPages: GuidePageData[] = [cipherList];

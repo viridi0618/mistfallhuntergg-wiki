@@ -89,3 +89,9 @@ export const STEAM_DISCUSSIONS: GuideSource = {
   url: "https://steamcommunity.com/app/3282300/discussions/",
   level: "Community",
 };
+
+export const CIPHER_COMMUNITY_THREAD: GuideSource = {
+  label: "Community-tested Mistfall Hunter cipher NPC mappings",
+  url: "https://www.reddit.com/r/MistfallHunter/comments/1u8jtqg/is_there_a_list_of_correct_npcs_for_each_cipher/",
+  level: "Community",
+};
