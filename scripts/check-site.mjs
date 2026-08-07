@@ -18,7 +18,7 @@ const expectedRoutes = [
   "region-lock", "play-with-friends", "fov", "best-settings",
   "controller-guide", "fatal-error-fix", "stuttering-fix", "crashing-fix",
   "connection-fix", "codes", "twitch-drops", "launch-rewards", "skins",
-  "known-issues", "patch-notes", "price", "platforms", "review",
+  "known-issues", "patch-notes", "cipher-list", "price", "platforms", "review",
   "system-requirements", "about", "editorial-policy", "privacy-policy",
   "disclaimer", "contact",
   "es", "es/guia-principiantes", "es/como-extraer", "es/clases",
@@ -67,7 +67,7 @@ const protectedBodyMarkers = {
   ],
   codes: ["There are currently no confirmed public Mistfall Hunter redeem codes in the official sources checked on August 1, 2026."],
   skins: ["Mistfall Hunter cosmetics come from edition bonuses, seasonal rewards, event eligibility, and the in-game cosmetic economy."],
-  "patch-notes": ["The first launch update was scheduled for July 30, 2026 at 16:00 UTC and addressed the published known-issue list plus class balance changes."],
+  "patch-notes": ["The latest official Mistfall Hunter client update was scheduled for August 6, 2026 at 09:00 UTC. It enabled Dried Flower Knot drops and Einherjar Mist Lord challenges, adjusted Blackarrow and Withered Knight, and fixed several crash, multiplayer, Hallowgrove, Soul Tree, Fate Chart, and interface issues."],
 };
 const deprecatedBattlePassNames = [
   ["Sleeping", "Dragon", "Covenant"].join(" "),

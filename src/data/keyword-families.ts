@@ -175,6 +175,10 @@ export const keywordFamilies = {
     primary: "mistfall hunter codes",
     variants: ["redeem codes", "active codes", "code status", "reward codes"],
   },
+  "/cipher-list/": {
+    primary: "mistfall hunter cipher list",
+    variants: ["cipher NPC clues", "cipher clue words", "cipher mappings", "cipher answer"],
+  },
   "/twitch-drops/": {
     primary: "mistfall hunter twitch drops",
     variants: ["drop campaign", "twitch rewards", "drop status", "stream rewards"],

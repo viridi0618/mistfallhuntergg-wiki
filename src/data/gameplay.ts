@@ -595,6 +595,7 @@ const friends: GuidePageData = {
   h1: "How to Play Mistfall Hunter With Friends",
   answer: "Form an in-game party, confirm compatible account regions and current versions, then enter together. Xbox officially lists online co-op for two to three players and cross-platform co-op.",
   ...common,
+  updated: "2026-08-07",
   informationType: "Official capabilities with practical setup steps",
   sections: [
     {
@@ -637,11 +638,18 @@ const friends: GuidePageData = {
         "Leave together; one extra loot interaction can end the entire run.",
       ],
     },
+    {
+      heading: "August 6 console friends-list fix",
+      paragraphs: [
+        "The August 6 update lists a fix for a PS/Xbox issue where the friends list could fail to retrieve friend information and cause the game to crash.",
+        "If the same symptom still occurs, update the game through the platform store, restart the client, confirm both players are using the current version, and retry the normal friend-list flow before changing region or network settings. A new reproduction after the patch should be treated as a new issue rather than proof that the older fix never shipped.",
+      ],
+    },
   ],
   faqs: [
     { question: "How many friends can play together?", answer: "Xbox lists online co-op for two to three players; the standard squad is three." },
     { question: "Can PC and console players group?", answer: "Cross-platform matchmaking is confirmed, and Xbox lists cross-platform co-op." },
-    { question: "Why can I not invite a friend?", answer: "Check versions, account identity, privacy settings, server region eligibility, and official service notices." },
+    { question: "Why can I not invite a friend?", answer: "Check client versions, account identity, privacy settings, and server-region eligibility first. On PS/Xbox, the August 6 update also listed a fix for a friends-list retrieval issue that could cause a crash, so update and restart before using older workarounds." },
   ],
   related: ["crossplay", "servers", "region-lock", "connection-fix", "classes"],
   sources: [XBOX, STEAM_NEWS],
